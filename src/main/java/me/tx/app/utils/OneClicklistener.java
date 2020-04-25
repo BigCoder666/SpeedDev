@@ -8,8 +8,8 @@ public abstract class OneClicklistener implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         if(System.currentTimeMillis()-lastTime>500){
-            click(view);
             lastTime = System.currentTimeMillis();
+            click(view);
         }
     }
 }

@@ -8,9 +8,6 @@ import java.util.HashSet;
 import java.util.List;
 
 public class ShareGetter {
-    //key
-    public final static String DEVICE="deviceToken";
-
 
     SharedPreferences sharedPreferences;
 

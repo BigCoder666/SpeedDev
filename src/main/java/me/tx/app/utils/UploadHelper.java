@@ -67,7 +67,7 @@ public class UploadHelper {
                 for(File file :fileList) {
                     RequestBody fileBody = RequestBody.create(MediaType.parse("image/png"), file);
                     try {
-                        builder.addFormDataPart("file", URLEncoder.encode(file.getAbsolutePath(),"UTF-8"), fileBody);
+                        builder.addFormDataPart("picture", URLEncoder.encode(file.getAbsolutePath(),"UTF-8"), fileBody);
                     } catch (UnsupportedEncodingException e) {
                         iProgress.fail("urlencode failed");
                         e.printStackTrace();

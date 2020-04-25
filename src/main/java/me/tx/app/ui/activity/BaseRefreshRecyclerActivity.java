@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.view.ViewGroup;
 
 import me.tx.app.R;
@@ -19,6 +20,8 @@ public abstract class BaseRefreshRecyclerActivity<T extends EmptyHolder> extends
     final int END = -9999;
     final int EMPTY = -8888;
 
+    EmptyHolder customerEmptyView =null;
+
     boolean couldLoadMore = true;
 
     boolean loadMoreState = true;
@@ -32,6 +35,10 @@ public abstract class BaseRefreshRecyclerActivity<T extends EmptyHolder> extends
     public final int pageSize = 20;
 
     int page = 1;
+
+    public void setCustomerEmptyView(EmptyHolder view){
+        customerEmptyView = view;
+    }
 
     public interface IResult {
         void empty();
@@ -120,12 +127,16 @@ public abstract class BaseRefreshRecyclerActivity<T extends EmptyHolder> extends
             public T onCreateViewHolder(@NonNull ViewGroup viewGroup, int type) {
                 try {
                     if (type == EMPTY) {
-                        return (T) EmptyHolder.EMPTY(BaseRefreshRecyclerActivity.this, viewGroup);
+                        if(customerEmptyView == null) {
+                            return (T) EmptyHolder.EMPTY(BaseRefreshRecyclerActivity.this, viewGroup);
+                        }else {
+                            return (T) customerEmptyView;
+                        }
                     }
                     if (type == END && BaseRefreshRecyclerActivity.this.getItemCount() >= pageSize) {
                         return (T) EmptyHolder.END(BaseRefreshRecyclerActivity.this, viewGroup);
                     }
-                    return (T) BaseRefreshRecyclerActivity.this.onCreateViewHolder(viewGroup, type);
+                    return BaseRefreshRecyclerActivity.this.onCreateViewHolder(viewGroup, type);
                 } catch (ClassCastException e) {
                     e.printStackTrace();
                     return null;

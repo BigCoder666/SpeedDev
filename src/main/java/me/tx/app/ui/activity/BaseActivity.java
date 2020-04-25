@@ -1,5 +1,6 @@
 package me.tx.app.ui.activity;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -7,6 +8,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,14 +24,17 @@ import java.util.List;
 import me.tx.app.ActivityManager;
 import me.tx.app.network.HttpFormArray;
 import me.tx.app.network.HttpFormObject;
+import me.tx.app.network.HttpFormString;
 import me.tx.app.network.HttpGetArray;
 import me.tx.app.network.HttpGetObject;
 import me.tx.app.network.HttpJsonArray;
 import me.tx.app.network.HttpJsonObject;
+import me.tx.app.network.HttpJsonString;
 import me.tx.app.network.IResponse;
 import me.tx.app.network.ParamList;
 import me.tx.app.network.Signer;
 import me.tx.app.utils.BasePopupWindow;
+import me.tx.app.utils.DownloadInfo;
 import me.tx.app.utils.Downloader;
 import me.tx.app.utils.LoadingController;
 import me.tx.app.utils.PermissionLoader;
@@ -74,7 +79,7 @@ public abstract class BaseActivity extends AppCompatActivity implements PicassoL
             //图片加载器
             picassoLoader = PicassoLoader.getInstance(activity);
             //文件下载器
-            downloader = new Downloader();
+            downloader = new Downloader(ac);
             //提示器
             toaster = new Toaster(activity);
             //加载器
@@ -104,18 +109,21 @@ public abstract class BaseActivity extends AppCompatActivity implements PicassoL
                 } else if (iResponse.iamObj()) {
                     new HttpGetObject().build(action, paramList, iResponse);
                 }
-            }
-            if (iResponse.iamForm()) {
+            }else if (iResponse.iamForm()) {
                 if (iResponse.iamArray()) {
                     new HttpFormArray().build(action, paramList, iResponse);
                 } else if (iResponse.iamObj()) {
                     new HttpFormObject().build(action, paramList, iResponse);
+                }else {
+                    new HttpFormString().build(action,paramList,iResponse);
                 }
             } else if (iResponse.iamJson()) {
                 if (iResponse.iamArray()) {
                     new HttpJsonArray().build(action, paramList, iResponse);
                 } else if (iResponse.iamObj()) {
                     new HttpJsonObject().build(action, paramList, iResponse);
+                }else {
+                    new HttpJsonString().build(action,paramList,iResponse);
                 }
             }
         }
@@ -127,7 +135,7 @@ public abstract class BaseActivity extends AppCompatActivity implements PicassoL
                 activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
                 activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_IN_OVERSCAN);
             }
-            activity.statusBarTextBlack();
+            activity.statusBarTextWhite();
         }
 
         public void dismissLoading() {
@@ -189,36 +197,13 @@ public abstract class BaseActivity extends AppCompatActivity implements PicassoL
         }
 
 
-        public void download(String url) {
-            boolean result = downloader.downloadFile(url, activity, "");
-            if (!result) {
-                toast("下载失败");
+        public void download(DownloadInfo downloadInfo, Downloader.IFinish iFinish) {
+            if(loadPermission(new String[]{
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    Manifest.permission.READ_EXTERNAL_STORAGE
+            })) {
+                downloader.downloadFile(downloadInfo,iFinish);
             }
-        }
-
-        public void download(String url, String mimeType) {
-            boolean result = downloader.downloadFile(url, activity, mimeType);
-            if (!result) {
-                toast("下载失败");
-            }
-        }
-
-        public boolean downloadApk(String url) {
-            boolean haveInstallPermission = true;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                haveInstallPermission = activity.getPackageManager().canRequestPackageInstalls();
-            }
-            if (!haveInstallPermission) {
-                Uri packageURI = Uri.parse("package:" + activity.getPackageName());
-                Intent intent = new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, packageURI);
-                activity.startActivityForResult(intent, PERMISSION_REQUEST_INSTALL);
-                return false;
-            }
-            boolean result = downloader.downloadFile(url, activity, "application/vnd.android.package-archive");
-            if (!result) {
-                toast("下载失败");
-            }
-            return result;
         }
 
         public ShareGetter getShareGetter() {

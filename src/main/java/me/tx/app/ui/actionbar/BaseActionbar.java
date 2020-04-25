@@ -225,7 +225,8 @@ public class BaseActionbar extends RelativeLayout {
         LinearLayout.LayoutParams leftLp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, DPPX.dip2px(getContext(), baseHeight));
         for (int i = 0; i < viewList.size(); i++) {
             if (viewList.get(i) instanceof ImageClick) {
-                leftLayout.addView(viewList.get(i), new ViewGroup.LayoutParams(DPPX.dip2px(getContext(), 50), DPPX.dip2px(getContext(), baseHeight)));
+                viewList.get(i).setPadding(DPPX.dip2px(getContext(),10),0,DPPX.dip2px(getContext(),10),0);
+                leftLayout.addView(viewList.get(i), new ViewGroup.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, DPPX.dip2px(getContext(), baseHeight)));
             } else {
                 leftLayout.addView(viewList.get(i), leftLp);
             }
@@ -245,7 +246,8 @@ public class BaseActionbar extends RelativeLayout {
         LinearLayout.LayoutParams rightLp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, DPPX.dip2px(getContext(), baseHeight));
         for (int i = 0; i < viewList.size(); i++) {
             if (viewList.get(i) instanceof ImageClick) {
-                rightLayout.addView(viewList.get(i), new ViewGroup.LayoutParams(DPPX.dip2px(getContext(), 50), DPPX.dip2px(getContext(), baseHeight)));
+                viewList.get(i).setPadding(DPPX.dip2px(getContext(),10),0,DPPX.dip2px(getContext(),10),0);
+                rightLayout.addView(viewList.get(i), new ViewGroup.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, DPPX.dip2px(getContext(), baseHeight)));
             } else {
                 rightLayout.addView(viewList.get(i), rightLp);
             }

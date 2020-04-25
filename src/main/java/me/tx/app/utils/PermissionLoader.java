@@ -20,7 +20,7 @@ public class PermissionLoader {
 
 
     public boolean Load(String[] permissionArray) {
-        if (EasyPermissions.hasPermissions(context, permissionArray)) {
+        if (EasyPermissions.hasPermissions(context.getApplicationContext(), permissionArray)) {
             return true;
         } else {
             // Do not have permissions, request them now

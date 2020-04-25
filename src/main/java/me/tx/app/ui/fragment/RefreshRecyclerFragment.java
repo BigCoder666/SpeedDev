@@ -32,7 +32,7 @@ public abstract class RefreshRecyclerFragment<T extends EmptyHolder> extends Ref
     IResult iResult = new IResult() {
         @Override
         public void empty() {
-            couldLoadMore=false;
+            couldLoadMore = false;
             page--;
         }
     };
@@ -74,7 +74,7 @@ public abstract class RefreshRecyclerFragment<T extends EmptyHolder> extends Ref
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                if(!couldLoadMore){
+                if (!couldLoadMore) {
                     return;
                 }
                 int lastPosition = ((LinearLayoutManager) recyclerView.getLayoutManager()).findLastCompletelyVisibleItemPosition();
@@ -88,18 +88,28 @@ public abstract class RefreshRecyclerFragment<T extends EmptyHolder> extends Ref
             @NonNull
             @Override
             public T onCreateViewHolder(@NonNull ViewGroup viewGroup, int type) {
-                if (type == EMPTY) {
-                    return (T) EmptyHolder.EMPTY(getContext(), viewGroup);
+                try {
+                    if (type == EMPTY) {
+                        return (T) EmptyHolder.EMPTY(getContext(), viewGroup);
+                    }
+                    return RefreshRecyclerFragment.this.onCreateViewHolder(viewGroup, type);
+                } catch (ClassCastException e) {
+                    e.printStackTrace();
+                    return null;
                 }
-                return (T)RefreshRecyclerFragment.this.onCreateViewHolder(viewGroup, type);
             }
 
             @Override
             public void onBindViewHolder(@NonNull T holder, int position) {
-                if (RefreshRecyclerFragment.this.getItemCount() == 0) {
+                try {
+                    if (RefreshRecyclerFragment.this.getItemCount() == 0) {
+                        return;
+                    } else {
+                        RefreshRecyclerFragment.this.onBindViewHolder(holder, position);
+                    }
+                } catch (ClassCastException e) {
+                    e.printStackTrace();
                     return;
-                } else {
-                    RefreshRecyclerFragment.this.onBindViewHolder((T)holder, position);
                 }
             }
 

@@ -1,23 +1,28 @@
 package me.tx.app.network;
 
 public class IData {
-    public final static int ok=200;
+    public final static int ok=0;
     public final static int badtoken=512;
 
     public String getMessage() {
-        return msg;
+        return rettext;
     }
 
     public int getStatus() {
-        return status;
+        return retcode;
     }
 
     public String getData() {
         return data;
     }
 
-    public String msg="";
-    public int status=0;
+    public String getSignkey() {
+        return signkey;
+    }
+
+    public String rettext="";
+    public int retcode=0;
     public String data="";
+    public String signkey="";
 
 }
