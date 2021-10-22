@@ -18,13 +18,12 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.support.annotation.ColorInt;
-import android.support.annotation.ColorRes;
-import android.support.annotation.DrawableRes;
 import android.util.AttributeSet;
 
+import androidx.appcompat.widget.AppCompatImageView;
 
-public class CircleImageView extends android.support.v7.widget.AppCompatImageView {
+
+public class CircleImageView extends AppCompatImageView {
 
     private static final ScaleType SCALE_TYPE = ScaleType.CENTER_CROP;
 
@@ -149,7 +148,7 @@ public class CircleImageView extends android.support.v7.widget.AppCompatImageVie
         return mBorderColor;
     }
 
-    public void setBorderColor(@ColorInt int borderColor) {
+    public void setBorderColor( int borderColor) {
         if (borderColor == mBorderColor) {
             return;
         }
@@ -163,7 +162,7 @@ public class CircleImageView extends android.support.v7.widget.AppCompatImageVie
      * @deprecated Use {@link #setBorderColor(int)} instead
      */
     @Deprecated
-    public void setBorderColorResource(@ColorRes int borderColorRes) {
+    public void setBorderColorResource( int borderColorRes) {
         setBorderColor(getContext().getResources().getColor(borderColorRes));
     }
 
@@ -188,7 +187,7 @@ public class CircleImageView extends android.support.v7.widget.AppCompatImageVie
      * @deprecated Fill color support is going to be removed in the future
      */
     @Deprecated
-    public void setFillColor(@ColorInt int fillColor) {
+    public void setFillColor( int fillColor) {
         if (fillColor == mFillColor) {
             return;
         }
@@ -208,7 +207,7 @@ public class CircleImageView extends android.support.v7.widget.AppCompatImageVie
      * @deprecated Fill color support is going to be removed in the future
      */
     @Deprecated
-    public void setFillColorResource(@ColorRes int fillColorRes) {
+    public void setFillColorResource( int fillColorRes) {
         setFillColor(getContext().getResources().getColor(fillColorRes));
     }
 
@@ -264,7 +263,7 @@ public class CircleImageView extends android.support.v7.widget.AppCompatImageVie
     }
 
     @Override
-    public void setImageResource(@DrawableRes int resId) {
+    public void setImageResource( int resId) {
         super.setImageResource(resId);
         initializeBitmap();
     }

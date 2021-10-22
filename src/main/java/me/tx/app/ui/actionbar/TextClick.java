@@ -1,10 +1,11 @@
 package me.tx.app.ui.actionbar;
 
 import android.content.Context;
-import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
+
+import androidx.appcompat.widget.AppCompatTextView;
 
 import me.tx.app.utils.DPPX;
 

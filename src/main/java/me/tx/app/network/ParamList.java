@@ -104,12 +104,53 @@ public class ParamList {
         return false;
     }
 
-    public String getJsonString(){
-        HashMap<String,Object> json = new HashMap();
-        for(IParam iParam:paramList){
-            json.put(iParam.getKey(),iParam.getValue());
+    public boolean allValueNull(){
+        if(paramList.size()==0){
+            return false;
         }
-        String jstr =JSON.toJSONString(json);
+        boolean isNull = true;
+        for(IParam param:paramList){
+            if(param.getValue()!=null){
+                isNull = false;
+            }
+        }
+        return isNull;
+    }
+
+    public boolean allKeyNull(){
+        if(paramList.size()==0){
+            return false;
+        }
+        boolean isNull = true;
+        for(IParam param:paramList){
+            if(param.getKey()!=null){
+                isNull = false;
+            }
+        }
+        return isNull;
+    }
+
+    public String getJsonString(){
+        String jstr="";
+        if(allKeyNull()){
+            ArrayList<Object> json = new ArrayList<>();
+            for (IParam iParam : paramList) {
+                json.add(iParam.getValue());
+            }
+            jstr = JSON.toJSONString(json);
+        }else if(allValueNull()) {
+            ArrayList<String> json = new ArrayList<>();
+            for (IParam iParam : paramList) {
+                json.add(iParam.getKey());
+            }
+            jstr = JSON.toJSONString(json);
+        }else {
+            HashMap<String, Object> json = new HashMap();
+            for (IParam iParam : paramList) {
+                json.put(iParam.getKey(), iParam.getValue());
+            }
+            jstr = JSON.toJSONString(json);
+        }
         return jstr;
     }
 

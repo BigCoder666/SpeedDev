@@ -1,7 +1,7 @@
 package me.tx.app.ui.widget.banner;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 
 import jameson.io.library.util.LogUtils;

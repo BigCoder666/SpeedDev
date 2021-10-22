@@ -1,10 +1,13 @@
 package me.tx.app.ui.fragment;
 
-import android.support.annotation.NonNull;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.os.SystemClock;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import me.tx.app.R;
 import me.tx.app.ui.widget.EmptyHolder;
@@ -21,15 +24,21 @@ public abstract class RefreshRecyclerFragment<T extends EmptyHolder> extends Ref
 
     RecyclerView.Adapter<T> adapter;
 
+    public RecyclerView.OnScrollListener onScrollListener;
+
+    public void noScorllListener(){
+        recycler.removeOnScrollListener(onScrollListener);
+    }
+
     public final int pageSize = 20;
 
-    int page = 1;
+    public int page = 1;
 
     public interface IResult {
         void empty();
     }
 
-    IResult iResult = new IResult() {
+    public IResult iResult = new IResult() {
         @Override
         public void empty() {
             couldLoadMore = false;
@@ -39,7 +48,7 @@ public abstract class RefreshRecyclerFragment<T extends EmptyHolder> extends Ref
 
     public abstract void setSwipeRecyclerFragment(View view);
 
-    public abstract LinearLayoutManager getLayoutManager();
+    public abstract RecyclerView.LayoutManager getLayoutManager();
 
     public abstract int getItemViewType(int position);
 
@@ -65,29 +74,43 @@ public abstract class RefreshRecyclerFragment<T extends EmptyHolder> extends Ref
     public void setSwipFragment(View view) {
         recycler = view.findViewById(R.id.recycler);
         recycler.setLayoutManager(getLayoutManager());
-        recycler.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        onScrollListener=new RecyclerView.OnScrollListener() {
             @Override
-            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+            public void onScrollStateChanged( RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
             }
 
             @Override
-            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+            public void onScrolled( RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 if (!couldLoadMore) {
                     return;
                 }
-                int lastPosition = ((LinearLayoutManager) recyclerView.getLayoutManager()).findLastCompletelyVisibleItemPosition();
-                if ((lastPosition + 1) == RefreshRecyclerFragment.this.getItemCount() && RefreshRecyclerFragment.this.getItemCount() >= pageSize) {
-                    page++;
-                    load(page, iResult, false);
+                if(swip.isRefreshing()){
+                    recycler.dispatchTouchEvent(MotionEvent.obtain(SystemClock.uptimeMillis(),SystemClock.uptimeMillis(),MotionEvent.ACTION_CANCEL
+                            ,0,0,0));
+                    return;
+                }
+                if(recyclerView.getLayoutManager() instanceof LinearLayoutManager) {
+                    int lastPosition = ((LinearLayoutManager) recyclerView.getLayoutManager()).findLastCompletelyVisibleItemPosition();
+                    if ((lastPosition + 1) == RefreshRecyclerFragment.this.getItemCount() && RefreshRecyclerFragment.this.getItemCount() >= pageSize) {
+                        page++;
+                        load(page, iResult, false);
+                    }
+                }else if(recyclerView.getLayoutManager() instanceof StaggeredGridLayoutManager){
+                    int lastPosition = ((StaggeredGridLayoutManager) recyclerView.getLayoutManager()).findLastCompletelyVisibleItemPositions(null)[0];
+                    if ((lastPosition + 1) == RefreshRecyclerFragment.this.getItemCount() && RefreshRecyclerFragment.this.getItemCount() >= pageSize) {
+                        page++;
+                        load(page, iResult, false);
+                    }
                 }
             }
-        });
+        };
+        recycler.addOnScrollListener(onScrollListener);
         adapter = new RecyclerView.Adapter<T>() {
-            @NonNull
+
             @Override
-            public T onCreateViewHolder(@NonNull ViewGroup viewGroup, int type) {
+            public T onCreateViewHolder( ViewGroup viewGroup, int type) {
                 try {
                     if (type == EMPTY) {
                         return (T) EmptyHolder.EMPTY(getContext(), viewGroup);
@@ -100,7 +123,7 @@ public abstract class RefreshRecyclerFragment<T extends EmptyHolder> extends Ref
             }
 
             @Override
-            public void onBindViewHolder(@NonNull T holder, int position) {
+            public void onBindViewHolder( T holder, int position) {
                 try {
                     if (RefreshRecyclerFragment.this.getItemCount() == 0) {
                         return;
@@ -138,6 +161,9 @@ public abstract class RefreshRecyclerFragment<T extends EmptyHolder> extends Ref
 
     @Override
     public void loadFinish() {
+        if(getActivity()==null){
+            return;
+        }
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {

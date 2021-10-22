@@ -1,62 +1,73 @@
 package me.tx.app.ui.activity;
 
 import android.Manifest;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
+
 import android.provider.Settings;
-import android.support.annotation.Nullable;
-import android.support.v4.app.NotificationManagerCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.jaeger.library.StatusBarUtil;
+import com.yuyh.library.imgsel.ISNav;
+import com.yuyh.library.imgsel.config.ISListConfig;
+import com.yuyh.library.imgsel.ui.ISListActivity;
 
 import java.io.File;
-import java.lang.reflect.Field;
+import java.util.HashMap;
 import java.util.List;
 
-import me.tx.app.ActivityManager;
-import me.tx.app.network.HttpFormArray;
-import me.tx.app.network.HttpFormObject;
-import me.tx.app.network.HttpFormString;
-import me.tx.app.network.HttpGetArray;
-import me.tx.app.network.HttpGetObject;
-import me.tx.app.network.HttpJsonArray;
-import me.tx.app.network.HttpJsonObject;
-import me.tx.app.network.HttpJsonString;
+//import me.tx.app.ActivityManager;
+import me.tx.app.R;
+import me.tx.app.network.HttpBuilder;
 import me.tx.app.network.IResponse;
 import me.tx.app.network.ParamList;
-import me.tx.app.network.Signer;
-import me.tx.app.utils.BasePopupWindow;
+import me.tx.app.utils.AndroidBug5497Workaround;
 import me.tx.app.utils.DownloadInfo;
 import me.tx.app.utils.Downloader;
+import me.tx.app.utils.HttpUtils;
 import me.tx.app.utils.LoadingController;
+import me.tx.app.utils.NotificationHelper;
 import me.tx.app.utils.PermissionLoader;
 import me.tx.app.utils.PicassoLoader;
 import me.tx.app.utils.ShareGetter;
 import me.tx.app.utils.Toaster;
 import me.tx.app.utils.UploadHelper;
+import okhttp3.Cookie;
 import pub.devrel.easypermissions.EasyPermissions;
+
+import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 
 public abstract class BaseActivity extends AppCompatActivity implements PicassoLoader.IDefult, LoadingController.ILoadSrc, IResponse.BadToken,EasyPermissions.PermissionCallbacks  {
     public Center center;
     public View root;
-    public BasePopupWindow popupWindow;
+    public INTENT_TYPE intent_type = INTENT_TYPE.DEFULT;
 
-    public final static int PERMISSION_REQUEST_INSTALL = 1991;
+    public enum INTENT_TYPE {LEFT, RIGHT, TOP, BOTTOM, SCALE, FADE,DEFULT}
 
-    public abstract List<ParamList.IParam> getDefultParam();
+    public abstract HashMap<String,String> getHeader();
 
     @Override
     public void finish() {
         super.finish();
-        overridePendingTransition(0, 0);
     }
 
     public static class Center {
@@ -67,13 +78,13 @@ public abstract class BaseActivity extends AppCompatActivity implements PicassoL
         LoadingController loadingController;
         ShareGetter shareGetter;
         BaseActivity activity;
-        List<ParamList.IParam> defultParam;
         UploadHelper uploadHelper;
+        NotificationHelper notificationHelper;
 
-        public Center(BaseActivity ac, List<ParamList.IParam> defultParam) {
+        public Center(BaseActivity ac) {
             activity = ac;
-            this.defultParam = defultParam;
             //初始化开始
+            
             //权限申请器
             permissionLoader = new PermissionLoader(activity);
             //图片加载器
@@ -88,8 +99,49 @@ public abstract class BaseActivity extends AppCompatActivity implements PicassoL
             shareGetter = new ShareGetter(activity);
             //上传器
             uploadHelper = new UploadHelper();
+            //notification
+            notificationHelper = new NotificationHelper();
             //状态栏颜色控制
             statusBarSet();
+        }
+
+        public void notificationWithFile(String title,String info,int big,int small,File file){
+            notificationHelper.show(activity,title,info,big,small,openFileIntent(activity,file));
+        }
+
+        public PendingIntent openFileIntent(Context context,File file){
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            String extension = android.webkit.MimeTypeMap.getFileExtensionFromUrl(Uri.fromFile(file).toString());
+            String mimetype = android.webkit.MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
+            //7.0以上需要
+            if (Build.VERSION.SDK_INT >= 24) {
+                intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                String pkgName = activity.getPackageName();
+                Uri uri = FileProvider.getUriForFile(activity, pkgName + ".fileProvider", file);
+                intent.setDataAndType(uri, mimetype);
+            } else {
+                intent.setDataAndType(Uri.fromFile(file), mimetype);
+            }
+            PendingIntent pi = PendingIntent.getActivity(context,0,intent,0);
+            return pi;
+        }
+
+        public void openFile(File file) {
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            String extension = android.webkit.MimeTypeMap.getFileExtensionFromUrl(Uri.fromFile(file).toString());
+            String mimetype = android.webkit.MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
+            //7.0以上需要
+            if (Build.VERSION.SDK_INT >= 24) {
+                intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                String pkgName = activity.getPackageName();
+                Uri uri = FileProvider.getUriForFile(activity, pkgName + ".fileProvider", file);
+                intent.setDataAndType(uri, mimetype);
+            } else {
+                intent.setDataAndType(Uri.fromFile(file), mimetype);
+            }
+            activity.startActivity(intent);
         }
 
         public UploadHelper getUploadHelper() {
@@ -97,92 +149,66 @@ public abstract class BaseActivity extends AppCompatActivity implements PicassoL
         }
 
         public void req(String action, ParamList paramList, IResponse iResponse) {
-            if (defultParam.size() > 0) {
-                for (ParamList.IParam iParam : defultParam) {
-                    paramList.add(iParam);
-                }
+            if(!action.startsWith("http")){
+                iResponse.fail("789","请求地址(http)异常");
+                return;
             }
-//            paramList = Signer.sign(paramList);
-            if (iResponse.iamGet()) {
-                if (iResponse.iamArray()) {
-                    new HttpGetArray().build(action, paramList, iResponse);
-                } else if (iResponse.iamObj()) {
-                    new HttpGetObject().build(action, paramList, iResponse);
-                }
-            }else if (iResponse.iamForm()) {
-                if (iResponse.iamArray()) {
-                    new HttpFormArray().build(action, paramList, iResponse);
-                } else if (iResponse.iamObj()) {
-                    new HttpFormObject().build(action, paramList, iResponse);
-                }else {
-                    new HttpFormString().build(action,paramList,iResponse);
-                }
-            } else if (iResponse.iamJson()) {
-                if (iResponse.iamArray()) {
-                    new HttpJsonArray().build(action, paramList, iResponse);
-                } else if (iResponse.iamObj()) {
-                    new HttpJsonObject().build(action, paramList, iResponse);
-                }else {
-                    new HttpJsonString().build(action,paramList,iResponse);
-                }
-            }
+            HttpUtils.getInstance().req(action,paramList,iResponse,activity);
         }
 
+        public void req(String action, ParamList paramList, IResponse iResponse,HashMap<String,String> header) {
+            if(!action.startsWith("http")){
+                iResponse.fail("789","请求地址(http)异常");
+                return;
+            }
+            HttpUtils.getInstance().req(action,paramList,iResponse,header);
+        }
 
         public void statusBarSet() {
             StatusBarUtil.setTranslucent(activity);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+                activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
                 activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_IN_OVERSCAN);
             }
-            activity.statusBarTextWhite();
-        }
-
-        public void dismissLoading() {
-            loadingController.dismiss();
+            activity.statusBarTextBlack();
         }
 
         public boolean loadPermission(String[] permission) {
             return permissionLoader.Load(permission);
         }
 
+        public boolean loadPermission(String[] permission,int code) {
+            return permissionLoader.Load(permission,code);
+        }
+
         public void loadImg(String url, ImageView imageView) {
             picassoLoader.loadImg(url, imageView);
         }
-
         public void loadImg(String url, ImageView imageView, float x, float y) {
             picassoLoader.loadImg(url, imageView, x, y);
         }
-
         public void loadImg(File file, ImageView imageView, float x, float y) {
             picassoLoader.loadImg(file, imageView, x, y);
         }
-
         public void loadImg(File file, ImageView imageView) {
             picassoLoader.loadImg(file, imageView);
         }
-
         public void loadImg(int src, ImageView imageView) {
             picassoLoader.loadImg(src, imageView);
         }
-
         public void loadImg(Uri uri, ImageView imageView) {
             picassoLoader.loadImg(uri, imageView);
         }
-
-
         public void loadImg(String url, ImageView imageView, int corner) {
             picassoLoader.loadImg(url, imageView, corner);
         }
-
         public void loadImg(File file, ImageView imageView, int corner) {
             picassoLoader.loadImg(file, imageView, corner);
         }
-
         public void loadImg(int src, ImageView imageView, int corner) {
             picassoLoader.loadImg(src, imageView, corner);
         }
-
         public void loadImg(int src, String url, ImageView imageView) {
             if (src == 0) {
                 picassoLoader.loadImg(url, imageView);
@@ -191,7 +217,6 @@ public abstract class BaseActivity extends AppCompatActivity implements PicassoL
             }
 
         }
-
         public void loadImg(Uri uri, ImageView imageView, int corner) {
             picassoLoader.loadImg(uri, imageView, corner);
         }
@@ -282,6 +307,34 @@ public abstract class BaseActivity extends AppCompatActivity implements PicassoL
     public abstract void destroy();
 
     public abstract void load();
+    /**
+     * 检测GPS、位置权限是否开启
+     */
+    public boolean showGPSContacts() {
+        LocationManager lm = (LocationManager) this.getSystemService(this.LOCATION_SERVICE);
+        boolean ok = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        if (!ok){
+           center.toast("系统检测到未开启GPS定位服务,请开启");
+            Intent intent = new Intent();
+            intent.setAction(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+            startActivityForResult(intent, 123);
+            return false;
+        }else {
+            return true;
+        }
+    }
+
+    public void hideSystemKeyBoard() {
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(), 0);
+    }
+
+    public void showSystemKeyBoard(View view) {
+        if (view.requestFocus()) {
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+        }
+    }
 
     public void statusBarTextBlack() {
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
@@ -292,16 +345,21 @@ public abstract class BaseActivity extends AppCompatActivity implements PicassoL
     }
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate( Bundle savedInstanceState) {
+
+        overridePendingTransition(R.anim.move_in,R.anim.fade_out);
+
         super.onCreate(savedInstanceState);
 
-        ActivityManager.getInstance().add(this);
+//        ActivityManager.getInstance().add(this);
 
         root = LayoutInflater.from(this).inflate(setContentViewId(), null);
 
-        center = new Center(this, getDefultParam());
+        center = new Center(this);
 
         setContentView(setContentViewId());
+
+        AndroidBug5497Workaround.assistActivity(this);
 
         bindid();
         //view设置
@@ -331,19 +389,108 @@ public abstract class BaseActivity extends AppCompatActivity implements PicassoL
     @Override
     public void onStop() {
         super.onStop();
-        center.dismissLoading();
+        center.dismissLoad();
         stop();
     }
 
     @Override
     public void onDestroy() {
+//        if(HttpBuilder.publicCookie!=null){
+//            String cstring = "";
+//            for(Cookie cookie:HttpBuilder.publicCookie){
+//                cstring = cstring+ cookie.toString()+"^";
+//            }
+//            if(cstring.endsWith("^")){
+//                cstring = cstring.substring(0,cstring.length()-1);
+//            }
+//            SharedPreferences sp = getSharedPreferences(COOKIE,MODE_PRIVATE);
+//            sp.edit().putString(COOKIE, cstring).commit();
+//        }
         destroy();
         super.onDestroy();
+    }
+
+    public interface ImgUploadCallBack{
+        void getPath(List<String> path);
+    }
+    public interface ISimpleStringCallBack{
+        void getString(HashMap<String,String> hashMap);
+    }
+
+    public HashMap<Integer,ImgUploadCallBack> callBackHashMap = new HashMap<>();
+    public HashMap<Integer,ISimpleStringCallBack> simpleCallBack = new HashMap<>();
+
+    public final static int GET_IMG_REQUEST_CODE = 5858;
+    public void getImgWithListener(ImgUploadCallBack callBack,int max){
+        callBackHashMap.put(GET_IMG_REQUEST_CODE,callBack);
+        if (center.loadPermission(new String[]{
+                Manifest.permission.CAMERA,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE})) {
+            ISListConfig config = new ISListConfig.Builder()
+                    // 是否多选, 默认true
+                    .multiSelect(true)
+                    // 是否记住上次选中记录, 仅当multiSelect为true的时候配置，默认为true
+                    .rememberSelected(false)
+                    // “确定”按钮背景色
+                    .btnBgColor(Color.WHITE)
+                    // “确定”按钮文字颜色
+                    .btnTextColor(Color.BLUE)
+                    // 使用沉浸式状态栏
+                    .statusBarColor(getResources().getColor(R.color.base))
+                    // 返回图标ResId
+                    .backResId(R.drawable.ic_back)
+                    // 标题
+                    .title("选择图片")
+                    // 标题文字颜色
+                    .titleColor(Color.WHITE)
+                    // TitleBar背景色
+                    .titleBgColor(getResources().getColor(R.color.base))
+                    .needCrop(false)
+                    // 第一个是否显示相机，默认true
+                    .needCamera(true)
+                    // 最大选择图片数量，默认9
+                    .maxNum(max)
+                    .build();
+            ISNav.getInstance().init(new com.yuyh.library.imgsel.common.ImageLoader() {
+                @Override
+                public void displayImage(Context c, String path, ImageView imageView) {
+                    center.loadImg(new File(path), imageView, 2.0f, 2.0f);
+                }
+            });
+            ISNav.getInstance().toListActivity(this, config, GET_IMG_REQUEST_CODE);
+        }
+    }
+
+    public final static int GET_SIMPLE_STRING_CODE = 1010;
+    public final static int GET_SIMPLE_STRING_CODE_OK = 200;
+    public interface ILaunchOtherActivity{
+        void doLaunch();
+    }
+    public void getSimpleStringWithListener(ILaunchOtherActivity iLaunchOtherActivity,ISimpleStringCallBack iSimpleStringCallBack){
+        simpleCallBack.put(GET_SIMPLE_STRING_CODE,iSimpleStringCallBack);
+        iLaunchOtherActivity.doLaunch();
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if (callBackHashMap.containsKey(GET_IMG_REQUEST_CODE)&&resultCode == RESULT_OK && data != null) {
+            List<String> pathList = data.getStringArrayListExtra(ISListActivity.INTENT_RESULT);
+            if (pathList.size() == 0) {
+                return;
+            }
+            callBackHashMap.get(GET_IMG_REQUEST_CODE).getPath(pathList);
+            callBackHashMap.remove(GET_IMG_REQUEST_CODE);
+        }
+        if(simpleCallBack.containsKey(GET_SIMPLE_STRING_CODE)&&GET_SIMPLE_STRING_CODE_OK == resultCode){
+            HashMap<String,String> result = new HashMap<>();
+            for(String key:data.getExtras().keySet()){
+                result.put(key,data.getStringExtra(key));
+            }
+            simpleCallBack.get(GET_SIMPLE_STRING_CODE).getString(result);
+            simpleCallBack.remove(GET_SIMPLE_STRING_CODE);
+        }
     }
 
     @Override
@@ -365,4 +512,5 @@ public abstract class BaseActivity extends AppCompatActivity implements PicassoL
         // Forward results to EasyPermissions
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
     }
+
 }

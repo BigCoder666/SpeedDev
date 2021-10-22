@@ -1,28 +1,26 @@
 package me.tx.app.network;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class IData {
-    public final static int ok=0;
-    public final static int badtoken=512;
+    public final static String ok="200";
+    public final static List<String> badtoken=Arrays.asList("401");
 
     public String getMessage() {
-        return rettext;
+        return message;
     }
 
-    public int getStatus() {
-        return retcode;
+    public String getStatus() {
+        return code;
     }
 
     public String getData() {
-        return data;
+        return (result!=null&&!result.isEmpty())?result:((data!=null&&!data.isEmpty())?data:"");
     }
 
-    public String getSignkey() {
-        return signkey;
-    }
-
-    public String rettext="";
-    public int retcode=0;
+    public String message="";
+    public String code="555";
+    public String result="";
     public String data="";
-    public String signkey="";
-
 }

@@ -1,9 +1,17 @@
 package me.tx.app.ui.activity;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
+import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import java.util.ArrayList;
 
@@ -11,42 +19,52 @@ import me.tx.app.ui.fragment.BaseFragment;
 
 public abstract class PagerActivity extends BaseActivity {
 
+    int lastPosition = 0;
+
+    public abstract int setPageLimit();
+
+    public abstract int getStartPage();
+
+    public abstract void changePage(int last,int now);
+
     public abstract ArrayList<BaseFragment> setFragment();
 
-    ArrayList<BaseFragment> baseFragments;
+    public ArrayList<BaseFragment> baseFragments;
 
-    public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
-        ArrayList<BaseFragment> list;
-        public MyFragmentPagerAdapter(FragmentManager fm, ArrayList<BaseFragment> list) {
+    public class MyFragmentPagerAdapter extends FragmentStatePagerAdapter {
+        public MyFragmentPagerAdapter(FragmentManager fm) {
             super(fm);
-            this.list = list;
         }
 
         @Override
         public int getCount() {
-            return list.size();
+            return baseFragments.size();
         }
 
         @Override
         public Fragment getItem(int arg0) {
-            return list.get(arg0);
+            return baseFragments.get(arg0);
         }
 
+        @Override
+        public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
 
+        }
     }
 
     public ViewPager viewPager;
     MyFragmentPagerAdapter pagerAdapter;
 
-
-    public void setView(){
+    @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
         baseFragments=setFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
-        viewPager =findViewById(getViewPagerId());
-        pagerAdapter =new MyFragmentPagerAdapter(fragmentManager,baseFragments);
+        pagerAdapter =new MyFragmentPagerAdapter(fragmentManager);
         viewPager.setAdapter(pagerAdapter);
-        viewPager.setOffscreenPageLimit(10);
-        viewPager.setCurrentItem(0);
+        viewPager.setOffscreenPageLimit(setPageLimit());
+        lastPosition = getStartPage();
+        viewPager.setCurrentItem(getStartPage());
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -56,6 +74,8 @@ public abstract class PagerActivity extends BaseActivity {
             @Override
             public void onPageSelected(int position) {
                 onScroll(position);
+                changePage(lastPosition,position);
+                lastPosition =position;
             }
 
             @Override
@@ -63,6 +83,11 @@ public abstract class PagerActivity extends BaseActivity {
 
             }
         });
+    }
+
+
+    public void setView(){
+        viewPager =findViewById(getViewPagerId());
     }
 
     public abstract void onScroll(int i);

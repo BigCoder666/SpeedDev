@@ -1,11 +1,14 @@
 package me.tx.app.ui.activity;
 
-import android.support.annotation.NonNull;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.animation.ValueAnimator;
+import android.os.SystemClock;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import me.tx.app.R;
 import me.tx.app.ui.widget.EmptyHolder;
@@ -13,18 +16,12 @@ import me.tx.app.utils.DPPX;
 
 public abstract class BaseRefreshRecyclerActivity<T extends EmptyHolder> extends BaseActivity {
 
-
-    public boolean isChat = false;
-
-    final String NO_MORE_DATA = "没有更多数据了~";
     final int END = -9999;
     final int EMPTY = -8888;
 
     EmptyHolder customerEmptyView =null;
 
     boolean couldLoadMore = true;
-
-    boolean loadMoreState = true;
 
     public RecyclerView recycler;
 
@@ -35,6 +32,10 @@ public abstract class BaseRefreshRecyclerActivity<T extends EmptyHolder> extends
     public final int pageSize = 20;
 
     int page = 1;
+
+    int lastY = 0;
+    int startY = 0;
+    boolean isTopShow = true;
 
     public void setCustomerEmptyView(EmptyHolder view){
         customerEmptyView = view;
@@ -47,17 +48,32 @@ public abstract class BaseRefreshRecyclerActivity<T extends EmptyHolder> extends
     BaseRefreshRecyclerActivity.IResult iResult = new BaseRefreshRecyclerActivity.IResult() {
         @Override
         public void empty() {
-            loadMoreState = false;
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    recycler.scrollBy(0, -DPPX.dip2px(BaseRefreshRecyclerActivity.this, 50));
+                    if(page>1) {
+                        center.toast("没有更多数据了");
+                    }
+                    recycler.smoothScrollBy(0, -DPPX.dip2px(BaseRefreshRecyclerActivity.this, 50));
+                    page--;
                 }
             });
-            page--;
 //            toast(NO_MORE_DATA);
         }
     };
+
+    public void noMore(){
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if(page>1) {
+                    center.toast("没有更多数据了");
+                }
+                recycler.smoothScrollBy(0, -DPPX.dip2px(BaseRefreshRecyclerActivity.this, 50));
+                page--;
+            }
+        });
+    }
 
     public abstract void setRefreshRecyclerActivity();
 
@@ -73,14 +89,21 @@ public abstract class BaseRefreshRecyclerActivity<T extends EmptyHolder> extends
 
     public abstract void load(int page, BaseRefreshRecyclerActivity.IResult iResult, boolean needClear);
 
+    public abstract ScrollConnectView scorllConnectView();
+
+    public class ScrollConnectView{
+        public View view;
+        public int trueHeightDp = 0;
+        public int upByHidePx = 300;
+        public int downByShowPx = 100;
+    }
+
     public void setUnLoadMore() {
         couldLoadMore = false;
-        loadMoreState = false;
     }
 
     @Override
     public void load() {
-        loadMoreState = couldLoadMore;
         page = 1;
         load(page, iResult, true);
     }
@@ -89,15 +112,10 @@ public abstract class BaseRefreshRecyclerActivity<T extends EmptyHolder> extends
     @Override
     public void setView() {
         swip = findViewById(R.id.swipe);
-        swip.setColorSchemeResources(R.color.base, android.R.color.holo_red_light, android.R.color.holo_orange_light, android.R.color.holo_green_light);
+        swip.setColorSchemeResources(android.R.color.holo_blue_light,android.R.color.holo_green_light,android.R.color.holo_orange_light,android.R.color.holo_red_light);
         swip.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                if (isChat) {
-                    page++;
-                    load(page, iResult, false);
-                    return;
-                }
                 load();
             }
         });
@@ -105,26 +123,75 @@ public abstract class BaseRefreshRecyclerActivity<T extends EmptyHolder> extends
 
         recycler = findViewById(R.id.recycler);
         recycler.setLayoutManager(getLayoutManager());
+        final ScrollConnectView scrollConnectView = scorllConnectView();
         recycler.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+            public void onScrollStateChanged( RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
             }
 
             @Override
-            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+            public void onScrolled( RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
+                if(swip.isRefreshing()){
+                    recycler.dispatchTouchEvent(MotionEvent.obtain(SystemClock.uptimeMillis(),SystemClock.uptimeMillis(),MotionEvent.ACTION_CANCEL
+                    ,0,0,0));
+                    return;
+                }
+                lastY = lastY +dy;
+                if(scrollConnectView!=null) {
+                    if(lastY - startY>scrollConnectView.upByHidePx && isTopShow == true){
+                        ValueAnimator anim = ValueAnimator.ofFloat(DPPX.dip2px(BaseRefreshRecyclerActivity.this,scrollConnectView.trueHeightDp), 0);
+                        anim.setDuration(200);
+                        anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                            @Override
+                            public void onAnimationUpdate(ValueAnimator animation) {
+                                ViewGroup.LayoutParams layoutParams = scrollConnectView.view.getLayoutParams();
+                                layoutParams.height = ((Float) animation.getAnimatedValue()).intValue();
+                                scrollConnectView.view.setLayoutParams(layoutParams);
+                            }
+                        });
+                        hideSystemKeyBoard();
+                        anim.start();
+                        isTopShow = false;
+                        startY = lastY;
+                    }else if(lastY - startY >scrollConnectView.upByHidePx && isTopShow ==false){
+                        startY = lastY;
+                    }
+
+                    if(lastY - startY<-scrollConnectView.downByShowPx && isTopShow == false){
+                        ValueAnimator anim = ValueAnimator.ofFloat(0,DPPX.dip2px(BaseRefreshRecyclerActivity.this,scrollConnectView.trueHeightDp));
+                        anim.setDuration(200);
+                        anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                            @Override
+                            public void onAnimationUpdate(ValueAnimator animation) {
+                                ViewGroup.LayoutParams layoutParams = scrollConnectView.view.getLayoutParams();
+                                layoutParams.height = ((Float) animation.getAnimatedValue()).intValue();
+                                scrollConnectView.view.setLayoutParams(layoutParams);
+                            }
+                        });
+                        hideSystemKeyBoard();
+                        anim.start();
+                        isTopShow = true;
+                        startY = lastY;
+                    }else if(lastY - startY <-scrollConnectView.downByShowPx && isTopShow ==true){
+                        startY = lastY;
+                    }
+                }
                 int lastPosition = ((LinearLayoutManager) recyclerView.getLayoutManager()).findLastCompletelyVisibleItemPosition();
                 if (lastPosition == BaseRefreshRecyclerActivity.this.getItemCount() && BaseRefreshRecyclerActivity.this.getItemCount() >= pageSize) {
+                    if(swip.isRefreshing()){
+                        return;
+                    }
                     page++;
                     load(page, iResult, false);
                 }
             }
         });
         adapter = new RecyclerView.Adapter<T>() {
-            @NonNull
+
             @Override
-            public T onCreateViewHolder(@NonNull ViewGroup viewGroup, int type) {
+            public T onCreateViewHolder( ViewGroup viewGroup, int type) {
                 try {
                     if (type == EMPTY) {
                         if(customerEmptyView == null) {
@@ -144,7 +211,7 @@ public abstract class BaseRefreshRecyclerActivity<T extends EmptyHolder> extends
             }
 
             @Override
-            public void onBindViewHolder(@NonNull T holder, int position) {
+            public void onBindViewHolder( T holder, int position) {
                 try {
                     if (BaseRefreshRecyclerActivity.this.getItemCount() == 0) {
                         return;
@@ -163,10 +230,9 @@ public abstract class BaseRefreshRecyclerActivity<T extends EmptyHolder> extends
                 if (BaseRefreshRecyclerActivity.this.getItemCount() == 0) {
                     return 1;
                 }
-                if (loadMoreState && BaseRefreshRecyclerActivity.this.getItemCount() >= pageSize) {
+                if (couldLoadMore && BaseRefreshRecyclerActivity.this.getItemCount() >= pageSize) {
                     return BaseRefreshRecyclerActivity.this.getItemCount() + 1;
                 } else {
-                    loadMoreState = false;
                     return BaseRefreshRecyclerActivity.this.getItemCount();
                 }
             }

@@ -66,11 +66,9 @@ public class Downloader {
 
     public void downloadFile(final DownloadInfo downloadInfo, final IFinish iFinish){
         final DownloadDialog downloadDialog =new DownloadDialog(context);
-        final String filePath =downloadInfo.path+System.currentTimeMillis()+"file."+downloadInfo.url.split("\\.")[downloadInfo.url.split("\\.").length-1];
-        downloadInfo.saveLocalPath=filePath;
         FileDownloader.setup(context);
         FileDownloader.getImpl().create(downloadInfo.url)
-                .setPath(filePath)
+                .setPath(downloadInfo.saveLocalPath)
                 .setListener(new FileDownloadListener() {
                     @Override
                     protected void pending(BaseDownloadTask task, int soFarBytes, int totalBytes) {

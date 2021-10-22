@@ -1,7 +1,8 @@
 package me.tx.app.ui.fragment;
 
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
+
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import me.tx.app.R;
 
@@ -15,7 +16,7 @@ public abstract class RefreshFragment extends BaseFragment {
     @Override
     public void setView(View view) {
         swip = view.findViewById(R.id.swipe);
-        swip.setColorSchemeResources(android.R.color.holo_blue_light, android.R.color.holo_red_light, android.R.color.holo_orange_light, android.R.color.holo_green_light);
+        swip.setColorSchemeResources(android.R.color.holo_blue_light,android.R.color.holo_green_light,android.R.color.holo_orange_light,android.R.color.holo_red_light);
         swip.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {

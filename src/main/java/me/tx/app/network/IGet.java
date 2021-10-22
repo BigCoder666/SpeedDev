@@ -6,7 +6,16 @@ import com.alibaba.fastjson.JSONObject;
 import me.tx.app.ui.activity.BaseActivity;
 
 public abstract class IGet implements IResponse {
-    boolean needLoad = false;
+    HttpBuilder.JSON_FORM JF = HttpBuilder.JSON_FORM.JSON;
+    public HttpBuilder.JSON_FORM getJF(){
+        return JF;
+    }
+    public void changeJF(HttpBuilder.JSON_FORM jf){
+        JF = jf;
+    }
+
+
+    boolean needLoad = true;
 
     public BaseActivity activity;
 
@@ -14,7 +23,7 @@ public abstract class IGet implements IResponse {
 
     public abstract void sucArray(JSONArray tList);
 
-    public abstract void failed(int code, String msg);
+    public abstract void failed(String code, String msg);
 
     public IGet(BaseActivity activity){
         this.activity=activity;
@@ -25,8 +34,8 @@ public abstract class IGet implements IResponse {
 
     public IGet(BaseActivity activity,boolean needLoad){
         this.activity = activity;
+        this.needLoad = needLoad;
         if(needLoad) {
-            this.needLoad = needLoad;
             activity.center.showLoad();
         }
     }
@@ -36,12 +45,12 @@ public abstract class IGet implements IResponse {
     }
 
     @Override
-    public void fail(int code, String msg) {
+    public void fail(String code, String msg) {
         if(needLoad) {
             activity.center.dismissLoad();
         }
         failed(code,msg);
-        if(code==IData.badtoken){
+        if(IData.badtoken.contains(code)){
             activity.badtoken();
         }
     }
@@ -63,17 +72,7 @@ public abstract class IGet implements IResponse {
     }
 
     @Override
-    public boolean iamJson() {
-        return false;
-    }
-
-    @Override
-    public boolean iamForm() {
-        return false;
-    }
-
-    @Override
-    public boolean iamGet() {
-        return true;
+    public HttpBuilder.REQUEST_TYPE getRequestType(){
+        return HttpBuilder.REQUEST_TYPE.GET;
     }
 }

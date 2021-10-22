@@ -6,12 +6,14 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
+import androidx.appcompat.widget.AppCompatImageView;
+
 import me.tx.app.R;
 
 /**
  * Created by Administrator on 2017/3/8.
  */
-public class RatioImageView extends android.support.v7.widget.AppCompatImageView {
+public class RatioImageView extends AppCompatImageView {
 
         /* 优先级从大到小：
          mIsWidthFitDrawableSizeRatio mIsHeightFitDrawableSizeRatio
@@ -20,8 +22,8 @@ public class RatioImageView extends android.support.v7.widget.AppCompatImageView
 
     private float mDrawableSizeRatio = -1f; // src图片(前景图)的宽高比例
     // 根据前景图宽高比例测量View,防止图片缩放变形
-    private boolean mIsWidthFitDrawableSizeRatio; // 宽度是否根据src图片(前景图)的比例来测量（高度已知）
-    private boolean mIsHeightFitDrawableSizeRatio; // 高度是否根据src图片(前景图)的比例来测量（宽度已知）
+    private boolean mIsWidthFitDrawableSizeRatio=false; // 宽度是否根据src图片(前景图)的比例来测量（高度已知）
+    private boolean mIsHeightFitDrawableSizeRatio=false; // 高度是否根据src图片(前景图)的比例来测量（宽度已知）
     // 宽高比例
     private float mWidthRatio = -1; // 宽度 = 高度*mWidthRatio
     private float mHeightRatio = -1; // 高度 = 宽度*mHeightRatio
@@ -47,25 +49,18 @@ public class RatioImageView extends android.support.v7.widget.AppCompatImageView
     /**
      * 初始化变量
      */
-    public void  init(boolean height,float value){
-        if(height){
-            mHeightRatio = value;
-        }else {
-            mWidthRatio = value;
-        }
-    }
     private void init(AttributeSet attrs) {
-
         TypedArray a = getContext().obtainStyledAttributes(attrs,
                 R.styleable.RatioImageView);
-        mIsWidthFitDrawableSizeRatio = a.getBoolean(R.styleable.RatioImageView_is_width_fix_drawable_size_ratio,
-                mIsWidthFitDrawableSizeRatio);
-        mIsHeightFitDrawableSizeRatio = a.getBoolean(R.styleable.RatioImageView_is_height_fix_drawable_size_ratio,
-                mIsHeightFitDrawableSizeRatio);
         mHeightRatio = a.getFloat(
                 R.styleable.RatioImageView_height_to_width_ratio, mHeightRatio);
         mWidthRatio = a.getFloat(
                 R.styleable.RatioImageView_width_to_height_ratio, mWidthRatio);
+        if(mHeightRatio!=-1){
+            mIsHeightFitDrawableSizeRatio = true;
+        }else if(mWidthRatio!=-1){
+            mIsWidthFitDrawableSizeRatio = true;
+        }
         a.recycle();
     }
 

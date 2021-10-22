@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
-import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -14,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.appcompat.widget.AppCompatTextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,8 +46,8 @@ public class BaseActionbar extends RelativeLayout {
     int textColor = R.color.trans;
     int titleSize = 18;
     int titleColor = R.color.trans;
-    Typeface titleStyle = Typeface.DEFAULT;
-    public boolean needMargin = false;
+    Typeface titleStyle = Typeface.DEFAULT_BOLD;
+    Typeface textStyle = Typeface.DEFAULT;
 
     boolean userMargin = true;
 
@@ -56,8 +56,8 @@ public class BaseActionbar extends RelativeLayout {
     }
 
     TextView title;
-    LinearLayout leftLayout;
-    LinearLayout rightLayout;
+    protected LinearLayout leftLayout;
+    protected LinearLayout rightLayout;
     LinearLayout centerLayout;
 
     public void setHeight(int height) {
@@ -95,11 +95,6 @@ public class BaseActionbar extends RelativeLayout {
         super(context, attrs, defStyleAttr);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public BaseActionbar(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-    }
-
     public void init(TYPE[] t, int[] id, String[] name, int[] size, int[] color, OneClicklistener[] click) {
         init();
         leftList = new ArrayList<>();
@@ -119,6 +114,7 @@ public class BaseActionbar extends RelativeLayout {
                     } else {
                         textClick.init(name[i], size[i], color[i], click[i]);
                     }
+                    textClick.setTypeface(textStyle);
                     leftList.add(textClick);
                     break;
                 }
@@ -135,6 +131,7 @@ public class BaseActionbar extends RelativeLayout {
                     } else {
                         textClick.init(name[i], size[i], color[i], click[i]);
                     }
+                    textClick.setTypeface(textStyle);
                     rightList.add(textClick);
                     break;
                 }
@@ -151,6 +148,7 @@ public class BaseActionbar extends RelativeLayout {
     }
 
     public void init(TYPE[] t, int[] id, String[] name, OneClicklistener[] click) {
+        removeAllViews();
         int l = t.length;
         int[] size = new int[l];
         int[] color = new int[l];
@@ -161,18 +159,14 @@ public class BaseActionbar extends RelativeLayout {
         addHeight = getStateBarHeight();
         if (((ViewGroup) getParent()) instanceof LinearLayout) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                needMargin = true;
                 setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, DPPX.dip2px(getContext(), baseHeight) + addHeight));
             } else {
-                needMargin = false;
                 setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, DPPX.dip2px(getContext(), baseHeight)));
             }
         } else if (((ViewGroup) getParent()) instanceof RelativeLayout) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                needMargin = true;
                 setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, DPPX.dip2px(getContext(), baseHeight) + addHeight));
             } else {
-                needMargin = false;
                 setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, DPPX.dip2px(getContext(), baseHeight)));
             }
         }
@@ -187,9 +181,12 @@ public class BaseActionbar extends RelativeLayout {
         title.setTextColor(color);
     }
 
-
     public void setTitleStyle(Typeface style) {
         this.titleStyle = style;
+    }
+
+    public void setTextStyle(Typeface style) {
+        this.textStyle = style;
     }
 
     public void setTextColor(int textColor) {
@@ -204,13 +201,21 @@ public class BaseActionbar extends RelativeLayout {
         title.setGravity(Gravity.CENTER);
         title.setTypeface(titleStyle);
         title.setTextSize(TypedValue.COMPLEX_UNIT_DIP, titleSize);
-        title.setText(titleString);
+        if(titleString.length()>13){
+            title.setText(titleString.substring(0,12)+"...");
+        }else {
+            title.setText(titleString);
+        }
         title.setTextColor(getResources().getColor(titleColor));
         addView(title, lp);
     }
 
     public void changeTitle(String t) {
-        title.setText(t);
+        if(t.length()>13){
+            title.setText(t.substring(0,12)+"...");
+        }else {
+            title.setText(t);
+        }
     }
 
     public void setLeftView(List<View> viewList) {
@@ -225,9 +230,11 @@ public class BaseActionbar extends RelativeLayout {
         LinearLayout.LayoutParams leftLp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, DPPX.dip2px(getContext(), baseHeight));
         for (int i = 0; i < viewList.size(); i++) {
             if (viewList.get(i) instanceof ImageClick) {
-                viewList.get(i).setPadding(DPPX.dip2px(getContext(),10),0,DPPX.dip2px(getContext(),10),0);
+                ((ImageClick)viewList.get(i)).setAdjustViewBounds(true);
+                viewList.get(i).setPadding(DPPX.dip2px(getContext(), 2), 0, DPPX.dip2px(getContext(), 2), 0);
                 leftLayout.addView(viewList.get(i), new ViewGroup.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, DPPX.dip2px(getContext(), baseHeight)));
             } else {
+                viewList.get(i).setPadding(0, 0, 0, 0);
                 leftLayout.addView(viewList.get(i), leftLp);
             }
         }
@@ -246,9 +253,11 @@ public class BaseActionbar extends RelativeLayout {
         LinearLayout.LayoutParams rightLp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, DPPX.dip2px(getContext(), baseHeight));
         for (int i = 0; i < viewList.size(); i++) {
             if (viewList.get(i) instanceof ImageClick) {
-                viewList.get(i).setPadding(DPPX.dip2px(getContext(),10),0,DPPX.dip2px(getContext(),10),0);
+                ((ImageClick)viewList.get(i)).setAdjustViewBounds(true);
+                viewList.get(i).setPadding(DPPX.dip2px(getContext(), 2), 0, DPPX.dip2px(getContext(), 2), 0);
                 rightLayout.addView(viewList.get(i), new ViewGroup.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, DPPX.dip2px(getContext(), baseHeight)));
             } else {
+                viewList.get(i).setPadding(0, 0, 0, 0);
                 rightLayout.addView(viewList.get(i), rightLp);
             }
         }

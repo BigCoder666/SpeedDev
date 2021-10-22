@@ -22,7 +22,7 @@ public class MD5 {
                 }
                 result += temp;
             }
-            result =result.toUpperCase();
+//            result =result.toUpperCase();
             return result;
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();

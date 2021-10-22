@@ -19,12 +19,7 @@ public abstract class IGetObject extends IGet {
     }
 
     @Override
-    public boolean iamArray() {
-        return false;
-    }
-
-    @Override
-    public boolean iamObj() {
-        return true;
+    public HttpBuilder.RESPONSE_TYPE getResponseType() {
+        return HttpBuilder.RESPONSE_TYPE.OBJECT;
     }
 }

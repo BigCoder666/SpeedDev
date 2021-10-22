@@ -1,20 +1,21 @@
 package me.tx.app.ui.activity;
 
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.ViewPager;
-import android.view.ViewGroup;
+import android.util.Log;
 
-import java.util.ArrayList;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
+import java.util.HashMap;
 import java.util.List;
 
 import me.tx.app.ui.fragment.BaseFragment;
 
 public abstract class RecyclerPagerActivity<T> extends BaseActivity {
+    int lastPosition = 0;
+
+    public abstract void changePage(int last,int now);
 
     public abstract List<T> getData();
 
@@ -22,6 +23,12 @@ public abstract class RecyclerPagerActivity<T> extends BaseActivity {
 
     public class MyFragmentPagerAdapter extends FragmentStatePagerAdapter {
         List<T> datalist;
+
+        HashMap<Integer,BaseFragment> fragmentHashMap =new HashMap<>();
+
+        public BaseFragment getFragment(int p){
+            return fragmentHashMap.get(p);
+        }
 
         public void changeData(int p, T t) {
             datalist.set(p, t);
@@ -39,7 +46,12 @@ public abstract class RecyclerPagerActivity<T> extends BaseActivity {
 
         @Override
         public Fragment getItem(int arg0) {
-            return setBaseFragmentWithBundle(datalist.get(arg0),arg0);
+            if(fragmentHashMap.get(arg0)==null) {
+                fragmentHashMap.put(arg0,setBaseFragmentWithBundle(datalist.get(arg0), arg0));
+                return fragmentHashMap.get(arg0);
+            }else {
+                return fragmentHashMap.get(arg0);
+            }
         }
     }
 
@@ -56,6 +68,22 @@ public abstract class RecyclerPagerActivity<T> extends BaseActivity {
         viewPager = findViewById(getViewPagerId());
         pagerAdapter = new MyFragmentPagerAdapter(fragmentManager, getData());
         viewPager.setAdapter(pagerAdapter);
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                changePage(lastPosition,position);
+                lastPosition =position;
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     public void setCurrentItem(int i) {
@@ -79,6 +107,14 @@ public abstract class RecyclerPagerActivity<T> extends BaseActivity {
                 pagerAdapter.notifyDataSetChanged();
             }
         });
+    }
+
+    public void next(){
+        setCurrentItem(lastPosition+1);
+    }
+
+    public void last(){
+        setCurrentItem(lastPosition-1);
     }
 
 }

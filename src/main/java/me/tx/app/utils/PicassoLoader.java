@@ -10,6 +10,7 @@ import android.graphics.Shader;
 import android.net.Uri;
 import android.widget.ImageView;
 
+import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 
@@ -32,10 +33,12 @@ public class PicassoLoader {
         return picassoLoader;
     }
 
+
     public void loadImg(String url, ImageView imageView) {
         try {
             Picasso.get()
                     .load(url)
+                    .placeholder(iDefult.defultLoading())
                     .error(iDefult.defultError())
                     .into(imageView);
         }catch (IllegalArgumentException e){
@@ -48,6 +51,7 @@ public class PicassoLoader {
             Picasso.get()
                     .load(url)
                     .resize((int)x*150,(int)y*150)
+                    .placeholder(iDefult.defultLoading())
                     .error(iDefult.defultError())
                     .into(imageView);
         }catch (IllegalArgumentException e){
@@ -60,6 +64,8 @@ public class PicassoLoader {
             Picasso.get()
                     .load(file)
                     .resize((int)x*150,(int)y*150)
+                    .memoryPolicy(MemoryPolicy.NO_CACHE)
+                    .placeholder(iDefult.defultLoading())
                     .error(iDefult.defultError())
                     .into(imageView);
         }catch (IllegalArgumentException e){
@@ -72,6 +78,8 @@ public class PicassoLoader {
         try {
         Picasso.get()
                 .load(file)
+                .memoryPolicy(MemoryPolicy.NO_CACHE)
+                .placeholder(iDefult.defultLoading())
                 .error(iDefult.defultError())
                 .into(imageView);
         }catch (IllegalArgumentException e){
@@ -84,6 +92,7 @@ public class PicassoLoader {
         try{
         Picasso.get()
                 .load(src)
+                .placeholder(iDefult.defultLoading())
                 .error(iDefult.defultError())
                 .into(imageView);
         }catch (IllegalArgumentException e){
@@ -95,6 +104,7 @@ public class PicassoLoader {
         try{
         Picasso.get()
                 .load(uri)
+                .placeholder(iDefult.defultLoading())
                 .error(iDefult.defultError())
                 .into(imageView);
         }catch (IllegalArgumentException e){
@@ -107,6 +117,7 @@ public class PicassoLoader {
         Picasso.get()
                 .load(url)
                 .transform(new RoundedTransformation(corner))
+                .placeholder(iDefult.defultLoading())
                 .error(iDefult.defultError())
                 .into(imageView);
         }catch (IllegalArgumentException e){
@@ -119,6 +130,7 @@ public class PicassoLoader {
         Picasso.get()
                 .load(file)
                 .transform(new RoundedTransformation(corner))
+                .placeholder(iDefult.defultLoading())
                 .error(iDefult.defultError())
                 .into(imageView);
         }catch (IllegalArgumentException e){
@@ -131,6 +143,7 @@ public class PicassoLoader {
         Picasso.get()
                 .load(src)
                 .transform(new RoundedTransformation(corner))
+                .placeholder(iDefult.defultLoading())
                 .error(iDefult.defultError())
                 .into(imageView);
         }catch (IllegalArgumentException e){
@@ -144,6 +157,7 @@ public class PicassoLoader {
                 .load(uri)
                 .transform(new RoundedTransformation(corner))
                 .error(iDefult.defultError())
+                .placeholder(iDefult.defultLoading())
                 .into(imageView);
         }catch (IllegalArgumentException e){
             e.printStackTrace();

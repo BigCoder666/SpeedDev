@@ -1,17 +1,23 @@
 package me.tx.app.ui.fragment;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.view.View;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import java.util.ArrayList;
 
 public abstract class PagerFragment extends BaseFragment {
     public abstract ArrayList<BaseFragment> setFragment();
     public abstract void load(View view);
+
+    public abstract int setPageLimit();
+
+    public ArrayList<BaseFragment> getBaseFragments() {
+        return baseFragments;
+    }
 
     ArrayList<BaseFragment> baseFragments;
 
@@ -31,8 +37,6 @@ public abstract class PagerFragment extends BaseFragment {
         public Fragment getItem(int arg0) {
             return list.get(arg0);
         }
-
-
     }
 
     public ViewPager viewPager;
@@ -51,7 +55,7 @@ public abstract class PagerFragment extends BaseFragment {
         viewPager = view.findViewById(getViewPagerId());
         pagerAdapter =new MyFragmentPagerAdapter(fragmentManager,baseFragments);
         viewPager.setAdapter(pagerAdapter);
-        viewPager.setOffscreenPageLimit(10);
+        viewPager.setOffscreenPageLimit(setPageLimit());
         viewPager.setCurrentItem(0);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -76,6 +80,9 @@ public abstract class PagerFragment extends BaseFragment {
 
     public void setCurrentItem(int i){
         viewPager.setCurrentItem(i);
+    }
+    public void setCurrentItem(int i,boolean animation){
+        viewPager.setCurrentItem(i,animation);
     }
     public int getCurrentItem(){
         return viewPager.getCurrentItem();

@@ -52,7 +52,20 @@ public abstract class BasePopupWindow {
         //设置popwindow如果点击外面区域，便关闭。
         popupWindow.setOutsideTouchable(true);
         //设置popwindow显示位置
-        popupWindow.showAsDropDown(parent,0,DPPX.dip2px(context,10));
+        popupWindow.showAsDropDown(parent,0,0);
+        popupWindow.update();
+        return this;
+    }
+
+    public BasePopupWindow showPop(View parent,int dp) {
+        popupWindow.setWidth(parent.getWidth());
+        popupWindow.setHeight(DPPX.dip2px(parent.getContext(),dp));
+        //获取popwindow焦点
+        popupWindow.setFocusable(true);
+        //设置popwindow如果点击外面区域，便关闭。
+        popupWindow.setOutsideTouchable(true);
+        //设置popwindow显示位置
+        popupWindow.showAsDropDown(parent,0,DPPX.dip2px(context,2));
         popupWindow.update();
         return this;
     }

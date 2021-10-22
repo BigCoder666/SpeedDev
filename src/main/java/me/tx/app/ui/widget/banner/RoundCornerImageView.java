@@ -6,9 +6,11 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 
+import androidx.appcompat.widget.AppCompatImageView;
+
 import me.tx.app.utils.DPPX;
 
-public class RoundCornerImageView extends android.support.v7.widget.AppCompatImageView {
+public class RoundCornerImageView extends AppCompatImageView {
   
     public RoundCornerImageView(Context context) {
         super(context);  

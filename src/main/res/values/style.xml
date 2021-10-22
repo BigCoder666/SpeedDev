@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="dialog" parent="@android:style/Theme.Dialog">
+    <style name="loadDialog" parent="AlertDialog.AppCompat.Light">
         <item name="android:background">@android:color/transparent</item>
 
         <item name="android:windowBackground">@android:color/transparent</item>
@@ -17,5 +17,4 @@
         <!--是否模糊-->
         <item name="android:backgroundDimEnabled">false</item>
     </style>
-
 </resources>

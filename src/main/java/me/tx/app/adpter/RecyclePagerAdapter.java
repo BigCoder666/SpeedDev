@@ -1,15 +1,17 @@
 package me.tx.app.adpter;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.viewpager.widget.PagerAdapter;
 
 import java.lang.ref.WeakReference;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import static androidx.viewpager.widget.PagerAdapter.POSITION_NONE;
 
 public abstract class RecyclePagerAdapter<T, H extends RecyclePagerAdapter.PagerHolder> extends PagerAdapter {
 
@@ -50,13 +52,13 @@ public abstract class RecyclePagerAdapter<T, H extends RecyclePagerAdapter.Pager
     }
 
     @Override
-    public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
+    public boolean isViewFromObject( View view,  Object object) {
         return view == object;
     }
 
-    @NonNull
+
     @Override
-    public Object instantiateItem(@NonNull ViewGroup container, int position) {
+    public Object instantiateItem( ViewGroup container, int position) {
         //获取缓存下标
         int index = position % mCacheView.length;
 
@@ -84,7 +86,7 @@ public abstract class RecyclePagerAdapter<T, H extends RecyclePagerAdapter.Pager
     }
 
     @Override
-    public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
+    public void destroyItem( ViewGroup container, int position,  Object object) {
         int index = position % mCacheView.length;
         //检查是否在不删除标记内，是则不移除view，否则移除view
         if(!mUnRemoveTags.contains(index)) {

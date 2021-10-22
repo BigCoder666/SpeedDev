@@ -7,9 +7,12 @@ import me.tx.app.utils.MD5;
 
 
 public class Signer {
-    private static String pkey ="dcjzsign123";
-
-    public static ParamList sign(ParamList paramList){
-        return paramList.add("sign", MD5.md5(paramList.getRequestString() + pkey));
+    public static ParamList sign(ParamList paramList,String key){
+        String sign ="";
+        for(int i = 0;i<paramList.getParamList().size();i++){
+            sign = sign+ paramList.getParamList().get(i).getValue();
+        }
+        sign = sign +key;
+        return paramList.add("sign", MD5.md5(sign));
     }
 }

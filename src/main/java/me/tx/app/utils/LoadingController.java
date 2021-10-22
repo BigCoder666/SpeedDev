@@ -24,7 +24,7 @@ public class LoadingController {
     public LoadingController(Context context,ILoadSrc iLoadSrc){
         loadingView = LayoutInflater.from(context).inflate(iLoadSrc.srcLayout(),null);
         img = loadingView.findViewById(iLoadSrc.srcImgId());
-        dialog = new Dialog(context, R.style.dialog);
+        dialog = new Dialog(context, R.style.loadDialog);
         dialog.setContentView(loadingView);
         dialog.setCancelable(true);
         rotateAnimation = new RotateAnimation(0f, 360f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);

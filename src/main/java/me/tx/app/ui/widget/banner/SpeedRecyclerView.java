@@ -2,8 +2,8 @@ package me.tx.app.ui.widget.banner;
 
 
 import android.content.Context;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.AttributeSet;
 
 /**
@@ -19,11 +19,11 @@ public class SpeedRecyclerView extends RecyclerView {
         super(context);
     }
 
-    public SpeedRecyclerView(Context context, @Nullable AttributeSet attrs) {
+    public SpeedRecyclerView(Context context,  AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public SpeedRecyclerView(Context context, @Nullable AttributeSet attrs, int defStyle) {
+    public SpeedRecyclerView(Context context,  AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 
