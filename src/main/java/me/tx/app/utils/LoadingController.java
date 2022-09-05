@@ -16,13 +16,14 @@ public class LoadingController {
     Dialog dialog;
     Animation rotateAnimation;
 
-    public interface ILoadSrc{
+    public interface ILoadSrc {
         int srcLayout();
+
         int srcImgId();
     }
 
-    public LoadingController(Context context,ILoadSrc iLoadSrc){
-        loadingView = LayoutInflater.from(context).inflate(iLoadSrc.srcLayout(),null);
+    public LoadingController(Context context, ILoadSrc iLoadSrc) {
+        loadingView = LayoutInflater.from(context).inflate(iLoadSrc.srcLayout(), null);
         img = loadingView.findViewById(iLoadSrc.srcImgId());
         dialog = new Dialog(context, R.style.loadDialog);
         dialog.setContentView(loadingView);
@@ -32,25 +33,37 @@ public class LoadingController {
         rotateAnimation.setRepeatCount(Animation.INFINITE);
     }
 
-    public void show(){
-        if(!dialog.isShowing()) {
-            dialog.show();
-            img.startAnimation(rotateAnimation);
+    public void show() {
+        try {
+            if (!dialog.isShowing()) {
+                dialog.show();
+                img.startAnimation(rotateAnimation);
+            }
+        } catch (Exception e) {
+
         }
     }
 
-    public void show(boolean cancelable){
-        if(!dialog.isShowing()) {
-            dialog.setCancelable(cancelable);
-            dialog.show();
-            img.startAnimation(rotateAnimation);
+    public void show(boolean cancelable) {
+        try {
+            if (!dialog.isShowing()) {
+                dialog.setCancelable(cancelable);
+                dialog.show();
+                img.startAnimation(rotateAnimation);
+            }
+        } catch (Exception e) {
+
         }
     }
 
-    public void dismiss(){
-        if(dialog.isShowing()) {
-            dialog.dismiss();
-            img.clearAnimation();
+    public void dismiss() {
+        try {
+            if ((dialog != null) && dialog.isShowing()) {
+                dialog.dismiss();
+                img.clearAnimation();
+            }
+        } catch (Exception e) {
+
         }
     }
 }
