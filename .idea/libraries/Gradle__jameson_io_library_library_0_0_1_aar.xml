@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="Gradle: jameson.io.library:library:0.0.1@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a60fa425e83eb9326d4476f3073a72b5/library-0.0.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a60fa425e83eb9326d4476f3073a72b5/library-0.0.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a60fa425e83eb9326d4476f3073a72b5/library-0.0.1/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/jameson.io.library/library/0.0.1/a6b8adae8ea57e6a6bd31e0cbf07a4acef5dda49/library-0.0.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/jameson.io.library/library/0.0.1/d6f4d2b97fdbf1c15b70070558fa2fecd994f5c1/library-0.0.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
