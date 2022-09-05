@@ -9,16 +9,22 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import me.tx.app.R;
+import me.tx.app.ui.activity.BaseRefreshRecyclerActivity;
 import me.tx.app.ui.widget.EmptyHolder;
 import me.tx.app.utils.DPPX;
 
 //recycler id 必须为recycler
-public abstract class RefreshRecyclerFragment<T extends EmptyHolder> extends RefreshFragment {
+public abstract class RefreshRecyclerFragment<T extends EmptyHolder,K> extends RefreshFragment {
 
     final int EMPTY = -8888;
 
     boolean couldLoadMore = true;
+
+    ArrayList<K> dataList = new ArrayList<>();
 
     public RecyclerView recycler;
 
@@ -46,17 +52,32 @@ public abstract class RefreshRecyclerFragment<T extends EmptyHolder> extends Ref
         }
     };
 
+    public ArrayList<K> getDataList(){
+        return dataList;
+    }
+
+    public void addData(List<K> addList){
+        dataList.addAll(addList);
+    }
+
+    public void resetData(List<K> addList){
+        dataList.clear();
+        dataList.addAll(addList);
+    }
+
+    public void clearData(){
+        dataList.clear();
+    }
+    
     public abstract void setSwipeRecyclerFragment(View view);
 
     public abstract RecyclerView.LayoutManager getLayoutManager();
 
     public abstract int getItemViewType(int position);
 
-    public abstract int getItemCount();
-
     public abstract T onCreateViewHolder(ViewGroup viewGroup, int type);
 
-    public abstract void onBindViewHolder(T holder, int position);
+    public abstract void onBindViewHolder(T holder, K object, int p);
 
     public abstract void load(int page, IResult iResult, boolean needClear);
 
@@ -93,13 +114,13 @@ public abstract class RefreshRecyclerFragment<T extends EmptyHolder> extends Ref
                 }
                 if(recyclerView.getLayoutManager() instanceof LinearLayoutManager) {
                     int lastPosition = ((LinearLayoutManager) recyclerView.getLayoutManager()).findLastCompletelyVisibleItemPosition();
-                    if ((lastPosition + 1) == RefreshRecyclerFragment.this.getItemCount() && RefreshRecyclerFragment.this.getItemCount() >= pageSize) {
+                    if ((lastPosition + 1) == dataList.size() && dataList.size() >= pageSize) {
                         page++;
                         load(page, iResult, false);
                     }
                 }else if(recyclerView.getLayoutManager() instanceof StaggeredGridLayoutManager){
                     int lastPosition = ((StaggeredGridLayoutManager) recyclerView.getLayoutManager()).findLastCompletelyVisibleItemPositions(null)[0];
-                    if ((lastPosition + 1) == RefreshRecyclerFragment.this.getItemCount() && RefreshRecyclerFragment.this.getItemCount() >= pageSize) {
+                    if ((lastPosition + 1) == dataList.size() && dataList.size() >= pageSize) {
                         page++;
                         load(page, iResult, false);
                     }
@@ -125,10 +146,10 @@ public abstract class RefreshRecyclerFragment<T extends EmptyHolder> extends Ref
             @Override
             public void onBindViewHolder( T holder, int position) {
                 try {
-                    if (RefreshRecyclerFragment.this.getItemCount() == 0) {
+                    if (dataList.size() == 0) {
                         return;
                     } else {
-                        RefreshRecyclerFragment.this.onBindViewHolder(holder, position);
+                        RefreshRecyclerFragment.this.onBindViewHolder(holder, dataList.get(position),position);
                     }
                 } catch (ClassCastException e) {
                     e.printStackTrace();
@@ -138,16 +159,16 @@ public abstract class RefreshRecyclerFragment<T extends EmptyHolder> extends Ref
 
             @Override
             public int getItemCount() {
-                if (RefreshRecyclerFragment.this.getItemCount() == 0) {
+                if (dataList.size() == 0) {
                     return 1;
                 } else {
-                    return RefreshRecyclerFragment.this.getItemCount();
+                    return dataList.size();
                 }
             }
 
             @Override
             public int getItemViewType(int position) {
-                if (RefreshRecyclerFragment.this.getItemCount() == 0) {
+                if (dataList.size() == 0) {
                     return EMPTY;
                 }
                 return RefreshRecyclerFragment.this.getItemViewType(position);
@@ -158,6 +179,23 @@ public abstract class RefreshRecyclerFragment<T extends EmptyHolder> extends Ref
         setSwipeRecyclerFragment(view);
     }
 
+    public interface IDealList{
+        void dealList();
+    }
+
+    public void loadFinish(final IDealList iDealList) {
+        if(getActivity()==null){
+            return;
+        }
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                swip.setRefreshing(false);
+                iDealList.dealList();
+                recycler.getAdapter().notifyDataSetChanged();
+            }
+        });
+    }
 
     @Override
     public void loadFinish() {

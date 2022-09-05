@@ -14,7 +14,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/null_view"
+            android:src="@drawable/null_view"
             android:adjustViewBounds="true"
             android:scaleType="centerInside"/>
         <TextView
@@ -24,7 +24,7 @@
             android:gravity="center"
             android:textSize="14dp"
             android:text="暂无相关内容"
-            android:textColor="@color/base"/>
+            android:textColor="@color/hint"/>
     </LinearLayout>
 
 </LinearLayout>

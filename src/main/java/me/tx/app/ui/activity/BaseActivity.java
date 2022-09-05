@@ -36,14 +36,15 @@ import java.util.HashMap;
 import java.util.List;
 
 //import me.tx.app.ActivityManager;
+import me.tx.app.Config;
 import me.tx.app.R;
 import me.tx.app.network.HttpBuilder;
 import me.tx.app.network.IResponse;
+import me.tx.app.network.Mapper;
 import me.tx.app.network.ParamList;
 import me.tx.app.utils.AndroidBug5497Workaround;
 import me.tx.app.utils.DownloadInfo;
 import me.tx.app.utils.Downloader;
-import me.tx.app.utils.HttpUtils;
 import me.tx.app.utils.LoadingController;
 import me.tx.app.utils.NotificationHelper;
 import me.tx.app.utils.PermissionLoader;
@@ -52,6 +53,7 @@ import me.tx.app.utils.ShareGetter;
 import me.tx.app.utils.Toaster;
 import me.tx.app.utils.UploadHelper;
 import okhttp3.Cookie;
+import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
@@ -59,9 +61,8 @@ import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 public abstract class BaseActivity extends AppCompatActivity implements PicassoLoader.IDefult, LoadingController.ILoadSrc, IResponse.BadToken,EasyPermissions.PermissionCallbacks  {
     public Center center;
     public View root;
-    public INTENT_TYPE intent_type = INTENT_TYPE.DEFULT;
 
-    public enum INTENT_TYPE {LEFT, RIGHT, TOP, BOTTOM, SCALE, FADE,DEFULT}
+    public final int REQUEST_CODE_QRCODE_PERMISSIONS = 10010;
 
     public abstract HashMap<String,String> getHeader();
 
@@ -80,6 +81,7 @@ public abstract class BaseActivity extends AppCompatActivity implements PicassoL
         BaseActivity activity;
         UploadHelper uploadHelper;
         NotificationHelper notificationHelper;
+        IPermission iPermission;
 
         public Center(BaseActivity ac) {
             activity = ac;
@@ -103,6 +105,13 @@ public abstract class BaseActivity extends AppCompatActivity implements PicassoL
             notificationHelper = new NotificationHelper();
             //状态栏颜色控制
             statusBarSet();
+        }
+
+        public interface IPermission{
+            void pass();
+            void notPass();
+            void onDenied(int requestCode, List<String> list);
+            void onGranted(int requestCode, List<String> list);
         }
 
         public void notificationWithFile(String title,String info,int big,int small,File file){
@@ -148,20 +157,14 @@ public abstract class BaseActivity extends AppCompatActivity implements PicassoL
             return uploadHelper;
         }
 
-        public void req(String action, ParamList paramList, IResponse iResponse) {
-            if(!action.startsWith("http")){
-                iResponse.fail("789","请求地址(http)异常");
-                return;
-            }
-            HttpUtils.getInstance().req(action,paramList,iResponse,activity);
+        public HttpBuilder.IRequestFunction reqJson(String action, Object o) {
+            loadingController.show();
+            return new HttpBuilder(loadingController).initJson(action,o,activity.getHeader());
         }
 
-        public void req(String action, ParamList paramList, IResponse iResponse,HashMap<String,String> header) {
-            if(!action.startsWith("http")){
-                iResponse.fail("789","请求地址(http)异常");
-                return;
-            }
-            HttpUtils.getInstance().req(action,paramList,iResponse,header);
+        public HttpBuilder.IRequestFunction reqForm(String action, Mapper mapper) {
+            loadingController.show();
+            return new HttpBuilder(loadingController).initForm(action,mapper,activity.getHeader());
         }
 
         public void statusBarSet() {
@@ -174,12 +177,14 @@ public abstract class BaseActivity extends AppCompatActivity implements PicassoL
             activity.statusBarTextBlack();
         }
 
-        public boolean loadPermission(String[] permission) {
-            return permissionLoader.Load(permission);
-        }
-
-        public boolean loadPermission(String[] permission,int code) {
-            return permissionLoader.Load(permission,code);
+        public void loadPermission(String[] permission,IPermission iPermission) {
+            this.iPermission = iPermission;
+            boolean ok = permissionLoader.Load(permission);
+            if(ok){
+                iPermission.pass();
+            }else {
+                iPermission.notPass();
+            }
         }
 
         public void loadImg(String url, ImageView imageView) {
@@ -222,13 +227,31 @@ public abstract class BaseActivity extends AppCompatActivity implements PicassoL
         }
 
 
-        public void download(DownloadInfo downloadInfo, Downloader.IFinish iFinish) {
-            if(loadPermission(new String[]{
+        public void download(final DownloadInfo downloadInfo, final Downloader.IFinish iFinish) {
+            loadPermission(new String[]{
                     Manifest.permission.WRITE_EXTERNAL_STORAGE,
                     Manifest.permission.READ_EXTERNAL_STORAGE
-            })) {
-                downloader.downloadFile(downloadInfo,iFinish);
-            }
+            }, new IPermission() {
+                @Override
+                public void pass() {
+                    downloader.downloadFile(downloadInfo,iFinish);
+                }
+
+                @Override
+                public void notPass() {
+
+                }
+
+                @Override
+                public void onDenied(int requestCode, List<String> list) {
+
+                }
+
+                @Override
+                public void onGranted(int requestCode, List<String> list) {
+                    downloader.downloadFile(downloadInfo,iFinish);
+                }
+            });
         }
 
         public ShareGetter getShareGetter() {
@@ -395,17 +418,6 @@ public abstract class BaseActivity extends AppCompatActivity implements PicassoL
 
     @Override
     public void onDestroy() {
-//        if(HttpBuilder.publicCookie!=null){
-//            String cstring = "";
-//            for(Cookie cookie:HttpBuilder.publicCookie){
-//                cstring = cstring+ cookie.toString()+"^";
-//            }
-//            if(cstring.endsWith("^")){
-//                cstring = cstring.substring(0,cstring.length()-1);
-//            }
-//            SharedPreferences sp = getSharedPreferences(COOKIE,MODE_PRIVATE);
-//            sp.edit().putString(COOKIE, cstring).commit();
-//        }
         destroy();
         super.onDestroy();
     }
@@ -421,45 +433,94 @@ public abstract class BaseActivity extends AppCompatActivity implements PicassoL
     public HashMap<Integer,ISimpleStringCallBack> simpleCallBack = new HashMap<>();
 
     public final static int GET_IMG_REQUEST_CODE = 5858;
-    public void getImgWithListener(ImgUploadCallBack callBack,int max){
+    public void getImgWithListener(ImgUploadCallBack callBack, final int max){
         callBackHashMap.put(GET_IMG_REQUEST_CODE,callBack);
-        if (center.loadPermission(new String[]{
+        center.loadPermission(new String[]{
                 Manifest.permission.CAMERA,
                 Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE})) {
-            ISListConfig config = new ISListConfig.Builder()
-                    // 是否多选, 默认true
-                    .multiSelect(true)
-                    // 是否记住上次选中记录, 仅当multiSelect为true的时候配置，默认为true
-                    .rememberSelected(false)
-                    // “确定”按钮背景色
-                    .btnBgColor(Color.WHITE)
-                    // “确定”按钮文字颜色
-                    .btnTextColor(Color.BLUE)
-                    // 使用沉浸式状态栏
-                    .statusBarColor(getResources().getColor(R.color.base))
-                    // 返回图标ResId
-                    .backResId(R.drawable.ic_back)
-                    // 标题
-                    .title("选择图片")
-                    // 标题文字颜色
-                    .titleColor(Color.WHITE)
-                    // TitleBar背景色
-                    .titleBgColor(getResources().getColor(R.color.base))
-                    .needCrop(false)
-                    // 第一个是否显示相机，默认true
-                    .needCamera(true)
-                    // 最大选择图片数量，默认9
-                    .maxNum(max)
-                    .build();
-            ISNav.getInstance().init(new com.yuyh.library.imgsel.common.ImageLoader() {
-                @Override
-                public void displayImage(Context c, String path, ImageView imageView) {
-                    center.loadImg(new File(path), imageView, 2.0f, 2.0f);
-                }
-            });
-            ISNav.getInstance().toListActivity(this, config, GET_IMG_REQUEST_CODE);
-        }
+                Manifest.permission.WRITE_EXTERNAL_STORAGE}, new Center.IPermission() {
+            @Override
+            public void pass() {
+                ISListConfig config = new ISListConfig.Builder()
+                        // 是否多选, 默认true
+                        .multiSelect(true)
+                        // 是否记住上次选中记录, 仅当multiSelect为true的时候配置，默认为true
+                        .rememberSelected(false)
+                        // “确定”按钮背景色
+                        .btnBgColor(Color.WHITE)
+                        // “确定”按钮文字颜色
+                        .btnTextColor(Color.BLUE)
+                        // 使用沉浸式状态栏
+                        .statusBarColor(getResources().getColor(R.color.base))
+                        // 返回图标ResId
+                        .backResId(R.drawable.ic_back)
+                        // 标题
+                        .title("选择图片")
+                        // 标题文字颜色
+                        .titleColor(Color.WHITE)
+                        // TitleBar背景色
+                        .titleBgColor(getResources().getColor(R.color.base))
+                        .needCrop(false)
+                        // 第一个是否显示相机，默认true
+                        .needCamera(true)
+                        // 最大选择图片数量，默认9
+                        .maxNum(max)
+                        .build();
+                ISNav.getInstance().init(new com.yuyh.library.imgsel.common.ImageLoader() {
+                    @Override
+                    public void displayImage(Context c, String path, ImageView imageView) {
+                        center.loadImg(new File(path), imageView);
+                    }
+                });
+                ISNav.getInstance().toListActivity(this, config, GET_IMG_REQUEST_CODE);
+            }
+
+            @Override
+            public void notPass() {
+
+            }
+
+            @Override
+            public void onDenied(int requestCode, List<String> list) {
+
+            }
+
+            @Override
+            public void onGranted(int requestCode, List<String> list) {
+                ISListConfig config = new ISListConfig.Builder()
+                        // 是否多选, 默认true
+                        .multiSelect(true)
+                        // 是否记住上次选中记录, 仅当multiSelect为true的时候配置，默认为true
+                        .rememberSelected(false)
+                        // “确定”按钮背景色
+                        .btnBgColor(Color.WHITE)
+                        // “确定”按钮文字颜色
+                        .btnTextColor(Color.BLUE)
+                        // 使用沉浸式状态栏
+                        .statusBarColor(getResources().getColor(R.color.base))
+                        // 返回图标ResId
+                        .backResId(R.drawable.ic_back)
+                        // 标题
+                        .title("选择图片")
+                        // 标题文字颜色
+                        .titleColor(Color.WHITE)
+                        // TitleBar背景色
+                        .titleBgColor(getResources().getColor(R.color.base))
+                        .needCrop(false)
+                        // 第一个是否显示相机，默认true
+                        .needCamera(true)
+                        // 最大选择图片数量，默认9
+                        .maxNum(max)
+                        .build();
+                ISNav.getInstance().init(new com.yuyh.library.imgsel.common.ImageLoader() {
+                    @Override
+                    public void displayImage(Context c, String path, ImageView imageView) {
+                        center.loadImg(new File(path), imageView);
+                    }
+                });
+                ISNav.getInstance().toListActivity(this, config, GET_IMG_REQUEST_CODE);
+            }
+        });
     }
 
     public final static int GET_SIMPLE_STRING_CODE = 1010;
@@ -495,14 +556,16 @@ public abstract class BaseActivity extends AppCompatActivity implements PicassoL
 
     @Override
     public void onPermissionsGranted(int requestCode, List<String> list) {
-        // Some permissions have been granted
-        // ...
+        if(center.iPermission!=null){
+            center.iPermission.onGranted(requestCode,list);
+        }
     }
 
     @Override
     public void onPermissionsDenied(int requestCode, List<String> list) {
-        // Some permissions have been denied
-        // ...
+        if(center.iPermission!=null){
+            center.iPermission.onDenied(requestCode,list);
+        }
     }
 
     @Override

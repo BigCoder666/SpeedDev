@@ -41,6 +41,10 @@ public class ShareGetter {
         return sharedPreferences.getString(key,"");
     }
 
+    public String ReadHeader(String key){
+        return sharedPreferences.getString(key,"{}");
+    }
+
     public HashSet<String> ReadSet(String key){
         return (HashSet<String>)sharedPreferences.getStringSet(key,new HashSet<String>());
     }

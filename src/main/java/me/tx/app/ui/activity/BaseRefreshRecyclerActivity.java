@@ -10,14 +10,19 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import me.tx.app.R;
 import me.tx.app.ui.widget.EmptyHolder;
 import me.tx.app.utils.DPPX;
 
-public abstract class BaseRefreshRecyclerActivity<T extends EmptyHolder> extends BaseActivity {
+public abstract class BaseRefreshRecyclerActivity<T extends EmptyHolder,K> extends BaseActivity {
 
     final int END = -9999;
     final int EMPTY = -8888;
+
+    ArrayList<K> dataList = new ArrayList<>();
 
     EmptyHolder customerEmptyView =null;
 
@@ -37,6 +42,23 @@ public abstract class BaseRefreshRecyclerActivity<T extends EmptyHolder> extends
     int startY = 0;
     boolean isTopShow = true;
 
+    public ArrayList<K> getDataList(){
+        return dataList;
+    }
+
+    public void addData(List<K> addList){
+        dataList.addAll(addList);
+    }
+
+    public void resetData(List<K> addList){
+        dataList.clear();
+        dataList.addAll(addList);
+    }
+
+    public void clearData(){
+        dataList.clear();
+    }
+
     public void setCustomerEmptyView(EmptyHolder view){
         customerEmptyView = view;
     }
@@ -48,21 +70,22 @@ public abstract class BaseRefreshRecyclerActivity<T extends EmptyHolder> extends
     BaseRefreshRecyclerActivity.IResult iResult = new BaseRefreshRecyclerActivity.IResult() {
         @Override
         public void empty() {
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    if(page>1) {
-                        center.toast("没有更多数据了");
-                    }
-                    recycler.smoothScrollBy(0, -DPPX.dip2px(BaseRefreshRecyclerActivity.this, 50));
-                    page--;
-                }
-            });
+            noMore();
+//            runOnUiThread(new Runnable() {
+//                @Override
+//                public void run() {
+//                    if(page>1) {
+//                        center.toast("没有更多数据了");
+//                    }
+//                    recycler.smoothScrollBy(0, -DPPX.dip2px(BaseRefreshRecyclerActivity.this, 50));
+//                    page--;
+//                }
+//            });
 //            toast(NO_MORE_DATA);
         }
     };
 
-    public void noMore(){
+    private void noMore(){
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -81,11 +104,9 @@ public abstract class BaseRefreshRecyclerActivity<T extends EmptyHolder> extends
 
     public abstract int getItemViewType(int position);
 
-    public abstract int getItemCount();
-
     public abstract T onCreateViewHolder(ViewGroup viewGroup, int type);
 
-    public abstract void onBindViewHolder(T holder, int position);
+    public abstract void onBindViewHolder(T holder, K object, int p);
 
     public abstract void load(int page, BaseRefreshRecyclerActivity.IResult iResult, boolean needClear);
 
@@ -179,7 +200,7 @@ public abstract class BaseRefreshRecyclerActivity<T extends EmptyHolder> extends
                     }
                 }
                 int lastPosition = ((LinearLayoutManager) recyclerView.getLayoutManager()).findLastCompletelyVisibleItemPosition();
-                if (lastPosition == BaseRefreshRecyclerActivity.this.getItemCount() && BaseRefreshRecyclerActivity.this.getItemCount() >= pageSize) {
+                if (lastPosition == dataList.size() && dataList.size() >= pageSize) {
                     if(swip.isRefreshing()){
                         return;
                     }
@@ -200,7 +221,7 @@ public abstract class BaseRefreshRecyclerActivity<T extends EmptyHolder> extends
                             return (T) customerEmptyView;
                         }
                     }
-                    if (type == END && BaseRefreshRecyclerActivity.this.getItemCount() >= pageSize) {
+                    if (type == END && dataList.size() >= pageSize) {
                         return (T) EmptyHolder.END(BaseRefreshRecyclerActivity.this, viewGroup);
                     }
                     return BaseRefreshRecyclerActivity.this.onCreateViewHolder(viewGroup, type);
@@ -213,12 +234,12 @@ public abstract class BaseRefreshRecyclerActivity<T extends EmptyHolder> extends
             @Override
             public void onBindViewHolder( T holder, int position) {
                 try {
-                    if (BaseRefreshRecyclerActivity.this.getItemCount() == 0) {
+                    if (dataList.size() == 0) {
                         return;
-                    } else if (BaseRefreshRecyclerActivity.this.getItemCount() >= pageSize && position == BaseRefreshRecyclerActivity.this.getItemCount()) {
+                    } else if (dataList.size() >= pageSize && position == dataList.size()) {
                         return;
                     } else {
-                        BaseRefreshRecyclerActivity.this.onBindViewHolder(holder, position);
+                        BaseRefreshRecyclerActivity.this.onBindViewHolder(holder, dataList.get(position),position);
                     }
                 } catch (ClassCastException e) {
                     return;
@@ -227,22 +248,22 @@ public abstract class BaseRefreshRecyclerActivity<T extends EmptyHolder> extends
 
             @Override
             public int getItemCount() {
-                if (BaseRefreshRecyclerActivity.this.getItemCount() == 0) {
+                if (dataList.size() == 0) {
                     return 1;
                 }
-                if (couldLoadMore && BaseRefreshRecyclerActivity.this.getItemCount() >= pageSize) {
-                    return BaseRefreshRecyclerActivity.this.getItemCount() + 1;
+                if (couldLoadMore && dataList.size() >= pageSize) {
+                    return dataList.size() + 1;
                 } else {
-                    return BaseRefreshRecyclerActivity.this.getItemCount();
+                    return dataList.size();
                 }
             }
 
             @Override
             public int getItemViewType(int position) {
-                if (BaseRefreshRecyclerActivity.this.getItemCount() == 0) {
+                if (dataList.size() == 0) {
                     return EMPTY;
                 }
-                if (BaseRefreshRecyclerActivity.this.getItemCount() >= pageSize && position == BaseRefreshRecyclerActivity.this.getItemCount()) {
+                if (dataList.size() >= pageSize && position == dataList.size()) {
                     return END;
                 }
                 return BaseRefreshRecyclerActivity.this.getItemViewType(position);
@@ -253,6 +274,20 @@ public abstract class BaseRefreshRecyclerActivity<T extends EmptyHolder> extends
         setRefreshRecyclerActivity();
     }
 
+    public interface IDealList{
+        void dealList();
+    }
+
+    public void loadFinish(final IDealList iDealList) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                swip.setRefreshing(false);
+                iDealList.dealList();
+                recycler.getAdapter().notifyDataSetChanged();
+            }
+        });
+    }
 
     public void loadFinish() {
         runOnUiThread(new Runnable() {
