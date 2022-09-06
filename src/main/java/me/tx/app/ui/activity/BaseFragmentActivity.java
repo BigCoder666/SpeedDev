@@ -3,12 +3,13 @@ package me.tx.app.ui.activity;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.viewbinding.ViewBinding;
 
 import java.util.ArrayList;
 import java.util.List;
 
 //继承多fragment
-public abstract class BaseFragmentActivity extends BaseMultipFragmentActivity {
+public abstract class BaseFragmentActivity<VB extends ViewBinding> extends BaseMultipFragmentActivity<VB> {
 
     public abstract int getContainerId();
     public abstract Fragment getFragment();

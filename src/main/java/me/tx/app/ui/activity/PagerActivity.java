@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.viewbinding.ViewBinding;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 
 import me.tx.app.ui.fragment.BaseFragment;
 
-public abstract class PagerActivity extends BaseActivity {
+public abstract class PagerActivity<VB extends ViewBinding> extends BaseActivity<VB> {
 
     int lastPosition = 0;
 

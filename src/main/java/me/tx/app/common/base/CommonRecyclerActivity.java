@@ -3,6 +3,7 @@ package me.tx.app.common.base;
 import android.content.Intent;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.viewbinding.ViewBinding;
 
 import com.alibaba.fastjson.JSON;
 
@@ -13,13 +14,12 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.HashMap;
 
-import butterknife.ButterKnife;
+
 import me.tx.app.R;
 import me.tx.app.ui.activity.BaseRefreshRecyclerActivity;
-import me.tx.app.ui.widget.EmptyHolder;
 import me.tx.app.utils.ShareGetter;
 
-public abstract class CommonRecyclerActivity<T extends EmptyHolder,K> extends BaseRefreshRecyclerActivity<T,K> {
+public abstract class CommonRecyclerActivity<VB extends ViewBinding,T extends ViewBinding,K> extends BaseRefreshRecyclerActivity<VB,T,K> {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMainEvent(MainEvent mainEvent) {
 
@@ -59,12 +59,6 @@ public abstract class CommonRecyclerActivity<T extends EmptyHolder,K> extends Ba
     @Override
     public void pause() {
 
-    }
-
-    @Override
-    public void bindid() {
-        ButterKnife.bind(this);
-        EventBus.getDefault().register(this);
     }
 
     @Override

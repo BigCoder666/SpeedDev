@@ -2,6 +2,7 @@ package me.tx.app.ui.activity;
 
 import android.animation.ValueAnimator;
 import android.os.SystemClock;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,28 +10,33 @@ import android.view.ViewGroup;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.viewbinding.ViewBinding;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import me.tx.app.R;
-import me.tx.app.ui.widget.EmptyHolder;
+import me.tx.app.common.base.CommonHolder;
+import me.tx.app.databinding.ItemEmptyLayoutBinding;
+import me.tx.app.databinding.ItemEndLayoutBinding;
 import me.tx.app.utils.DPPX;
 
-public abstract class BaseRefreshRecyclerActivity<T extends EmptyHolder,K> extends BaseActivity {
+public abstract class BaseRefreshRecyclerActivity<VB extends ViewBinding,T extends ViewBinding,K> extends BaseActivity<VB> {
 
     final int END = -9999;
     final int EMPTY = -8888;
 
     ArrayList<K> dataList = new ArrayList<>();
 
-    EmptyHolder customerEmptyView =null;
+    CommonHolder customerEmptyView =null;
 
     boolean couldLoadMore = true;
 
     public RecyclerView recycler;
 
-    RecyclerView.Adapter<T> adapter;
+    RecyclerView.Adapter<CommonHolder<T>> adapter;
+
+    public abstract T getHolderBinding(ViewGroup viewGroup,int type);
 
     public SwipeRefreshLayout swip;
 
@@ -59,7 +65,7 @@ public abstract class BaseRefreshRecyclerActivity<T extends EmptyHolder,K> exten
         dataList.clear();
     }
 
-    public void setCustomerEmptyView(EmptyHolder view){
+    public void setCustomerEmptyView(CommonHolder view){
         customerEmptyView = view;
     }
 
@@ -71,17 +77,6 @@ public abstract class BaseRefreshRecyclerActivity<T extends EmptyHolder,K> exten
         @Override
         public void empty() {
             noMore();
-//            runOnUiThread(new Runnable() {
-//                @Override
-//                public void run() {
-//                    if(page>1) {
-//                        center.toast("没有更多数据了");
-//                    }
-//                    recycler.smoothScrollBy(0, -DPPX.dip2px(BaseRefreshRecyclerActivity.this, 50));
-//                    page--;
-//                }
-//            });
-//            toast(NO_MORE_DATA);
         }
     };
 
@@ -104,9 +99,13 @@ public abstract class BaseRefreshRecyclerActivity<T extends EmptyHolder,K> exten
 
     public abstract int getItemViewType(int position);
 
-    public abstract T onCreateViewHolder(ViewGroup viewGroup, int type);
+//    public abstract T onCreateViewHolder(ViewGroup viewGroup, int type);
 
-    public abstract void onBindViewHolder(T holder, K object, int p);
+    public CommonHolder<T> onCreateViewHolder(ViewGroup viewGroup, int type) {
+        return new CommonHolder<T>(getHolderBinding(viewGroup,type));
+    }
+
+    public abstract void onBindViewHolder(CommonHolder<T> holder, K object, int p);
 
     public abstract void load(int page, BaseRefreshRecyclerActivity.IResult iResult, boolean needClear);
 
@@ -209,20 +208,20 @@ public abstract class BaseRefreshRecyclerActivity<T extends EmptyHolder,K> exten
                 }
             }
         });
-        adapter = new RecyclerView.Adapter<T>() {
+        adapter = new RecyclerView.Adapter<CommonHolder<T>>() {
 
             @Override
-            public T onCreateViewHolder( ViewGroup viewGroup, int type) {
+            public CommonHolder<T> onCreateViewHolder( ViewGroup viewGroup, int type) {
                 try {
                     if (type == EMPTY) {
                         if(customerEmptyView == null) {
-                            return (T) EmptyHolder.EMPTY(BaseRefreshRecyclerActivity.this, viewGroup);
+                            return new CommonHolder(ItemEmptyLayoutBinding.inflate(LayoutInflater.from(viewGroup.getContext()),viewGroup,false));
                         }else {
-                            return (T) customerEmptyView;
+                            return customerEmptyView;
                         }
                     }
                     if (type == END && dataList.size() >= pageSize) {
-                        return (T) EmptyHolder.END(BaseRefreshRecyclerActivity.this, viewGroup);
+                        return new CommonHolder(ItemEndLayoutBinding.inflate(LayoutInflater.from(viewGroup.getContext()),viewGroup,false));
                     }
                     return BaseRefreshRecyclerActivity.this.onCreateViewHolder(viewGroup, type);
                 } catch (ClassCastException e) {
@@ -232,7 +231,7 @@ public abstract class BaseRefreshRecyclerActivity<T extends EmptyHolder,K> exten
             }
 
             @Override
-            public void onBindViewHolder( T holder, int position) {
+            public void onBindViewHolder(CommonHolder<T> holder, int position) {
                 try {
                     if (dataList.size() == 0) {
                         return;

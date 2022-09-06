@@ -7,14 +7,17 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import androidx.fragment.app.Fragment;
+import androidx.viewbinding.ViewBinding;
 
 import me.tx.app.ui.activity.BaseActivity;
 
-public abstract class BaseFragment extends Fragment {
+public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
+
+    public VB fvb;
 
     public boolean needLoad=true;
 
-    public abstract int getViewId();
+    public abstract VB getVb();
 
     public abstract void setView(View view);
 
@@ -24,9 +27,9 @@ public abstract class BaseFragment extends Fragment {
 
     @Override
     public View onCreateView( LayoutInflater inflater,  ViewGroup container,  Bundle savedInstanceState) {
-        view = inflater.inflate(getViewId(),container,false);
-        setView(view);
-        return view;
+        fvb = getVb();
+        setView(fvb.getRoot());
+        return fvb.getRoot();
     }
 
     @Override

@@ -3,6 +3,8 @@ package me.tx.app.common.base;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.viewbinding.ViewBinding;
+
 import com.alibaba.fastjson.JSON;
 
 
@@ -12,12 +14,12 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.HashMap;
 
-import butterknife.ButterKnife;
+
 import me.tx.app.R;
 import me.tx.app.ui.activity.RecyclerPagerActivity;
 import me.tx.app.utils.ShareGetter;
 
-public abstract class CommonRecyclerPagerActivity<T> extends RecyclerPagerActivity<T> {
+public abstract class CommonRecyclerPagerActivity<VB extends ViewBinding,T> extends RecyclerPagerActivity<VB,T> {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMainEvent(MainEvent mainEvent) {
@@ -46,12 +48,6 @@ public abstract class CommonRecyclerPagerActivity<T> extends RecyclerPagerActivi
     @Override
     public void pause() {
 
-    }
-
-    @Override
-    public void bindid() {
-        ButterKnife.bind(this);
-        EventBus.getDefault().register(this);
     }
 
     @Override

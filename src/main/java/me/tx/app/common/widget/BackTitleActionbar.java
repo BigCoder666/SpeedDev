@@ -27,8 +27,8 @@ public class BackTitleActionbar extends BaseActionbar {
         setTitleColor(R.color.white);
         super.init(new TYPE[]
                         {TYPE.LI,TYPE.T}
-                ,new int[]{R.drawable.back,0,},
-                new String[]{null,title,},
+                ,new int[]{R.drawable.back,0},
+                new String[]{null,title},
                 new OneClicklistener[]{new FinishClick(activity),null});
     }
 }

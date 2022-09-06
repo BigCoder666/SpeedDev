@@ -2,6 +2,8 @@ package me.tx.app.common.base;
 
 import android.content.Intent;
 
+import androidx.viewbinding.ViewBinding;
+
 import com.alibaba.fastjson.JSON;
 
 
@@ -10,13 +12,11 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.HashMap;
-
-import butterknife.ButterKnife;
 import me.tx.app.R;
 import me.tx.app.ui.activity.BaseFragmentActivity;
 import me.tx.app.utils.ShareGetter;
 
-public abstract class CommonFragmentActivity extends BaseFragmentActivity {
+public abstract class CommonFragmentActivity<VB extends ViewBinding> extends BaseFragmentActivity<VB> {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMainEvent(MainEvent mainEvent) {
 
@@ -45,12 +45,6 @@ public abstract class CommonFragmentActivity extends BaseFragmentActivity {
     @Override
     public void pause() {
 
-    }
-
-    @Override
-    public void bindid() {
-        ButterKnife.bind(this);
-        EventBus.getDefault().register(this);
     }
 
     @Override

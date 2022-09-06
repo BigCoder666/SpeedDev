@@ -14,7 +14,7 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.HashMap;
 
-import butterknife.ButterKnife;
+
 import me.tx.app.R;
 import me.tx.app.ui.activity.PagerActivity;
 import me.tx.app.utils.ShareGetter;
@@ -73,12 +73,6 @@ public abstract class CommonPagerActivity extends PagerActivity {
     @Override
     public void pause() {
 
-    }
-
-    @Override
-    public void bindid() {
-        ButterKnife.bind(this);
-        EventBus.getDefault().register(this);
     }
 
     @Override

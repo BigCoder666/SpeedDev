@@ -9,8 +9,6 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.HashMap;
-
-import butterknife.ButterKnife;
 import me.tx.app.R;
 import me.tx.app.ui.activity.BaseActivity;
 import me.tx.app.utils.ShareGetter;
@@ -45,12 +43,6 @@ public abstract class CommonActivity extends BaseActivity {
     @Override
     public void pause() {
 
-    }
-
-    @Override
-    public void bindid() {
-        ButterKnife.bind(this);
-        EventBus.getDefault().register(this);
     }
 
     @Override

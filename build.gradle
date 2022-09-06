@@ -1,5 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.jakewharton.butterknife'
 
 android {
     compileSdk 32
@@ -8,7 +7,11 @@ android {
         minSdk 21
         targetSdk 32
         versionCode 1
-        versionName "2.0"
+        versionName "3.0"
+    }
+
+    viewBinding {
+        enabled = true
     }
 }
 
@@ -24,18 +27,12 @@ buildscript {
     }
     dependencies {
         classpath "com.android.tools.build:gradle:7.0.4"
-        classpath 'org.greenrobot:greendao-gradle-plugin:3.3.0'
-        classpath 'com.jakewharton:butterknife-gradle-plugin:10.2.1'//添加butterknife插件的引用
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
     }
 }
 
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
     api 'org.greenrobot:eventbus:3.1.1'
-    api 'com.jakewharton:butterknife:10.2.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
 
     //bigImgShow
     api 'com.github.SherlockGougou:BigImageViewPager:androidx-6.0.2'

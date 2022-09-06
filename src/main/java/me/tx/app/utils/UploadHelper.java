@@ -1,17 +1,8 @@
 package me.tx.app.utils;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.os.Environment;
-
 import com.alibaba.fastjson.JSON;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -19,7 +10,6 @@ import java.util.List;
 
 import id.zelory.compressor.Compressor;
 import me.tx.app.network.IData;
-import me.tx.app.network.IResponse;
 import me.tx.app.network.ParamList;
 import me.tx.app.ui.activity.BaseActivity;
 import okhttp3.Call;
@@ -79,8 +69,8 @@ public class UploadHelper {
                 requestBody = builder.build();
 
                 Request.Builder b = new Request.Builder();
-                for (String key : activity.getHeader().keySet()) {
-                    b.addHeader(key, activity.getHeader().get(key));
+                for (Object key : activity.getHeader().keySet()) {
+                    b.addHeader((String) key, (String) activity.getHeader().get(key));
                 }
                 Request request =b.url(action)
                         .post(requestBody)
@@ -113,8 +103,8 @@ public class UploadHelper {
             @Override
             public void run() {
                 final Request.Builder b = new Request.Builder();
-                for (String key : activity.getHeader().keySet()) {
-                    b.addHeader(key, activity.getHeader().get(key));
+                for (Object key : activity.getHeader().keySet()) {
+                    b.addHeader((String) key, (String) activity.getHeader().get(key));
                 }
                 RequestBody fileBody = RequestBody.create(MediaType.parse("image/jpg"), face);
                 MultipartBody.Builder mb = new MultipartBody.Builder();
@@ -157,8 +147,8 @@ public class UploadHelper {
             @Override
             public void run() {
                 final Request.Builder b = new Request.Builder();
-                for (String key : activity.getHeader().keySet()) {
-                    b.addHeader(key, activity.getHeader().get(key));
+                for (Object key : activity.getHeader().keySet()) {
+                    b.addHeader((String) key, (String) activity.getHeader().get(key));
                 }
                 RequestBody fileBody = RequestBody.create(MediaType.parse("image/jpg"), img);
                 MultipartBody.Builder mb = new MultipartBody.Builder();

@@ -5,6 +5,7 @@ import android.util.Log;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.viewbinding.ViewBinding;
 import androidx.viewpager.widget.ViewPager;
 
 import java.util.HashMap;
@@ -12,7 +13,7 @@ import java.util.List;
 
 import me.tx.app.ui.fragment.BaseFragment;
 
-public abstract class RecyclerPagerActivity<T> extends BaseActivity {
+public abstract class RecyclerPagerActivity<VB extends ViewBinding,T> extends BaseActivity<VB> {
     int lastPosition = 0;
 
     public abstract void changePage(int last,int now);

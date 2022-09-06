@@ -3,11 +3,12 @@ package me.tx.app.ui.fragment;
 import android.view.View;
 
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.viewbinding.ViewBinding;
 
 import me.tx.app.R;
 
 //swipe id 必须为 R.id.swipe
-public abstract class RefreshFragment extends BaseFragment {
+public abstract class RefreshFragment<VB extends ViewBinding> extends BaseFragment<VB> {
 
     public SwipeRefreshLayout swip;
 

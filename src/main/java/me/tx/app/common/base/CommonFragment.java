@@ -2,14 +2,15 @@ package me.tx.app.common.base;
 
 import android.view.View;
 
+import androidx.viewbinding.ViewBinding;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import butterknife.ButterKnife;
 import me.tx.app.ui.fragment.BaseFragment;
 
-public abstract class CommonFragment extends BaseFragment {
+public abstract class CommonFragment<VB extends ViewBinding> extends BaseFragment<VB> {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void fragmentEvent(MainEvent mainEvent){
 
@@ -17,7 +18,6 @@ public abstract class CommonFragment extends BaseFragment {
 
     @Override
     public void setView(View view){
-        ButterKnife.bind(this,view);
         EventBus.getDefault().register(this);
     }
 

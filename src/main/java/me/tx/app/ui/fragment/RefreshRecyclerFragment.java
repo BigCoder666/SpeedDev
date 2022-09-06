@@ -1,6 +1,7 @@
 package me.tx.app.ui.fragment;
 
 import android.os.SystemClock;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,17 +9,17 @@ import android.view.ViewGroup;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+import androidx.viewbinding.ViewBinding;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import me.tx.app.R;
-import me.tx.app.ui.activity.BaseRefreshRecyclerActivity;
-import me.tx.app.ui.widget.EmptyHolder;
-import me.tx.app.utils.DPPX;
+import me.tx.app.common.base.CommonHolder;
+import me.tx.app.databinding.ItemEmptyLayoutBinding;
 
 //recycler id 必须为recycler
-public abstract class RefreshRecyclerFragment<T extends EmptyHolder,K> extends RefreshFragment {
+public abstract class RefreshRecyclerFragment<VB extends ViewBinding,T extends ViewBinding,K> extends RefreshFragment<VB> {
 
     final int EMPTY = -8888;
 
@@ -28,7 +29,7 @@ public abstract class RefreshRecyclerFragment<T extends EmptyHolder,K> extends R
 
     public RecyclerView recycler;
 
-    RecyclerView.Adapter<T> adapter;
+    RecyclerView.Adapter<CommonHolder<T>> adapter;
 
     public RecyclerView.OnScrollListener onScrollListener;
 
@@ -75,9 +76,15 @@ public abstract class RefreshRecyclerFragment<T extends EmptyHolder,K> extends R
 
     public abstract int getItemViewType(int position);
 
-    public abstract T onCreateViewHolder(ViewGroup viewGroup, int type);
+    public abstract T getHolderBinding(ViewGroup viewGroup,int type);
 
-    public abstract void onBindViewHolder(T holder, K object, int p);
+//    public abstract T onCreateViewHolder(ViewGroup viewGroup, int type);
+
+    public CommonHolder<T> onCreateViewHolder(ViewGroup viewGroup, int type) {
+        return new CommonHolder<T>(getHolderBinding(viewGroup,type));
+    }
+
+    public abstract void onBindViewHolder(CommonHolder<T> holder, K object, int p);
 
     public abstract void load(int page, IResult iResult, boolean needClear);
 
@@ -128,13 +135,13 @@ public abstract class RefreshRecyclerFragment<T extends EmptyHolder,K> extends R
             }
         };
         recycler.addOnScrollListener(onScrollListener);
-        adapter = new RecyclerView.Adapter<T>() {
+        adapter = new RecyclerView.Adapter<CommonHolder<T>>() {
 
             @Override
-            public T onCreateViewHolder( ViewGroup viewGroup, int type) {
+            public CommonHolder<T> onCreateViewHolder( ViewGroup viewGroup, int type) {
                 try {
                     if (type == EMPTY) {
-                        return (T) EmptyHolder.EMPTY(getContext(), viewGroup);
+                        return new CommonHolder(ItemEmptyLayoutBinding.inflate(LayoutInflater.from(viewGroup.getContext()),viewGroup,false));
                     }
                     return RefreshRecyclerFragment.this.onCreateViewHolder(viewGroup, type);
                 } catch (ClassCastException e) {
@@ -144,7 +151,7 @@ public abstract class RefreshRecyclerFragment<T extends EmptyHolder,K> extends R
             }
 
             @Override
-            public void onBindViewHolder( T holder, int position) {
+            public void onBindViewHolder(CommonHolder<T> holder, int position) {
                 try {
                     if (dataList.size() == 0) {
                         return;

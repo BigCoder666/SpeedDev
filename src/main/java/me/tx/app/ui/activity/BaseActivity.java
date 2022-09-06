@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
+import androidx.viewbinding.ViewBinding;
 
 import android.provider.Settings;
 import android.view.LayoutInflater;
@@ -58,9 +59,12 @@ import pub.devrel.easypermissions.EasyPermissions;
 
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 
-public abstract class BaseActivity extends AppCompatActivity implements PicassoLoader.IDefult, LoadingController.ILoadSrc, IResponse.BadToken,EasyPermissions.PermissionCallbacks  {
+import org.greenrobot.eventbus.EventBus;
+
+public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActivity implements PicassoLoader.IDefult, LoadingController.ILoadSrc, IResponse.BadToken,EasyPermissions.PermissionCallbacks  {
     public Center center;
-    public View root;
+
+    public VB vb;
 
     public final int REQUEST_CODE_QRCODE_PERMISSIONS = 10010;
 
@@ -315,15 +319,13 @@ public abstract class BaseActivity extends AppCompatActivity implements PicassoL
         }
     }
 
-    public abstract int setContentViewId();
-
     public abstract void setView();
 
     public abstract void resume();
 
     public abstract void pause();
 
-    public abstract void bindid();
+    public abstract VB getVb();
 
     public abstract void stop();
 
@@ -374,17 +376,15 @@ public abstract class BaseActivity extends AppCompatActivity implements PicassoL
 
         super.onCreate(savedInstanceState);
 
-//        ActivityManager.getInstance().add(this);
-
-        root = LayoutInflater.from(this).inflate(setContentViewId(), null);
-
         center = new Center(this);
-
-        setContentView(setContentViewId());
 
         AndroidBug5497Workaround.assistActivity(this);
 
-        bindid();
+        EventBus.getDefault().register(this);
+
+        vb = getVb();
+
+        setContentView(vb.getRoot());
         //view设置
         setView();
 

@@ -5,11 +5,12 @@ import android.view.View;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.viewbinding.ViewBinding;
 import androidx.viewpager.widget.ViewPager;
 
 import java.util.ArrayList;
 
-public abstract class PagerFragment extends BaseFragment {
+public abstract class PagerFragment<VB extends ViewBinding> extends BaseFragment<VB> {
     public abstract ArrayList<BaseFragment> setFragment();
     public abstract void load(View view);
 

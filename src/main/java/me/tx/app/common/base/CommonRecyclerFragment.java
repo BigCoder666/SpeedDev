@@ -4,18 +4,17 @@ import android.view.View;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
+import androidx.viewbinding.ViewBinding;
 
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import butterknife.ButterKnife;
-import me.tx.app.ui.fragment.RefreshRecyclerFragment;
-import me.tx.app.ui.widget.EmptyHolder;
 
-public abstract class CommonRecyclerFragment<T extends EmptyHolder,K> extends RefreshRecyclerFragment<T,K> {
+import me.tx.app.ui.fragment.RefreshRecyclerFragment;
+
+public abstract class CommonRecyclerFragment<VB extends ViewBinding,T extends ViewBinding,K> extends RefreshRecyclerFragment<VB,T,K> {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void fragmentEvent(MainEvent mainEvent){
@@ -24,7 +23,6 @@ public abstract class CommonRecyclerFragment<T extends EmptyHolder,K> extends Re
 
     @Override
     public void setView(View view){
-        ButterKnife.bind(this,view);
         super.setView(view);
     }
 

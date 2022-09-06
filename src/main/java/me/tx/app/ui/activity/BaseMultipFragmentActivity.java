@@ -5,12 +5,13 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.viewbinding.ViewBinding;
 
 import java.util.List;
 
 import me.tx.app.ui.fragment.BaseFragment;
 
-public abstract class BaseMultipFragmentActivity extends BaseActivity {
+public abstract class BaseMultipFragmentActivity<VB extends ViewBinding> extends BaseActivity<VB> {
     //获取fragment的Container
     public abstract List<ContainerIdFragment> getFragmentToContainer();
 
