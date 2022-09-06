@@ -61,20 +61,20 @@ public class SimpleRecyclerActivity extends CommonRecyclerActivity<ActivitySimpl
                         loadFinish();
                     }
                 });
-        center.reqJson("http://47.106.22.169:9000/gzyzyapi/sys/loginNoCaptcha",
-                Arrays.asList("123", "345", "567")).post()
-                .callList(new IArrayList() {
-                    @Override
-                    public void successArray(JSONArray tList) {
-                        loadFinish();
-                    }
-
-                    @Override
-                    public void fail(String code, String msg) {
-                        center.toast(msg);
-                        loadFinish();
-                    }
-                });
+//        center.reqJson("http://47.106.22.169:9000/gzyzyapi/sys/loginNoCaptcha",
+//                Arrays.asList("123", "345", "567")).post()
+//                .callList(new IArrayList() {
+//                    @Override
+//                    public void successArray(JSONArray tList) {
+//                        loadFinish();
+//                    }
+//
+//                    @Override
+//                    public void fail(String code, String msg) {
+//                        center.toast(msg);
+//                        loadFinish();
+//                    }
+//                });
     }
 
     @Override
