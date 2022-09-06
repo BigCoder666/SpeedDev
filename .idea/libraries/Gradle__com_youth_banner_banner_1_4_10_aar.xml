@@ -1,13 +1,23 @@
 <component name="libraryTable">
   <library name="Gradle: com.youth.banner:banner:1.4.10@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1651eb4275ae2b688db7f20284cf7f71/banner-1.4.10/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1651eb4275ae2b688db7f20284cf7f71/banner-1.4.10/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1651eb4275ae2b688db7f20284cf7f71/banner-1.4.10/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d96ad8234af84d366ed505beb6df8b5b/jetified-banner-1.4.10/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d96ad8234af84d366ed505beb6df8b5b/jetified-banner-1.4.10/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d96ad8234af84d366ed505beb6df8b5b/jetified-banner-1.4.10/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/310695f0e002dfb68e06fa031dc4449e/jetified-banner-1.4.10/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/310695f0e002dfb68e06fa031dc4449e/jetified-banner-1.4.10/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/310695f0e002dfb68e06fa031dc4449e/jetified-banner-1.4.10/AndroidManifest.xml" />
+      <root url="file://$PROJECT_DIR$/../AndroidGradleUserHome/caches/transforms-2/files-2.1/4168511a8f796fd0e7b0399a656fc58b/jetified-banner-1.4.10/res" />
+      <root url="file://$PROJECT_DIR$/../AndroidGradleUserHome/caches/transforms-2/files-2.1/4168511a8f796fd0e7b0399a656fc58b/jetified-banner-1.4.10/AndroidManifest.xml" />
+      <root url="jar://$PROJECT_DIR$/../AndroidGradleUserHome/caches/transforms-2/files-2.1/4168511a8f796fd0e7b0399a656fc58b/jetified-banner-1.4.10/jars/classes.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../AndroidGradleUserHome/caches/transforms-3/620ed77cc62e9b2d2683faac8233be6f/transformed/jetified-banner-1.4.10/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../AndroidGradleUserHome/caches/transforms-3/620ed77cc62e9b2d2683faac8233be6f/transformed/jetified-banner-1.4.10/AndroidManifest.xml" />
+      <root url="file://$PROJECT_DIR$/../AndroidGradleUserHome/caches/transforms-3/620ed77cc62e9b2d2683faac8233be6f/transformed/jetified-banner-1.4.10/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.youth.banner/banner/1.4.10/eae835ac9b7ca690031f2b42fbcc88edab66ce5f/banner-1.4.10-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../AndroidGradleUserHome/caches/modules-2/files-2.1/com.youth.banner/banner/1.4.10/eae835ac9b7ca690031f2b42fbcc88edab66ce5f/banner-1.4.10-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

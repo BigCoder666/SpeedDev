@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
-  <component name="ProjectType">
-    <option name="id" value="Android" />
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/SpeedDev/app/src/main/res/layout/activity_a.xml" value="0.23324275362318841" />
+        <entry key="..\:/SpeedDev/app/src/main/res/layout/activity_simple_contain.xml" value="0.23324275362318841" />
+        <entry key="..\:/SpeedDev/app/src/main/res/layout/activity_simple_fragment.xml" value="0.23324275362318841" />
+        <entry key="..\:/SpeedDev/app/src/main/res/layout/activity_simple_list.xml" value="0.24003623188405798" />
+        <entry key="..\:/SpeedDev/app/src/main/res/layout/fragment_simple.xml" value="0.23324275362318841" />
+        <entry key="..\:/SpeedDev/app/src/main/res/layout/item_simple_text.xml" value="0.23324275362318841" />
+        <entry key="..\:/SpeedDev/speed-dev/src/main/res/layout/item_empty_layout.xml" value="0.23324275362318841" />
+      </map>
+    </option>
   </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
 </project>

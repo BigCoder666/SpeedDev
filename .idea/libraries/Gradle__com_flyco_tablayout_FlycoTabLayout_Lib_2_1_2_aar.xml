@@ -1,15 +1,26 @@
 <component name="libraryTable">
   <library name="Gradle: com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a1de0e7983de68d1e87f201ff0122a51/FlycoTabLayout_Lib-2.1.2/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a1de0e7983de68d1e87f201ff0122a51/FlycoTabLayout_Lib-2.1.2/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a1de0e7983de68d1e87f201ff0122a51/FlycoTabLayout_Lib-2.1.2/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1a6ad0a1fd8def6be1c1d98e76c4111a/jetified-FlycoTabLayout_Lib-2.1.2/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1a6ad0a1fd8def6be1c1d98e76c4111a/jetified-FlycoTabLayout_Lib-2.1.2/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1a6ad0a1fd8def6be1c1d98e76c4111a/jetified-FlycoTabLayout_Lib-2.1.2/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4c4dcb213da97c3f4d5307f60c8af609/jetified-FlycoTabLayout_Lib-2.1.2/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4c4dcb213da97c3f4d5307f60c8af609/jetified-FlycoTabLayout_Lib-2.1.2/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4c4dcb213da97c3f4d5307f60c8af609/jetified-FlycoTabLayout_Lib-2.1.2/res" />
+      <root url="file://$PROJECT_DIR$/../AndroidGradleUserHome/caches/transforms-2/files-2.1/09bf7e562e3ea93a98ba7951b1630d02/jetified-FlycoTabLayout_Lib-2.1.2/res" />
+      <root url="file://$PROJECT_DIR$/../AndroidGradleUserHome/caches/transforms-2/files-2.1/09bf7e562e3ea93a98ba7951b1630d02/jetified-FlycoTabLayout_Lib-2.1.2/AndroidManifest.xml" />
+      <root url="jar://$PROJECT_DIR$/../AndroidGradleUserHome/caches/transforms-2/files-2.1/09bf7e562e3ea93a98ba7951b1630d02/jetified-FlycoTabLayout_Lib-2.1.2/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../AndroidGradleUserHome/caches/transforms-3/466e2012fd6faadce9b7fd2e99a80a29/transformed/jetified-FlycoTabLayout_Lib-2.1.2/AndroidManifest.xml" />
+      <root url="file://$PROJECT_DIR$/../AndroidGradleUserHome/caches/transforms-3/466e2012fd6faadce9b7fd2e99a80a29/transformed/jetified-FlycoTabLayout_Lib-2.1.2/res" />
+      <root url="jar://$PROJECT_DIR$/../AndroidGradleUserHome/caches/transforms-3/466e2012fd6faadce9b7fd2e99a80a29/transformed/jetified-FlycoTabLayout_Lib-2.1.2/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.flyco.tablayout/FlycoTabLayout_Lib/2.1.2/37d5ba1c7e12670bc1da7def1d3722614e03561f/FlycoTabLayout_Lib-2.1.2-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../AndroidGradleUserHome/caches/modules-2/files-2.1/com.flyco.tablayout/FlycoTabLayout_Lib/2.1.2/37d5ba1c7e12670bc1da7def1d3722614e03561f/FlycoTabLayout_Lib-2.1.2-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.flyco.tablayout/FlycoTabLayout_Lib/2.1.2/431eceecfe6b4044d8e075971d9f25018f12e876/FlycoTabLayout_Lib-2.1.2-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../AndroidGradleUserHome/caches/modules-2/files-2.1/com.flyco.tablayout/FlycoTabLayout_Lib/2.1.2/431eceecfe6b4044d8e075971d9f25018f12e876/FlycoTabLayout_Lib-2.1.2-sources.jar!/" />
     </SOURCES>
   </library>
 </component>
