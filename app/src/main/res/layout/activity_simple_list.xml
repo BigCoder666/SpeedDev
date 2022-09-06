@@ -7,10 +7,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/actionbar"/>
+<!--    R.id.swip 位固定ID-->
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/swipe">
+        <!--    R.id.recycler 位固定ID-->
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
