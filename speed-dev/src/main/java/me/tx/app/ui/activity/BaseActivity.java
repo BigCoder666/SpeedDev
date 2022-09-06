@@ -203,6 +203,33 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
         void pathResult(List<String> result);
     }
 
+    public void getImgWithListener(final int max,IGetImgCallback callback){
+        center.loadPermission(new String[]{
+                Manifest.permission.CAMERA,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE}, new Center.IPermission() {
+            @Override
+            public void pass() {
+                selectImg(max,callback);
+            }
+
+            @Override
+            public void notPass() {
+
+            }
+
+            @Override
+            public void onDenied(int requestCode, List<String> list) {
+
+            }
+
+            @Override
+            public void onGranted(int requestCode, List<String> list) {
+                selectImg(max,callback);
+            }
+        });
+    }
+
     /**
      * 检测GPS、位置权限是否开启
      */
@@ -238,33 +265,6 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
 
     public void statusBarTextWhite() {
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-    }
-
-    public void getImgWithListener(final int max,IGetImgCallback callback){
-        center.loadPermission(new String[]{
-                Manifest.permission.CAMERA,
-                Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE}, new Center.IPermission() {
-            @Override
-            public void pass() {
-                selectImg(max,callback);
-            }
-
-            @Override
-            public void notPass() {
-
-            }
-
-            @Override
-            public void onDenied(int requestCode, List<String> list) {
-
-            }
-
-            @Override
-            public void onGranted(int requestCode, List<String> list) {
-                selectImg(max,callback);
-            }
-        });
     }
     //通用方法区结束
 
