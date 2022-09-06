@@ -30,13 +30,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-import okhttp3.internal.Util;
-import okhttp3.internal.http2.Header;
-import okio.BufferedSink;
-import okio.Okio;
-import okio.Source;
-
-import static java.lang.System.currentTimeMillis;
 
 public class UploadHelper {
     public final String TAG = "UploadHelper";

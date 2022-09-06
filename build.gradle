@@ -2,32 +2,28 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.jakewharton.butterknife'
 
 android {
-    compileSdkVersion 30
+    compileSdk 32
 
     defaultConfig {
-        minSdkVersion 19
-        targetSdkVersion 30
+        minSdk 21
+        targetSdk 32
         versionCode 1
-        versionName "1.0"
-        multiDexEnabled true
+        versionName "2.0"
     }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-    buildToolsVersion '30.0.3'
 }
 
 buildscript {
     repositories {
         google()
         jcenter()
+        maven {
+            url "https://jitpack.io"
+        }
+        maven { url 'https://repo1.maven.org/maven2/' }
+        mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.0.2'
+        classpath "com.android.tools.build:gradle:7.0.4"
         classpath 'org.greenrobot:greendao-gradle-plugin:3.3.0'
         classpath 'com.jakewharton:butterknife-gradle-plugin:10.2.1'//添加butterknife插件的引用
         // NOTE: Do not place your application dependencies here; they belong
