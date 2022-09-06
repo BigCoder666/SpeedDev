@@ -1,21 +1,27 @@
 package com.wewin.speeddev.demo;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.luck.picture.lib.entity.LocalMedia;
+import com.luck.picture.lib.interfaces.OnResultCallbackListener;
 import com.wewin.speeddev.R;
 import com.wewin.speeddev.databinding.ActivitySimpleListBinding;
 import com.wewin.speeddev.databinding.ItemSimpleTextBinding;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import me.tx.app.common.base.CommonHolder;
 import me.tx.app.common.base.CommonRecyclerActivity;
 import me.tx.app.network.IArrayList;
 import me.tx.app.network.IObject;
 import me.tx.app.network.Mapper;
+import me.tx.app.utils.OneClicklistener;
 
 public class SimpleRecyclerActivity extends CommonRecyclerActivity<ActivitySimpleListBinding,ItemSimpleTextBinding,SimpleData> {
 
@@ -34,6 +40,17 @@ public class SimpleRecyclerActivity extends CommonRecyclerActivity<ActivitySimpl
     public void onBindViewHolder(CommonHolder<ItemSimpleTextBinding> holder, SimpleData simpleData, int position) {
         holder.hvb.text.setText(simpleData.text);
         center.loadImg(R.drawable.null_view, holder.hvb.img);
+        holder.itemView.setOnClickListener(new OneClicklistener() {
+            @Override
+            public void click(View view) {
+                getImgWithListener(9, new IGetImgCallback() {
+                    @Override
+                    public void pathResult(List<String> result) {
+
+                    }
+                });
+            }
+        });
     }
 
     @Override

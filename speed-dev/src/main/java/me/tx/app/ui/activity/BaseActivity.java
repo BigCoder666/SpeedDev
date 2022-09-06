@@ -28,11 +28,16 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.jaeger.library.StatusBarUtil;
+import com.luck.picture.lib.basic.PictureSelector;
+import com.luck.picture.lib.config.SelectMimeType;
+import com.luck.picture.lib.entity.LocalMedia;
+import com.luck.picture.lib.interfaces.OnResultCallbackListener;
 import com.yuyh.library.imgsel.ISNav;
 import com.yuyh.library.imgsel.config.ISListConfig;
 import com.yuyh.library.imgsel.ui.ISListActivity;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -49,6 +54,7 @@ import me.tx.app.utils.Downloader;
 import me.tx.app.utils.LoadingController;
 import me.tx.app.utils.NotificationHelper;
 import me.tx.app.utils.PermissionLoader;
+import me.tx.app.utils.PicassoEngine;
 import me.tx.app.utils.PicassoLoader;
 import me.tx.app.utils.ShareGetter;
 import me.tx.app.utils.Toaster;
@@ -66,15 +72,203 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
 
     public VB vb;
 
-    public final int REQUEST_CODE_QRCODE_PERMISSIONS = 10010;
-
+    //虚函数区开始
     public abstract HashMap<String,String> getHeader();
+
+    public abstract void setView();
+
+    public abstract void resume();
+
+    public abstract void pause();
+
+    public abstract VB getVb();
+
+    public abstract void stop();
+
+    public abstract void destroy();
+
+    public abstract void load();
+    //虚函数区结束
+
+    //重写区开始
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+
+        overridePendingTransition(R.anim.move_in,R.anim.fade_out);
+
+        super.onCreate(savedInstanceState);
+
+        center = new Center(this);
+
+        AndroidBug5497Workaround.assistActivity(this);
+
+        EventBus.getDefault().register(this);
+
+        vb = getVb();
+
+        setContentView(vb.getRoot());
+        //view设置
+        setView();
+
+        //view加载
+        load();
+    }
 
     @Override
     public void finish() {
         super.finish();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        resume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        pause();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        center.dismissLoad();
+        stop();
+    }
+
+    @Override
+    public void onDestroy() {
+        destroy();
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void onPermissionsGranted(int requestCode, List<String> list) {
+        if(center.iPermission!=null){
+            center.iPermission.onGranted(requestCode,list);
+        }
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, List<String> list) {
+        if(center.iPermission!=null){
+            center.iPermission.onDenied(requestCode,list);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        // Forward results to EasyPermissions
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+    }
+    //重写区结束
+
+    //通用方法区开始
+    private void selectImg(int max,IGetImgCallback callback){
+        PictureSelector.create(BaseActivity.this)
+                .openGallery(SelectMimeType.ofImage())
+                .setImageEngine(PicassoEngine.createPicassoEngine())
+                .setMaxSelectNum(max)
+                .forResult(new OnResultCallbackListener<LocalMedia>() {
+                    @Override
+                    public void onResult(ArrayList<LocalMedia> result) {
+                        List<String> pathResultList = new ArrayList<>();
+                        for (LocalMedia l:result){
+                            pathResultList.add(l.getRealPath());
+                        }
+                        callback.pathResult(pathResultList);
+                    }
+
+                    @Override
+                    public void onCancel() {
+
+                    }
+                });
+    }
+
+    public interface IGetImgCallback{
+        void pathResult(List<String> result);
+    }
+
+    /**
+     * 检测GPS、位置权限是否开启
+     */
+    public boolean showGPSContacts() {
+        LocationManager lm = (LocationManager) this.getSystemService(this.LOCATION_SERVICE);
+        boolean ok = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        if (!ok){
+            center.toast("系统检测到未开启GPS定位服务,请开启");
+            Intent intent = new Intent();
+            intent.setAction(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+            startActivityForResult(intent, 123);
+            return false;
+        }else {
+            return true;
+        }
+    }
+
+    public void hideSystemKeyBoard() {
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(), 0);
+    }
+
+    public void showSystemKeyBoard(View view) {
+        if (view.requestFocus()) {
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+        }
+    }
+
+    public void statusBarTextBlack() {
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+    }
+
+    public void statusBarTextWhite() {
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+    }
+
+    public void getImgWithListener(final int max,IGetImgCallback callback){
+        center.loadPermission(new String[]{
+                Manifest.permission.CAMERA,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE}, new Center.IPermission() {
+            @Override
+            public void pass() {
+                selectImg(max,callback);
+            }
+
+            @Override
+            public void notPass() {
+
+            }
+
+            @Override
+            public void onDenied(int requestCode, List<String> list) {
+
+            }
+
+            @Override
+            public void onGranted(int requestCode, List<String> list) {
+                selectImg(max,callback);
+            }
+        });
+    }
+    //通用方法区结束
+
+    //事件核心类
     public static class Center {
         PermissionLoader permissionLoader;
         PicassoLoader picassoLoader;
@@ -90,7 +284,7 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
         public Center(BaseActivity ac) {
             activity = ac;
             //初始化开始
-            
+
             //权限申请器
             permissionLoader = new PermissionLoader(activity);
             //图片加载器
@@ -318,262 +512,4 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
             });
         }
     }
-
-    public abstract void setView();
-
-    public abstract void resume();
-
-    public abstract void pause();
-
-    public abstract VB getVb();
-
-    public abstract void stop();
-
-    public abstract void destroy();
-
-    public abstract void load();
-    /**
-     * 检测GPS、位置权限是否开启
-     */
-    public boolean showGPSContacts() {
-        LocationManager lm = (LocationManager) this.getSystemService(this.LOCATION_SERVICE);
-        boolean ok = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
-        if (!ok){
-           center.toast("系统检测到未开启GPS定位服务,请开启");
-            Intent intent = new Intent();
-            intent.setAction(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-            startActivityForResult(intent, 123);
-            return false;
-        }else {
-            return true;
-        }
-    }
-
-    public void hideSystemKeyBoard() {
-        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(), 0);
-    }
-
-    public void showSystemKeyBoard(View view) {
-        if (view.requestFocus()) {
-            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
-        }
-    }
-
-    public void statusBarTextBlack() {
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-    }
-
-    public void statusBarTextWhite() {
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-    }
-
-    @Override
-    protected void onCreate( Bundle savedInstanceState) {
-
-        overridePendingTransition(R.anim.move_in,R.anim.fade_out);
-
-        super.onCreate(savedInstanceState);
-
-        center = new Center(this);
-
-        AndroidBug5497Workaround.assistActivity(this);
-
-        EventBus.getDefault().register(this);
-
-        vb = getVb();
-
-        setContentView(vb.getRoot());
-        //view设置
-        setView();
-
-        //view加载
-        load();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        resume();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        pause();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        center.dismissLoad();
-        stop();
-    }
-
-    @Override
-    public void onDestroy() {
-        destroy();
-        super.onDestroy();
-    }
-
-    public interface ImgUploadCallBack{
-        void getPath(List<String> path);
-    }
-    public interface ISimpleStringCallBack{
-        void getString(HashMap<String,String> hashMap);
-    }
-
-    public HashMap<Integer,ImgUploadCallBack> callBackHashMap = new HashMap<>();
-    public HashMap<Integer,ISimpleStringCallBack> simpleCallBack = new HashMap<>();
-
-    public final static int GET_IMG_REQUEST_CODE = 5858;
-    public void getImgWithListener(ImgUploadCallBack callBack, final int max){
-        callBackHashMap.put(GET_IMG_REQUEST_CODE,callBack);
-        center.loadPermission(new String[]{
-                Manifest.permission.CAMERA,
-                Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE}, new Center.IPermission() {
-            @Override
-            public void pass() {
-                ISListConfig config = new ISListConfig.Builder()
-                        // 是否多选, 默认true
-                        .multiSelect(true)
-                        // 是否记住上次选中记录, 仅当multiSelect为true的时候配置，默认为true
-                        .rememberSelected(false)
-                        // “确定”按钮背景色
-                        .btnBgColor(Color.WHITE)
-                        // “确定”按钮文字颜色
-                        .btnTextColor(Color.BLUE)
-                        // 使用沉浸式状态栏
-                        .statusBarColor(getResources().getColor(R.color.base))
-                        // 返回图标ResId
-                        .backResId(R.drawable.ic_back)
-                        // 标题
-                        .title("选择图片")
-                        // 标题文字颜色
-                        .titleColor(Color.WHITE)
-                        // TitleBar背景色
-                        .titleBgColor(getResources().getColor(R.color.base))
-                        .needCrop(false)
-                        // 第一个是否显示相机，默认true
-                        .needCamera(true)
-                        // 最大选择图片数量，默认9
-                        .maxNum(max)
-                        .build();
-                ISNav.getInstance().init(new com.yuyh.library.imgsel.common.ImageLoader() {
-                    @Override
-                    public void displayImage(Context c, String path, ImageView imageView) {
-                        center.loadImg(new File(path), imageView);
-                    }
-                });
-                ISNav.getInstance().toListActivity(this, config, GET_IMG_REQUEST_CODE);
-            }
-
-            @Override
-            public void notPass() {
-
-            }
-
-            @Override
-            public void onDenied(int requestCode, List<String> list) {
-
-            }
-
-            @Override
-            public void onGranted(int requestCode, List<String> list) {
-                ISListConfig config = new ISListConfig.Builder()
-                        // 是否多选, 默认true
-                        .multiSelect(true)
-                        // 是否记住上次选中记录, 仅当multiSelect为true的时候配置，默认为true
-                        .rememberSelected(false)
-                        // “确定”按钮背景色
-                        .btnBgColor(Color.WHITE)
-                        // “确定”按钮文字颜色
-                        .btnTextColor(Color.BLUE)
-                        // 使用沉浸式状态栏
-                        .statusBarColor(getResources().getColor(R.color.base))
-                        // 返回图标ResId
-                        .backResId(R.drawable.ic_back)
-                        // 标题
-                        .title("选择图片")
-                        // 标题文字颜色
-                        .titleColor(Color.WHITE)
-                        // TitleBar背景色
-                        .titleBgColor(getResources().getColor(R.color.base))
-                        .needCrop(false)
-                        // 第一个是否显示相机，默认true
-                        .needCamera(true)
-                        // 最大选择图片数量，默认9
-                        .maxNum(max)
-                        .build();
-                ISNav.getInstance().init(new com.yuyh.library.imgsel.common.ImageLoader() {
-                    @Override
-                    public void displayImage(Context c, String path, ImageView imageView) {
-                        center.loadImg(new File(path), imageView);
-                    }
-                });
-                ISNav.getInstance().toListActivity(this, config, GET_IMG_REQUEST_CODE);
-            }
-        });
-    }
-
-    public final static int GET_SIMPLE_STRING_CODE = 1010;
-    public final static int GET_SIMPLE_STRING_CODE_OK = 200;
-    public interface ILaunchOtherActivity{
-        void doLaunch();
-    }
-    public void getSimpleStringWithListener(ILaunchOtherActivity iLaunchOtherActivity,ISimpleStringCallBack iSimpleStringCallBack){
-        simpleCallBack.put(GET_SIMPLE_STRING_CODE,iSimpleStringCallBack);
-        iLaunchOtherActivity.doLaunch();
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (callBackHashMap.containsKey(GET_IMG_REQUEST_CODE)&&resultCode == RESULT_OK && data != null) {
-            List<String> pathList = data.getStringArrayListExtra(ISListActivity.INTENT_RESULT);
-            if (pathList.size() == 0) {
-                return;
-            }
-            callBackHashMap.get(GET_IMG_REQUEST_CODE).getPath(pathList);
-            callBackHashMap.remove(GET_IMG_REQUEST_CODE);
-        }
-        if(simpleCallBack.containsKey(GET_SIMPLE_STRING_CODE)&&GET_SIMPLE_STRING_CODE_OK == resultCode){
-            HashMap<String,String> result = new HashMap<>();
-            for(String key:data.getExtras().keySet()){
-                result.put(key,data.getStringExtra(key));
-            }
-            simpleCallBack.get(GET_SIMPLE_STRING_CODE).getString(result);
-            simpleCallBack.remove(GET_SIMPLE_STRING_CODE);
-        }
-    }
-
-    @Override
-    public void onPermissionsGranted(int requestCode, List<String> list) {
-        if(center.iPermission!=null){
-            center.iPermission.onGranted(requestCode,list);
-        }
-    }
-
-    @Override
-    public void onPermissionsDenied(int requestCode, List<String> list) {
-        if(center.iPermission!=null){
-            center.iPermission.onDenied(requestCode,list);
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        // Forward results to EasyPermissions
-        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
-    }
-
 }
