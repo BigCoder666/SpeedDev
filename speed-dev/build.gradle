@@ -1,0 +1,76 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdk 32
+
+    defaultConfig {
+        minSdk 21
+        targetSdk 32
+        versionCode 1
+        versionName "3.0"
+    }
+
+    viewBinding {
+        enabled = true
+    }
+}
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+        maven {
+            url "https://jitpack.io"
+        }
+        maven { url 'https://repo1.maven.org/maven2/' }
+        mavenCentral()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:7.0.4"
+    }
+}
+
+dependencies {
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    api 'org.greenrobot:eventbus:3.1.1'
+
+    //bigImgShow
+    api 'com.github.SherlockGougou:BigImageViewPager:androidx-6.0.2'
+    //noinspection GradleCompatible
+    api 'androidx.appcompat:appcompat:1.2.0'
+    //request
+    api 'com.squareup.okhttp3:okhttp:+'
+    api 'com.alibaba:fastjson:1.1.71.android'
+    //image
+    api 'com.squareup.picasso:picasso:2.71828'
+    //recycler
+    api 'androidx.recyclerview:recyclerview:1.0.0'
+    //banner helper
+    api ('jameson.io.library:library:0.0.1') {
+        exclude group: "com.android.support", module: "support-v4"
+    }
+    //compressor压缩
+    api 'id.zelory:compressor:2.1.0'
+    //statusbar
+    api 'com.jaeger.statusbarutil:library:+'
+    //banner
+    api 'com.youth.banner:banner:1.4.10'
+    //Toasty
+    api 'com.github.GrenderG:Toasty:1.4.2'
+    //tablayout
+    api 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
+    //easy permissions
+    api 'pub.devrel:easypermissions:2.0.1'
+    //img selector
+    api 'com.yuyh.imgsel:library:+'
+    //auto update
+    api 'com.github.MZCretin:AutoUpdateProject:+'
+    //download file
+    api 'com.liulishuo.filedownloader:library:1.7.7'
+    //swipe delete
+    api 'com.github.mcxtzhang:SwipeDelMenuLayout:+'
+    //StringUtil
+    api 'org.apache.commons:commons-lang3:+'
+    //分包
+    api 'androidx.multidex:multidex:2.0.1'
+}

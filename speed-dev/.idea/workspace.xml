@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e5b53699-bc67-49f9-af5d-e6f844667eea" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/speed-dev.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/tx/app/common/base/CommonActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/tx/app/common/base/CommonFragment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/tx/app/common/base/CommonFragmentActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/tx/app/common/base/CommonPagerActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/tx/app/common/base/CommonPagerFragment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/tx/app/common/base/CommonRecyclerActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/tx/app/common/base/CommonRecyclerFragment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/tx/app/common/base/CommonRecyclerPagerActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/tx/app/common/base/CommonSwipeFragment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/tx/app/common/base/MainEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/tx/app/common/widget/CommonInputSpinner.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/tx/app/common/widget/CommonLevel2Spinner.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/tx/app/common/widget/CommonSpinner.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/tx/app/common/widget/InputRecyclerPop.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/tx/app/common/widget/Level2RecyclerPop.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/tx/app/common/widget/RatioLayout.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/tx/app/common/widget/RecyclerPop.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/tx/app/common/widget/TabEnty.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/white_5_line_bg_selector.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/white_5_line_selector.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/layout/item_pop_recyler_item.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/layout/pop_input_recycler_item_select.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/layout/pop_level2_recycler_item_select.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/layout/pop_recycler_item_select.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/mipmap-hdpi/back.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/mipmap-hdpi/back_black.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/mipmap-mdpi/back.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/mipmap-mdpi/back_black.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/mipmap-xhdpi/back.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/mipmap-xhdpi/back_black.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/mipmap-xxhdpi/back.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/mipmap-xxhdpi/back_black.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/mipmap-xxxhdpi/back.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/mipmap-xxxhdpi/back_black.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4.1/fileChanges/last-build.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4.1/fileHashes/fileHashes.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4.1/fileHashes/fileHashes.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/white_5_selector.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/drawable/white_5_selector.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/values/colors.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/values/dimens.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/values/dimens.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1zqhTc2jJJFKujMBJXXaXGrvlUa" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="android-custom-viewD:/speed-dev/src/main/java/me/tx/app/common/base/CommonInputSpinner.java_SELECTED" value="CommonInputSpinner" />
+    <property name="android-custom-viewD:/speed-dev/src/main/java/me/tx/app/common/base/CommonLevel2Spinner.java_SELECTED" value="CommonLevel2Spinner" />
+    <property name="android-custom-viewD:/speed-dev/src/main/java/me/tx/app/common/base/CommonSpinner.java_SELECTED" value="CommonSpinner" />
+    <property name="android-custom-viewD:/speed-dev/src/main/java/me/tx/app/common/base/RatioLayout.java_SELECTED" value="RatioLayout" />
+    <property name="android-custom-viewD:/speed-dev/src/main/java/me/tx/app/common/widget/CommonInputSpinner.java_SELECTED" value="CommonInputSpinner" />
+    <property name="android-custom-viewD:/speed-dev/src/main/java/me/tx/app/common/widget/CommonLevel2Spinner.java_SELECTED" value="CommonLevel2Spinner" />
+    <property name="android-custom-viewD:/speed-dev/src/main/java/me/tx/app/common/widget/CommonSpinner.java_SELECTED" value="CommonSpinner" />
+    <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/res/layout" />
+    <property name="multi-representation-previewD:/speed-dev/src/main/java/me/tx/app/common/base/CommonInputSpinner.java_selected" value="Custom views" />
+    <property name="multi-representation-previewD:/speed-dev/src/main/java/me/tx/app/common/base/CommonLevel2Spinner.java_selected" value="Custom views" />
+    <property name="multi-representation-previewD:/speed-dev/src/main/java/me/tx/app/common/base/CommonSpinner.java_selected" value="Custom views" />
+    <property name="multi-representation-previewD:/speed-dev/src/main/java/me/tx/app/common/base/RatioLayout.java_selected" value="Custom views" />
+    <property name="multi-representation-previewD:/speed-dev/src/main/java/me/tx/app/common/widget/CommonInputSpinner.java_selected" value="Custom views" />
+    <property name="multi-representation-previewD:/speed-dev/src/main/java/me/tx/app/common/widget/CommonLevel2Spinner.java_selected" value="Custom views" />
+    <property name="multi-representation-previewD:/speed-dev/src/main/java/me/tx/app/common/widget/CommonSpinner.java_selected" value="Custom views" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.17" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+  </component>
+  <component name="PsdUISettings">
+    <option name="LAST_EDITED_BUILD_TYPE" value="release" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="me.tx.app.common.base" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\speed-dev\src\main\res\layout" />
+      <recent name="D:\speed-dev\src\main\res\values" />
+      <recent name="D:\speed-dev\src\main\res\drawable" />
+      <recent name="D:\speed-dev\src\main\res" />
+      <recent name="D:\speed-dev\src\main\java\me\tx\app\common" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="&lt;template&gt;" type="Applet" default="true" selected="false">
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+    </configuration>
+    <configuration name="&lt;template&gt;" type="JUnit" default="true" selected="false">
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+    </configuration>
+    <configuration name="&lt;template&gt;" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" default="true" selected="false">
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+    </configuration>
+    <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="TestNG">
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <created>1558944580140</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1558944580140</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="477" y="266" key="#PSD" timestamp="1634882474010">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="477" y="266" key="#PSD/0.0.1920.1040@0.0.1920.1040" timestamp="1634882474010" />
+    <state x="461" y="164" key="SettingsEditor" timestamp="1634882413834">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="461" y="164" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1634882413834" />
+    <state x="661" y="252" width="598" height="594" key="find.popup" timestamp="1634882935163">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="661" y="252" width="598" height="594" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1634882935163" />
+  </component>
+</project>

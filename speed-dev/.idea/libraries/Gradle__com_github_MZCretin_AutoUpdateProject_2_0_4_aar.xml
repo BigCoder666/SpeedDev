@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.MZCretin:AutoUpdateProject:2.0.4@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5974398e14bb41722a4d39883004966d/AutoUpdateProject-2.0.4/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5974398e14bb41722a4d39883004966d/AutoUpdateProject-2.0.4/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5974398e14bb41722a4d39883004966d/AutoUpdateProject-2.0.4/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.MZCretin/AutoUpdateProject/2.0.4/1ae4f847a9489419392fc5722c0375b92cf72e7a/AutoUpdateProject-2.0.4-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.MZCretin/AutoUpdateProject/2.0.4/4d122b9ba62d5ad05fd9eeb1ead5fd8fd4d8da3/AutoUpdateProject-2.0.4-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
