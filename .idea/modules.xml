@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/SpeedDev.iml" filepath="$PROJECT_DIR$/.idea/SpeedDev.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/SpeedDev.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/SpeedDev.app.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/speed-dev/SpeedDev.speed-dev.iml" filepath="$PROJECT_DIR$/.idea/modules/speed-dev/SpeedDev.speed-dev.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/spinner/SpeedDev.spinner.iml" filepath="$PROJECT_DIR$/.idea/modules/spinner/SpeedDev.spinner.iml" />
     </modules>
   </component>
 </project>

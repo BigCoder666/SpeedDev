@@ -13,17 +13,31 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26ec91af-91d9-4877-bfb2-e07507a75548" name="Default Changelist" comment="3.0 T IData IListData">
+    <list default="true" id="26ec91af-91d9-4877-bfb2-e07507a75548" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/wewin/speeddev/demo/SpinnerData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spinner/src/main/res/drawable/close.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_yuyh_easyadapter_library_1_1_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_yuyh_imgsel_library_2_1_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/wewin/speeddev/demo/SimpleRecyclerActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/wewin/speeddev/demo/SimpleRecyclerActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_simple_list.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_simple_list.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[e5f30edd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -93,8 +107,16 @@
     <property name="android-custom-viewD:/SpeedDev/speed-dev/src/main/java/me/tx/app/ui/actionbar/ImageClick.java_SELECTED" value="ImageClick" />
     <property name="android-custom-viewD:/SpeedDev/speed-dev/src/main/java/me/tx/app/ui/widget/NoScrollRecycler.java_SELECTED" value="NoScrollRecycler" />
     <property name="android-custom-viewD:/SpeedDev/speed-dev/src/main/java/me/tx/app/ui/widget/NoScrollViewPager.java_SELECTED" value="NoScrollViewPager" />
+    <property name="android-custom-viewD:/SpeedDev/spinner/src/main/java/com/wewin/spinner/CommonInputSpinner.java_CommonInputSpinner_DIMENSIONS" value="1080&#10;1920" />
+    <property name="android-custom-viewD:/SpeedDev/spinner/src/main/java/com/wewin/spinner/CommonInputSpinner.java_SELECTED" value="CommonInputSpinner" />
+    <property name="android-custom-viewD:/SpeedDev/spinner/src/main/java/com/wewin/spinner/CommonLevel2Spinner.java_CommonLevel2Spinner_DIMENSIONS" value="1080&#10;1920" />
+    <property name="android-custom-viewD:/SpeedDev/spinner/src/main/java/com/wewin/spinner/CommonLevel2Spinner.java_SELECTED" value="CommonLevel2Spinner" />
+    <property name="android-custom-viewD:/SpeedDev/spinner/src/main/java/com/wewin/spinner/CommonMultipSpinner.java_CommonMultipSpinner_DIMENSIONS" value="1080&#10;1920" />
+    <property name="android-custom-viewD:/SpeedDev/spinner/src/main/java/com/wewin/spinner/CommonMultipSpinner.java_SELECTED" value="CommonMultipSpinner" />
+    <property name="android-custom-viewD:/SpeedDev/spinner/src/main/java/com/wewin/spinner/CommonSpinner.java_CommonSpinner_DIMENSIONS" value="1080&#10;1920" />
+    <property name="android-custom-viewD:/SpeedDev/spinner/src/main/java/com/wewin/spinner/CommonSpinner.java_SELECTED" value="CommonSpinner" />
     <property name="android.sdk.path" value="$PROJECT_DIR$/../Androidsdk" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../fiberswitch-app" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="multi-representation-previewC:/Users/TanXiao/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.0.0/2151d26c3b241f0a887f2dadb9ab091649fcf020/recyclerview-1.0.0-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_selected" value="Custom views" />
     <property name="multi-representation-previewC:/Users/TanXiao/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.3.0-alpha01/34c485dabcb642b6f527f0cfa524211faf96faad/recyclerview-1.3.0-alpha01-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_selected" value="Custom views" />
     <property name="multi-representation-previewD:/SpeedDev/app/src/main/java/com/wewin/speeddev/demo/BackTitleActionbar.java_selected" value="Custom views" />
@@ -113,6 +135,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\SpeedDev\spinner\src\main\res\drawable" />
       <recent name="D:\SpeedDev\app\src\main\res\layout" />
       <recent name="D:\SpeedDev\app\src\main\res\drawable" />
       <recent name="D:\SpeedDev\speed-dev\src\main\res\drawable" />
@@ -287,7 +310,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662516945419</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="3.0 T IData IListData">
+      <created>1662534988242</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1662534988242</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
