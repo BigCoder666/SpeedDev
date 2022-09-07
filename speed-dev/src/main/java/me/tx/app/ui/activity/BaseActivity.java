@@ -32,9 +32,6 @@ import com.luck.picture.lib.basic.PictureSelector;
 import com.luck.picture.lib.config.SelectMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
 import com.luck.picture.lib.interfaces.OnResultCallbackListener;
-import com.yuyh.library.imgsel.ISNav;
-import com.yuyh.library.imgsel.config.ISListConfig;
-import com.yuyh.library.imgsel.ui.ISListActivity;
 
 import java.io.File;
 import java.util.ArrayList;

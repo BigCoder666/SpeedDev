@@ -13,16 +13,10 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26ec91af-91d9-4877-bfb2-e07507a75548" name="Default Changelist" comment="3.0 selectImg">
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+    <list default="true" id="26ec91af-91d9-4877-bfb2-e07507a75548" name="Default Changelist" comment="3.0 T IData IListData">
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/wewin/speeddev/demo/SimpleRecyclerActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/wewin/speeddev/demo/SimpleRecyclerActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/speed-dev/src/main/java/me/tx/app/network/HttpBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/speed-dev/src/main/java/me/tx/app/network/HttpBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/speed-dev/src/main/java/me/tx/app/network/IArrayList.java" beforeDir="false" afterPath="$PROJECT_DIR$/speed-dev/src/main/java/me/tx/app/network/IArrayList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/speed-dev/src/main/java/me/tx/app/network/IData.java" beforeDir="false" afterPath="$PROJECT_DIR$/speed-dev/src/main/java/me/tx/app/network/IData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/speed-dev/src/main/java/me/tx/app/network/IListData.java" beforeDir="false" afterPath="$PROJECT_DIR$/speed-dev/src/main/java/me/tx/app/network/IListData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/speed-dev/src/main/java/me/tx/app/network/IObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/speed-dev/src/main/java/me/tx/app/network/IObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/speed-dev/src/main/java/me/tx/app/network/IResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/speed-dev/src/main/java/me/tx/app/network/IResponse.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -286,7 +280,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662473771824</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="3.0 T IData IListData">
+      <created>1662516945419</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1662516945419</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -308,7 +309,8 @@
     <MESSAGE value="2.0" />
     <MESSAGE value="3.0 view binding" />
     <MESSAGE value="3.0 selectImg" />
-    <option name="LAST_COMMIT_MESSAGE" value="3.0 selectImg" />
+    <MESSAGE value="3.0 T IData IListData" />
+    <option name="LAST_COMMIT_MESSAGE" value="3.0 T IData IListData" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
