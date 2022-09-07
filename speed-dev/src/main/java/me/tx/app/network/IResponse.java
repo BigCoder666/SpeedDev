@@ -4,11 +4,12 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public interface IResponse {
+public interface IResponse<T> {
 
-    void successObj(JSONObject t);
-    void successArray(JSONArray tList);
+    void successObj(IData<T> t);
+    void successArray(IListData<T> tList);
 
     void fail(String code,String msg);
 

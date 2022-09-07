@@ -19,6 +19,8 @@ import java.util.List;
 import me.tx.app.common.base.CommonHolder;
 import me.tx.app.common.base.CommonRecyclerActivity;
 import me.tx.app.network.IArrayList;
+import me.tx.app.network.IData;
+import me.tx.app.network.IListData;
 import me.tx.app.network.IObject;
 import me.tx.app.network.Mapper;
 import me.tx.app.utils.OneClicklistener;
@@ -59,9 +61,10 @@ public class SimpleRecyclerActivity extends CommonRecyclerActivity<ActivitySimpl
                 new Mapper()
                         .add("username", "admin")
                         .add("password", Utils.setPassword("admin"))).post()
-                .callObject(new IObject() {
+                .callObject(new IObject<SimpleData>() {
                     @Override
-                    public void successObj(JSONObject simpleData) {
+                    public void successObj(IData<SimpleData> simpleData) {
+
 //                        clearData();
 //                        resetData(Arrays.asList(new SimpleData(), new SimpleData(), new SimpleData()));
                         loadFinish(new IDealList() {
@@ -80,10 +83,10 @@ public class SimpleRecyclerActivity extends CommonRecyclerActivity<ActivitySimpl
                 });
 //        center.reqJson("http://47.106.22.169:9000/gzyzyapi/sys/loginNoCaptcha",
 //                Arrays.asList("123", "345", "567")).post()
-//                .callList(new IArrayList() {
+//                .callList(new IArrayList<SimpleData>() {
 //                    @Override
-//                    public void successArray(JSONArray tList) {
-//                        loadFinish();
+//                    public void successArray(IListData<SimpleData> tList) {
+//
 //                    }
 //
 //                    @Override

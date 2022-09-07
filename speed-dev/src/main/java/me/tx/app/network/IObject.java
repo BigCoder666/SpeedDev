@@ -5,11 +5,12 @@ import com.alibaba.fastjson.JSONArray;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
+import java.util.List;
 
-public abstract class IObject implements IResponse{
+public abstract class IObject<T> implements IResponse<T>{
 
     @Override
-    public void successArray(JSONArray tList) {
+    public void successArray(IListData<T> tList) {
 
     }
 }

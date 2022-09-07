@@ -1,6 +1,7 @@
 package me.tx.app.network;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -30,7 +31,7 @@ import static me.tx.app.Config.CONNECT_FAIL;
 import static me.tx.app.Config.TIME_OUT;
 import static me.tx.app.Config.UNKNOW_ERROR;
 
-public class HttpBuilder {
+public class HttpBuilder<T> {
     private Request request = null;
     private RequestBody requestBody = null;
     private Request.Builder b = null;
@@ -182,7 +183,7 @@ public class HttpBuilder {
         request = b.build();
     }
 
-    public void callList(final IArrayList iResponse) {
+    public void callList(IArrayList<T> iResponse) {
         request.cacheControl().noCache();
         Call call = mOkHttpClient.newCall(request);
         call.enqueue(new Callback() {
@@ -194,10 +195,9 @@ public class HttpBuilder {
                 try {
                     if (response.isSuccessful()) {
                         String body = response.body().string();
-                        IListData iData = JSON.parseObject(body, IListData.class);
-                        DLog.e("respObject", JSON.toJSONString(iData));
+                        IListData<T> iData = JSON.parseObject(body,new TypeReference<IListData<T>>(){}.getType());
                         if (iData.getStatus().equals(IData.ok)) {
-                            iResponse.successArray(iData.getData());
+                            iResponse.successArray(iData);
                         } else {
                             iResponse.fail(iData.getStatus(), iData.getMessage());
                         }
@@ -229,7 +229,7 @@ public class HttpBuilder {
         });
     }
 
-    public void callObject(final IObject iResponse) {
+    public void callObject(IObject<T> iResponse) {
         if (!url.startsWith(Config.URL_START_WITH)) {
             iResponse.fail(Config.NETWORK_NOT_START_WITH_HTTP, Config.NETWORK_NOT_START_WITH_HTTP_MESSAGE);
             return;
@@ -245,10 +245,9 @@ public class HttpBuilder {
                 try {
                     if (response.isSuccessful()) {
                         String body = response.body().string();
-                        IData iData = JSON.parseObject(body, IData.class);
-                        DLog.e("respObject", JSON.toJSONString(iData.result));
+                        IData<T> iData = JSON.parseObject(body, new TypeReference<IData<T>>(){}.getType());
                         if (iData.getStatus().equals(IData.ok)) {
-                            iResponse.successObj(iData.getData());
+                            iResponse.successObj(iData);
                         } else {
                             iResponse.fail(iData.getStatus(), iData.getMessage());
                         }
