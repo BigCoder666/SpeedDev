@@ -11,6 +11,7 @@ import com.luck.picture.lib.interfaces.OnResultCallbackListener;
 import com.wewin.speeddev.R;
 import com.wewin.speeddev.databinding.ActivitySimpleListBinding;
 import com.wewin.speeddev.databinding.ItemSimpleTextBinding;
+import com.wewin.spinner.CommonSpinner;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,6 +36,26 @@ public class SimpleRecyclerActivity extends CommonRecyclerActivity<ActivitySimpl
     @Override
     public void setRefreshRecyclerActivity() {
         vb.actionbar.init(this,"测试标题");
+        vb.typespinner.setAdapter(new CommonSpinner.Adapter<SpinnerData>() {
+            @Override
+            public void click(SpinnerData nameId) {
+
+            }
+
+            @Override
+            public ArrayList<SpinnerData> getData() {
+                ArrayList<SpinnerData> spinnerDataArrayList = new ArrayList<>();
+                spinnerDataArrayList.add(new SpinnerData("111","111"));
+                spinnerDataArrayList.add(new SpinnerData("222","222"));
+                spinnerDataArrayList.add(new SpinnerData("333","333"));
+                return spinnerDataArrayList;
+            }
+
+            @Override
+            public void onShow() {
+
+            }
+        },new SpinnerData("111","111"));
     }
 
 

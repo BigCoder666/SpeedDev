@@ -13,17 +13,36 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26ec91af-91d9-4877-bfb2-e07507a75548" name="Default Changelist" comment="3.0 T IData IListData">
+    <list default="true" id="26ec91af-91d9-4877-bfb2-e07507a75548" name="Default Changelist" comment="add spinner">
+      <change afterPath="$PROJECT_DIR$/wait-button/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wait-button/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wait-button/consumer-rules.pro" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wait-button/proguard-rules.pro" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wait-button/src/main/AndroidManifest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wait-button/src/main/java/com/makeid/wait_button/WButton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_davemorrissey_labs_subsampling_scale_image_view_3_10_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_davemorrissey_labs_subsampling_scale_image_view_3_10_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_flyco_tablayout_FlycoTabLayout_Lib_2_1_2_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_flyco_tablayout_FlycoTabLayout_Lib_2_1_2_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_GrenderG_Toasty_1_4_2_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_GrenderG_Toasty_1_4_2_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_jaeger_statusbarutil_library_1_5_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_jaeger_statusbarutil_library_1_5_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_picasso_picasso_2_71828_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_picasso_picasso_2_71828_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_youth_banner_banner_1_4_10_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_youth_banner_banner_1_4_10_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__pub_devrel_easypermissions_2_0_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__pub_devrel_easypermissions_2_0_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[e5f30edd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -77,6 +96,10 @@
     <property name="SHOW_ALL_PROCESSES" value="false" />
     <property name="android-custom-viewC:/Users/TanXiao/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.0.0/2151d26c3b241f0a887f2dadb9ab091649fcf020/recyclerview-1.0.0-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_SELECTED" value="RecyclerView" />
     <property name="android-custom-viewC:/Users/TanXiao/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.3.0-alpha01/34c485dabcb642b6f527f0cfa524211faf96faad/recyclerview-1.3.0-alpha01-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_SELECTED" value="RecyclerView" />
+    <property name="android-custom-viewD:/Android Studio/sdk/sources/android-32/android/view/View.java_SELECTED" value="View" />
+    <property name="android-custom-viewD:/Android Studio/sdk/sources/android-32/android/widget/Button.java_SELECTED" value="Button" />
+    <property name="android-custom-viewD:/Android Studio/sdk/sources/android-32/android/widget/TextView.java_SELECTED" value="TextView" />
+    <property name="android-custom-viewD:/AndroidGradleUserHome/caches/modules-2/files-2.1/androidx.appcompat/appcompat/1.2.0/13e8ff89631c2e101eb6bddd12c2fb4bbd74b15d/appcompat-1.2.0-sources.jar!/androidx/appcompat/widget/AppCompatButton.java_SELECTED" value="AppCompatButton" />
     <property name="android-custom-viewD:/AndroidGradleUserHome/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.0.0/2151d26c3b241f0a887f2dadb9ab091649fcf020/recyclerview-1.0.0-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_RecyclerView_DIMENSIONS" value="1080&#10;1920" />
     <property name="android-custom-viewD:/AndroidGradleUserHome/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.0.0/2151d26c3b241f0a887f2dadb9ab091649fcf020/recyclerview-1.0.0-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_SELECTED" value="RecyclerView" />
     <property name="android-custom-viewD:/AndroidGradleUserHome/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.3.0-beta02/f4de7876e10ff121102f131b26d4a98b1613a012/recyclerview-1.3.0-beta02-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_RecyclerView_DIMENSIONS" value="1080&#10;1920" />
@@ -93,8 +116,17 @@
     <property name="android-custom-viewD:/SpeedDev/speed-dev/src/main/java/me/tx/app/ui/actionbar/ImageClick.java_SELECTED" value="ImageClick" />
     <property name="android-custom-viewD:/SpeedDev/speed-dev/src/main/java/me/tx/app/ui/widget/NoScrollRecycler.java_SELECTED" value="NoScrollRecycler" />
     <property name="android-custom-viewD:/SpeedDev/speed-dev/src/main/java/me/tx/app/ui/widget/NoScrollViewPager.java_SELECTED" value="NoScrollViewPager" />
+    <property name="android-custom-viewD:/SpeedDev/spinner/src/main/java/com/wewin/spinner/CommonInputSpinner.java_CommonInputSpinner_DIMENSIONS" value="1080&#10;1920" />
+    <property name="android-custom-viewD:/SpeedDev/spinner/src/main/java/com/wewin/spinner/CommonInputSpinner.java_SELECTED" value="CommonInputSpinner" />
+    <property name="android-custom-viewD:/SpeedDev/spinner/src/main/java/com/wewin/spinner/CommonLevel2Spinner.java_CommonLevel2Spinner_DIMENSIONS" value="1080&#10;1920" />
+    <property name="android-custom-viewD:/SpeedDev/spinner/src/main/java/com/wewin/spinner/CommonLevel2Spinner.java_SELECTED" value="CommonLevel2Spinner" />
+    <property name="android-custom-viewD:/SpeedDev/spinner/src/main/java/com/wewin/spinner/CommonMultipSpinner.java_CommonMultipSpinner_DIMENSIONS" value="1080&#10;1920" />
+    <property name="android-custom-viewD:/SpeedDev/spinner/src/main/java/com/wewin/spinner/CommonMultipSpinner.java_SELECTED" value="CommonMultipSpinner" />
+    <property name="android-custom-viewD:/SpeedDev/spinner/src/main/java/com/wewin/spinner/CommonSpinner.java_CommonSpinner_DIMENSIONS" value="1080&#10;1920" />
+    <property name="android-custom-viewD:/SpeedDev/spinner/src/main/java/com/wewin/spinner/CommonSpinner.java_SELECTED" value="CommonSpinner" />
+    <property name="android-custom-viewD:/SpeedDev/wait-button/src/main/java/com/makeid/wait_button/WButton.java_SELECTED" value="WButton" />
     <property name="android.sdk.path" value="$PROJECT_DIR$/../Androidsdk" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../fiberswitch-app" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="multi-representation-previewC:/Users/TanXiao/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.0.0/2151d26c3b241f0a887f2dadb9ab091649fcf020/recyclerview-1.0.0-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_selected" value="Custom views" />
     <property name="multi-representation-previewC:/Users/TanXiao/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.3.0-alpha01/34c485dabcb642b6f527f0cfa524211faf96faad/recyclerview-1.3.0-alpha01-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_selected" value="Custom views" />
     <property name="multi-representation-previewD:/SpeedDev/app/src/main/java/com/wewin/speeddev/demo/BackTitleActionbar.java_selected" value="Custom views" />
@@ -109,10 +141,11 @@
     <property name="project.structure.last.edited" value="Dependencies" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\SpeedDev\spinner\src\main\res\drawable" />
       <recent name="D:\SpeedDev\app\src\main\res\layout" />
       <recent name="D:\SpeedDev\app\src\main\res\drawable" />
       <recent name="D:\SpeedDev\speed-dev\src\main\res\drawable" />
@@ -287,7 +320,21 @@
       <option name="project" value="LOCAL" />
       <updated>1662516945419</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="3.0 T IData IListData">
+      <created>1662534988242</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1662534988242</updated>
+    </task>
+    <task id="LOCAL-00014" summary="add spinner">
+      <created>1662536614365</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1662536614365</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -310,7 +357,8 @@
     <MESSAGE value="3.0 view binding" />
     <MESSAGE value="3.0 selectImg" />
     <MESSAGE value="3.0 T IData IListData" />
-    <option name="LAST_COMMIT_MESSAGE" value="3.0 T IData IListData" />
+    <MESSAGE value="add spinner" />
+    <option name="LAST_COMMIT_MESSAGE" value="add spinner" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

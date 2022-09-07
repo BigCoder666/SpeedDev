@@ -9,7 +9,6 @@ android {
     compileSdk 32
 
     defaultConfig {
-        applicationId "com.wewin.speeddev"
         minSdk 21
         targetSdk 32
         versionCode 1
@@ -22,9 +21,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    productFlavors {
+        yourApp {
+            applicationId = "com.wewin.speeddev"
+        }
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar','*.aar'])
     implementation project(path: ':speed-dev')
+    implementation project(path: ':spinner')
 }

@@ -1,3 +1,5 @@
 include ':speed-dev'
 include ':app'
 rootProject.name = "SpeedDev"
+include ':spinner'
+include ':wait-button'

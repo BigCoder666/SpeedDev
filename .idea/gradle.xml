@@ -13,6 +13,8 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/speed-dev" />
+            <option value="$PROJECT_DIR$/spinner" />
+            <option value="$PROJECT_DIR$/wait-button" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

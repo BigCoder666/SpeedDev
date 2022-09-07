@@ -7,6 +7,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/actionbar"/>
+
+    <com.wewin.spinner.CommonSpinner
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/white_5_line_selector"
+        android:layout_margin="5dp"
+        android:id="@+id/typespinner"/>
+
 <!--    R.id.swip 位固定ID-->
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
