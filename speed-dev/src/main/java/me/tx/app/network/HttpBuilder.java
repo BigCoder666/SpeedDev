@@ -37,9 +37,9 @@ public class HttpBuilder<T> {
     private Request.Builder b = null;
     private String url = "";
 
-    public LoadingController loadingController =null;
+    public LoadingController loadingController = null;
 
-    public HttpBuilder(LoadingController loadingController){
+    public HttpBuilder(LoadingController loadingController) {
         super();
         this.loadingController = loadingController;
     }
@@ -67,8 +67,8 @@ public class HttpBuilder<T> {
             .build();
 
     public IRequestFunction initJson(String url, Object object, HashMap<String, String> header) {
-        buildJsonRequest(object, header);
         setUrl(url);
+        buildJsonRequest(object, header);
         IRequestFunction iRequestFunction = new IRequestFunction() {
             @Override
             public HttpBuilder post() {
@@ -77,8 +77,8 @@ public class HttpBuilder<T> {
             }
 
             @Override
-            public HttpBuilder get() {
-                HttpBuilder.this.get();
+            public HttpBuilder get(Mapper mapper) {
+                HttpBuilder.this.get(mapper);
                 return HttpBuilder.this;
             }
 
@@ -106,8 +106,8 @@ public class HttpBuilder<T> {
     public IRequestFunction initForm(String url,
                                      Mapper object,
                                      HashMap<String, String> header) {
-        buildFormRequest(object, header);
         setUrl(url);
+        buildFormRequest(object, header);
         IRequestFunction iRequestFunction = new IRequestFunction() {
             @Override
             public HttpBuilder post() {
@@ -116,8 +116,8 @@ public class HttpBuilder<T> {
             }
 
             @Override
-            public HttpBuilder get() {
-                HttpBuilder.this.get();
+            public HttpBuilder get(Mapper mapper) {
+                HttpBuilder.this.get(mapper);
                 return HttpBuilder.this;
             }
 
@@ -145,7 +145,7 @@ public class HttpBuilder<T> {
     public interface IRequestFunction {
         HttpBuilder post();
 
-        HttpBuilder get();
+        HttpBuilder get(Mapper mapper);
 
         HttpBuilder put();
 
@@ -160,7 +160,34 @@ public class HttpBuilder<T> {
         request = b.build();
     }
 
-    public void get() {
+    public void get(Mapper ob) {
+        url = url + "?";
+        for (String key : ob.keySet()) {
+            if (ob.get(key) instanceof String) {
+                try {
+                    url = url + key + "=" + URLEncoder.encode((String) ob.get(key), "utf-8") + "&";
+                } catch (UnsupportedEncodingException e) {
+                    url = url + key + "=" + (String) ob.get(key) + "&";
+                    e.printStackTrace();
+                }
+            }if (ob.get(key) instanceof Integer) {
+                url = url + key + "=" + (int) ob.get(key) + "&";
+            }if (ob.get(key) instanceof Float) {
+                url = url + key + "=" + (float) ob.get(key) + "&";
+            }if (ob.get(key) instanceof Double) {
+                url = url + key + "=" + (double) ob.get(key) + "&";
+            }else {
+                try {
+                    url = url + key + "=" + URLEncoder.encode(JSON.toJSONString(ob.get(key)), "utf-8") + "&";
+                } catch (UnsupportedEncodingException e) {
+                    url = url + key + "=" + JSON.toJSONString(ob.get(key)) + "&";
+                    e.printStackTrace();
+                }
+            }
+        }
+        if (url.endsWith("&")) {
+            url = url.substring(0, url.length() - 1);
+        }
         b.url(url);
         request = b.build();
     }
@@ -189,20 +216,21 @@ public class HttpBuilder<T> {
         call.enqueue(new Callback() {
             @Override
             public void onResponse(Call call, Response response) {
-                if(loadingController!=null){
+                if (loadingController != null) {
                     loadingController.dismiss();
                 }
                 try {
                     if (response.isSuccessful()) {
                         String body = response.body().string();
-                        IListData<T> iData = JSON.parseObject(body,new TypeReference<IListData<T>>(){}.getType());
+                        IListData<T> iData = JSON.parseObject(body, new TypeReference<IListData<T>>() {
+                        }.getType());
                         if (iData.getStatus().equals(IData.ok)) {
                             iResponse.successArray(iData);
                         } else {
                             iResponse.fail(iData.getStatus(), iData.getMessage());
                         }
-                    }else {
-                        iResponse.fail(response.code()+"", response.message());
+                    } else {
+                        iResponse.fail(response.code() + "", response.message());
                     }
                 } catch (Exception ex) {
                     iResponse.fail(UNKNOW_ERROR, "请求异常");
@@ -211,7 +239,7 @@ public class HttpBuilder<T> {
 
             @Override
             public void onFailure(Call call, IOException e) {
-                if(loadingController!=null){
+                if (loadingController != null) {
                     loadingController.dismiss();
                 }
                 try {
@@ -239,20 +267,21 @@ public class HttpBuilder<T> {
         call.enqueue(new Callback() {
             @Override
             public void onResponse(Call call, Response response) {
-                if(loadingController!=null){
+                if (loadingController != null) {
                     loadingController.dismiss();
                 }
                 try {
                     if (response.isSuccessful()) {
                         String body = response.body().string();
-                        IData<T> iData = JSON.parseObject(body, new TypeReference<IData<T>>(){}.getType());
+                        IData<T> iData = JSON.parseObject(body, new TypeReference<IData<T>>() {
+                        }.getType());
                         if (iData.getStatus().equals(IData.ok)) {
                             iResponse.successObj(iData);
                         } else {
                             iResponse.fail(iData.getStatus(), iData.getMessage());
                         }
-                    }else {
-                        iResponse.fail(response.code()+"", response.message());
+                    } else {
+                        iResponse.fail(response.code() + "", response.message());
                     }
                 } catch (Exception ex) {
                     iResponse.fail(UNKNOW_ERROR, "请求异常");
@@ -261,7 +290,7 @@ public class HttpBuilder<T> {
 
             @Override
             public void onFailure(Call call, IOException e) {
-                if(loadingController!=null){
+                if (loadingController != null) {
                     loadingController.dismiss();
                 }
                 try {
@@ -286,30 +315,6 @@ public class HttpBuilder<T> {
             b.header(key, header.get(key));
         }
         requestBody = new BodyMaker().makeJsonBody(object);
-        if (object instanceof Mapper) {
-            url = url + "?";
-            Mapper ob = (Mapper) object;
-            for (String key : ob.keySet()) {
-                if (ob.get(key) instanceof String) {
-                    try {
-                        url = url + key + "=" + URLEncoder.encode((String) ob.get(key), "utf-8") + "&";
-                    } catch (UnsupportedEncodingException e) {
-                        url = url + key + "=" + (String) ob.get(key) + "&";
-                        e.printStackTrace();
-                    }
-                } else {
-                    try {
-                        url = url + key + "=" + URLEncoder.encode(JSON.toJSONString(ob.get(key)), "utf-8") + "&";
-                    } catch (UnsupportedEncodingException e) {
-                        url = url + key + "=" + JSON.toJSONString(ob.get(key)) + "&";
-                        e.printStackTrace();
-                    }
-                }
-            }
-            if (url.endsWith("&")) {
-                url = url.substring(0, url.length() - 1);
-            }
-        }
         return this;
     }
 
@@ -320,28 +325,6 @@ public class HttpBuilder<T> {
             b.header(key, header.get(key));
         }
         requestBody = new BodyMaker().makeFormBody(mapper);
-
-        for (String key : mapper.keySet()) {
-            if (mapper.get(key) instanceof String) {
-                try {
-                    url = url + key + "=" + URLEncoder.encode((String) mapper.get(key), "utf-8") + "&";
-                } catch (UnsupportedEncodingException e) {
-                    url = url + key + "=" + (String) mapper.get(key) + "&";
-                    e.printStackTrace();
-                }
-            } else {
-                try {
-                    url = url + key + "=" + URLEncoder.encode(JSON.toJSONString(mapper.get(key)), "utf-8") + "&";
-                } catch (UnsupportedEncodingException e) {
-                    url = url + key + "=" + JSON.toJSONString(mapper.get(key)) + "&";
-                    e.printStackTrace();
-                }
-            }
-        }
-        if (url.endsWith("&")) {
-            url = url.substring(0, url.length() - 1);
-        }
-
         return this;
     }
 }
