@@ -22,8 +22,11 @@ android {
         }
     }
 
+    flavorDimensions "app"
+
     productFlavors {
         yourApp {
+            dimension "app"
             applicationId = "com.wewin.speeddev"
         }
     }

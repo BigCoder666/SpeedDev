@@ -73,11 +73,11 @@ dependencies {
     api 'androidx.multidex:multidex:2.0.1'
 
     // PictureSelector basic (Necessary)
-    api 'io.github.lucksiege:pictureselector:v3.10.6'
+    api 'io.github.lucksiege:pictureselector:v3.10.7'
     // image compress library (Not necessary)
-    api 'io.github.lucksiege:compress:v3.10.6'
+    api 'io.github.lucksiege:compress:v3.10.7'
     // uCrop library (Not necessary)
-    api 'io.github.lucksiege:ucrop:v3.10.6'
+    api 'io.github.lucksiege:ucrop:v3.10.7'
     // simple camerax library (Not necessary)
-    api 'io.github.lucksiege:camerax:v3.10.6'
+    api 'io.github.lucksiege:camerax:v3.10.7'
 }

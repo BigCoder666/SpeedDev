@@ -8,6 +8,8 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.luck.picture.lib.entity.LocalMedia;
 import com.luck.picture.lib.interfaces.OnResultCallbackListener;
+import com.makeid.print_sdk.BaseLabel;
+import com.makeid.print_sdk.LabelMaker;
 import com.wewin.speeddev.R;
 import com.wewin.speeddev.databinding.ActivitySimpleListBinding;
 import com.wewin.speeddev.databinding.ItemSimpleTextBinding;
@@ -17,6 +19,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import cn.com.wewin.extapi.imp.IPrintLabelCallback;
+import cn.com.wewin.extapi.universal.WwCommon;
+import cn.com.wewin.extapi.universal.WwPrintUtils;
 import me.tx.app.common.base.CommonHolder;
 import me.tx.app.common.base.CommonRecyclerActivity;
 import me.tx.app.network.IArrayList;
@@ -39,7 +44,30 @@ public class SimpleRecyclerActivity extends CommonRecyclerActivity<ActivitySimpl
         vb.typespinner.setAdapter(new CommonSpinner.Adapter<SpinnerData>() {
             @Override
             public void click(SpinnerData nameId) {
+                WwPrintUtils.getInstance(SimpleRecyclerActivity.this).previewPrint(
+                        new LabelMaker().addLabel(new BaseLabel() {
+                            @Override
+                            public int getWidth() {
+                                return 50;
+                            }
 
+                            @Override
+                            public int getHeight() {
+                                return 50;
+                            }
+                        }.rotate90(),2).getData(),
+                        new IPrintLabelCallback() {
+                            @Override
+                            public void OnPrintSuccessEvent() {
+
+                            }
+
+                            @Override
+                            public void OnPrintErrorEvent(WwCommon.PrintResult printResult) {
+
+                            }
+                        }
+                );
             }
 
             @Override

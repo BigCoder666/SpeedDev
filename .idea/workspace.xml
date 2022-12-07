@@ -13,16 +13,11 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26ec91af-91d9-4877-bfb2-e07507a75548" name="Default Changelist" comment="add spinner">
-      <change afterPath="$PROJECT_DIR$/wait-button/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wait-button/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wait-button/consumer-rules.pro" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wait-button/proguard-rules.pro" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wait-button/src/main/AndroidManifest.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wait-button/src/main/java/com/makeid/wait_button/WButton.java" afterDir="false" />
+    <list default="true" id="26ec91af-91d9-4877-bfb2-e07507a75548" name="Default Changelist" comment="change gradle">
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_davemorrissey_labs_subsampling_scale_image_view_3_10_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_davemorrissey_labs_subsampling_scale_image_view_3_10_0_aar.xml" afterDir="false" />
@@ -31,18 +26,28 @@
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_jaeger_statusbarutil_library_1_5_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_jaeger_statusbarutil_library_1_5_1_aar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_picasso_picasso_2_71828_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_picasso_picasso_2_71828_aar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_youth_banner_banner_1_4_10_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_youth_banner_banner_1_4_10_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__pub_devrel_easypermissions_2_0_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__pub_devrel_easypermissions_2_0_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/wewin/speeddev/demo/SimpleRecyclerActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/wewin/speeddev/demo/SimpleRecyclerActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/speed-dev/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/speed-dev/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/speed-dev/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/speed-dev/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wait-button/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wait-button/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wait-button/consumer-rules.pro" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wait-button/proguard-rules.pro" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wait-button/src/main/AndroidManifest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wait-button/src/main/java/com/makeid/wait_button/WButton.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[e5f30edd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -145,11 +150,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\SpeedDev\print-sdk\libs" />
       <recent name="D:\SpeedDev\spinner\src\main\res\drawable" />
       <recent name="D:\SpeedDev\app\src\main\res\layout" />
       <recent name="D:\SpeedDev\app\src\main\res\drawable" />
       <recent name="D:\SpeedDev\speed-dev\src\main\res\drawable" />
-      <recent name="D:\SpeedDev\speed-dev\src\main\res" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.wewin.speeddev.demo" />
@@ -334,8 +339,25 @@
       <option name="project" value="LOCAL" />
       <updated>1662536614365</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="change gradle">
+      <created>1667459992961</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1667459992961</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -358,7 +380,8 @@
     <MESSAGE value="3.0 selectImg" />
     <MESSAGE value="3.0 T IData IListData" />
     <MESSAGE value="add spinner" />
-    <option name="LAST_COMMIT_MESSAGE" value="add spinner" />
+    <MESSAGE value="change gradle" />
+    <option name="LAST_COMMIT_MESSAGE" value="change gradle" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
