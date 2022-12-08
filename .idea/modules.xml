@@ -3,11 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/SpeedDev.iml" filepath="$PROJECT_DIR$/.idea/SpeedDev.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/apitest/SpeedDev.apitest.iml" filepath="$PROJECT_DIR$/.idea/modules/apitest/SpeedDev.apitest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/SpeedDev.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/SpeedDev.app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/print-sdk/SpeedDev.print-sdk.iml" filepath="$PROJECT_DIR$/.idea/modules/print-sdk/SpeedDev.print-sdk.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/speed-dev/SpeedDev.speed-dev.iml" filepath="$PROJECT_DIR$/.idea/modules/speed-dev/SpeedDev.speed-dev.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/spinner/SpeedDev.spinner.iml" filepath="$PROJECT_DIR$/.idea/modules/spinner/SpeedDev.spinner.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/wait-button/SpeedDev.wait-button.iml" filepath="$PROJECT_DIR$/.idea/modules/wait-button/SpeedDev.wait-button.iml" />
     </modules>
   </component>
 </project>

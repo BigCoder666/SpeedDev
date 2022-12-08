@@ -1,0 +1,39 @@
+apply plugin: 'com.android.application'
+
+android {
+
+    viewBinding {
+        enabled = true
+    }
+
+    compileSdk 32
+
+    defaultConfig {
+        minSdk 21
+        targetSdk 32
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    flavorDimensions "app"
+
+    productFlavors {
+        yourApp {
+            dimension "app"
+            applicationId = "com.wewin.apitest"
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar','*.aar'])
+    implementation project(path: ':speed-dev')
+    implementation project(path: ':spinner')
+}

@@ -42,6 +42,7 @@ public class HttpBuilder<T> {
     public HttpBuilder(LoadingController loadingController) {
         super();
         this.loadingController = loadingController;
+        loadingController.show();
     }
 
     public void setUrl(String url) {
@@ -208,6 +209,47 @@ public class HttpBuilder<T> {
         b.url(url);
         b.patch(requestBody);
         request = b.build();
+    }
+
+    public void call(IResponse<T> iResponse){
+        request.cacheControl().noCache();
+        Call call = mOkHttpClient.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onResponse(Call call, Response response) {
+                if (loadingController != null) {
+                    loadingController.dismiss();
+                }
+                try {
+                    if (response.isSuccessful()) {
+                        String body = response.body().string();
+                        iResponse.success(body);
+                    } else {
+                        iResponse.fail(response.code() + "", response.message());
+                    }
+                } catch (Exception ex) {
+                    iResponse.fail(UNKNOW_ERROR, "请求异常");
+                }
+            }
+
+            @Override
+            public void onFailure(Call call, IOException e) {
+                if (loadingController != null) {
+                    loadingController.dismiss();
+                }
+                try {
+                    if (e instanceof ConnectException) {
+                        iResponse.fail(CONNECT_FAIL, "无法连接到服务器");
+                    } else if (e instanceof SocketTimeoutException) {
+                        iResponse.fail(TIME_OUT, "无法连接到服务器");
+                    } else {
+                        iResponse.fail(UNKNOW_ERROR, "请求异常\n请检查网络");
+                    }
+                } catch (Exception ex) {
+                    iResponse.fail(UNKNOW_ERROR, ex.getMessage());
+                }
+            }
+        });
     }
 
     public void callList(IArrayList<T> iResponse) {

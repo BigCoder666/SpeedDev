@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/SpeedDev/apitest/src/main/res/layout/activity_create_task.xml" value="0.2703125" />
+        <entry key="..\:/SpeedDev/apitest/src/main/res/layout/activity_task.xml" value="0.29981884057971014" />
+        <entry key="..\:/SpeedDev/apitest/src/main/res/layout/item_task.xml" value="0.22760416666666666" />
         <entry key="..\:/SpeedDev/app/src/main/res/layout/activity_a.xml" value="0.23324275362318841" />
         <entry key="..\:/SpeedDev/app/src/main/res/layout/activity_simple_contain.xml" value="0.23324275362318841" />
         <entry key="..\:/SpeedDev/app/src/main/res/layout/activity_simple_fragment.xml" value="0.23324275362318841" />

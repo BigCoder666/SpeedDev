@@ -353,12 +353,10 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
         }
 
         public HttpBuilder.IRequestFunction reqJson(String action, Object o) {
-            loadingController.show();
             return new HttpBuilder(loadingController).initJson(action,o,activity.getHeader());
         }
 
         public HttpBuilder.IRequestFunction reqForm(String action, Mapper mapper) {
-            loadingController.show();
             return new HttpBuilder(loadingController).initForm(action,mapper,activity.getHeader());
         }
 

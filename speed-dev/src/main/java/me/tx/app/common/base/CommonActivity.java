@@ -2,6 +2,8 @@ package me.tx.app.common.base;
 
 import android.content.Intent;
 
+import androidx.viewbinding.ViewBinding;
+
 import com.alibaba.fastjson.JSON;
 
 import org.greenrobot.eventbus.EventBus;
@@ -13,7 +15,7 @@ import me.tx.app.R;
 import me.tx.app.ui.activity.BaseActivity;
 import me.tx.app.utils.ShareGetter;
 
-public abstract class CommonActivity extends BaseActivity {
+public abstract class CommonActivity<VB extends ViewBinding> extends BaseActivity<VB> {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMainEvent(MainEvent mainEvent) {

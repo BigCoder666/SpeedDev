@@ -13,4 +13,9 @@ public abstract class IObject<T> implements IResponse<T>{
     public void successArray(IListData<T> tList) {
 
     }
+
+    @Override
+    public void success(String str){
+
+    }
 }

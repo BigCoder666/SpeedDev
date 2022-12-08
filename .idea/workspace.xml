@@ -6,31 +6,64 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_LOG_LEVEL" value="error" />
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="warn" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26ec91af-91d9-4877-bfb2-e07507a75548" name="Default Changelist" comment="change gradle">
+    <list default="true" id="26ec91af-91d9-4877-bfb2-e07507a75548" name="Default Changelist" comment="http get bug">
+      <change afterPath="$PROJECT_DIR$/apitest/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apitest/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apitest/proguard-rules.pro" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apitest/src/main/AndroidManifest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apitest/src/main/assets/taskModel" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apitest/src/main/java/com/makeid/apitest/CreateTaskActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apitest/src/main/java/com/makeid/apitest/Task.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apitest/src/main/java/com/makeid/apitest/TaskActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apitest/src/main/res/drawable-v24/ic_launcher_foreground.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apitest/src/main/res/drawable/ic_launcher_background.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apitest/src/main/res/layout/activity_create_task.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apitest/src/main/res/layout/activity_task.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apitest/src/main/res/layout/item_task.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apitest/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apitest/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apitest/src/main/res/mipmap-hdpi/ic_launcher.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apitest/src/main/res/mipmap-hdpi/ic_launcher_round.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apitest/src/main/res/mipmap-mdpi/ic_launcher.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apitest/src/main/res/mipmap-mdpi/ic_launcher_round.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apitest/src/main/res/mipmap-xhdpi/ic_launcher.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apitest/src/main/res/mipmap-xhdpi/ic_launcher_round.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apitest/src/main/res/mipmap-xxhdpi/ic_launcher.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apitest/src/main/res/mipmap-xxhdpi/ic_launcher_round.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apitest/src/main/res/mipmap-xxxhdpi/ic_launcher.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apitest/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apitest/src/main/res/values/colors.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apitest/src/main/res/values/strings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_liulishuo_filedownloader_library_1_7_7_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_liulishuo_filedownloader_library_1_7_7_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__id_zelory_compressor_2_1_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__id_zelory_compressor_2_1_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/speed-dev/src/main/java/me/tx/app/common/base/CommonActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/speed-dev/src/main/java/me/tx/app/common/base/CommonActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/speed-dev/src/main/java/me/tx/app/network/HttpBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/speed-dev/src/main/java/me/tx/app/network/HttpBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/speed-dev/src/main/java/me/tx/app/network/IArrayList.java" beforeDir="false" afterPath="$PROJECT_DIR$/speed-dev/src/main/java/me/tx/app/network/IArrayList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/speed-dev/src/main/java/me/tx/app/network/IObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/speed-dev/src/main/java/me/tx/app/network/IObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/speed-dev/src/main/java/me/tx/app/network/IResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/speed-dev/src/main/java/me/tx/app/network/IResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/speed-dev/src/main/java/me/tx/app/ui/activity/BaseActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/speed-dev/src/main/java/me/tx/app/ui/activity/BaseActivity.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[e5f30edd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -51,8 +84,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="layoutResourceFile_vertical" />
         <option value="Class" />
+        <option value="layoutResourceFile_vertical" />
       </list>
     </option>
   </component>
@@ -66,7 +99,9 @@
     <option name="CREATE_PULL_REQUEST_DEFAULT_REPO_NAME" value="speed-dev" />
   </component>
   <component name="ProjectId" id="1zqrelOD136vKjPuR1O25YKBP2p" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -75,7 +110,7 @@
   <component name="PropertiesComponent">
     <property name="ASKED_MARK_IGNORED_FILES_AS_EXCLUDED" value="true" />
     <property name="DEBUGGABLE_DEVICE" value="xiaomi-m2101k9c-e5f30edd" />
-    <property name="DEBUGGABLE_PROCESS" value="com.wewin.speeddev" />
+    <property name="DEBUGGABLE_PROCESS" value="com.wewin.apitest" />
     <property name="DEBUGGER_ID" value="Auto" />
     <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="e5f30edd" />
     <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2021-10-22T07:56:38.082Z" />
@@ -114,7 +149,7 @@
     <property name="android-custom-viewD:/SpeedDev/spinner/src/main/java/com/wewin/spinner/CommonSpinner.java_SELECTED" value="CommonSpinner" />
     <property name="android-custom-viewD:/SpeedDev/wait-button/src/main/java/com/makeid/wait_button/WButton.java_SELECTED" value="WButton" />
     <property name="android.sdk.path" value="$PROJECT_DIR$/../Androidsdk" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../fiberswitch-app" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../familyport-app" />
     <property name="multi-representation-previewC:/Users/TanXiao/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.0.0/2151d26c3b241f0a887f2dadb9ab091649fcf020/recyclerview-1.0.0-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_selected" value="Custom views" />
     <property name="multi-representation-previewC:/Users/TanXiao/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.3.0-alpha01/34c485dabcb642b6f527f0cfa524211faf96faad/recyclerview-1.3.0-alpha01-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_selected" value="Custom views" />
     <property name="multi-representation-previewD:/SpeedDev/app/src/main/java/com/wewin/speeddev/demo/BackTitleActionbar.java_selected" value="Custom views" />
@@ -145,10 +180,68 @@
       <recent name="me.tx.app.common.base" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Android App.apitest">
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
       <option name="TEST_OBJECT" value="class" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="apitest" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
+      <module name="SpeedDev.apitest" />
+      <option name="DEPLOY" value="true" />
+      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+      <option name="DEPLOY_AS_INSTANT" value="false" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="ALL_USERS" value="false" />
+      <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Hybrid>
+      <Java />
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Native>
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Sample Java Methods" />
+        <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
+        <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="false" />
+      <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
       <method v="2">
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
@@ -343,7 +436,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670373705869</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="http get bug">
+      <created>1670376162757</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1670376162757</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -378,50 +478,56 @@
     <MESSAGE value="3.0 T IData IListData" />
     <MESSAGE value="add spinner" />
     <MESSAGE value="change gradle" />
-    <option name="LAST_COMMIT_MESSAGE" value="change gradle" />
+    <MESSAGE value="http get bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="http get bug" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/speed-dev/src/main/java/me/tx/app/network/HttpBuilder.java</url>
-          <line>286</line>
+          <line>328</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/speed-dev/src/main/java/me/tx/app/network/HttpBuilder.java</url>
-          <line>283</line>
+          <line>325</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/speed-dev/src/main/java/me/tx/app/network/HttpBuilder.java</url>
-          <line>227</line>
+          <line>269</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/speed-dev/src/main/java/me/tx/app/network/HttpBuilder.java</url>
-          <line>235</line>
+          <line>277</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/speed-dev/src/main/java/me/tx/app/network/HttpBuilder.java</url>
-          <line>229</line>
+          <line>271</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/speed-dev/src/main/java/me/tx/app/network/HttpBuilder.java</url>
-          <line>232</line>
+          <line>274</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/speed-dev/src/main/java/me/tx/app/network/HttpBuilder.java</url>
+          <line>320</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/speed-dev/src/main/java/me/tx/app/ui/activity/BaseActivity.java</url>
           <line>71</line>
-          <option name="timeStamp" value="15" />
+          <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/speed-dev/src/main/java/me/tx/app/network/HttpBuilder.java</url>
-          <line>278</line>
-          <option name="timeStamp" value="16" />
+          <line>236</line>
+          <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

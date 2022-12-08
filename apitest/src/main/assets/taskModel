@@ -1,0 +1,98 @@
+{
+"taskName":"测试任务",
+"taskId":"001",
+"successCode":"200",
+"codeName":"code",
+"dataName":"result",
+"host":"http://show.wewin.com.cn:8888/gzjkapi/",
+"requestApiList":[
+
+{
+    "apiUrl":"sys/loginNoCaptcha",
+    "requestBody":{
+       "username":"admin",
+       "password":"UkV4QVYyVjNhVzR4TWpN"
+    },
+    "getParams":{
+    },
+    "requestType":"post",
+    "bodyType":"json",
+    "run":"1",
+    "headers":{
+       "token":"token"
+    }
+},
+
+{
+    "apiUrl":"inventory/fiberbox/list",
+    "requestBody":{
+       "pageNo":"1",
+       "pageSize":"50",
+       "param":{
+              "type":"1"
+       }
+    },
+    "getParams":{
+    },
+    "requestType":"post",
+    "bodyType":"json",
+    "run":"1"
+},
+
+{
+    "apiUrl":"inventory/fiberbox/list",
+    "requestBody":{
+       "pageNo":"1",
+       "pageSize":"50",
+       "param":{
+              "type":"2"
+       }
+    },
+    "getParams":{
+    },
+    "requestType":"post",
+    "bodyType":"json",
+    "run":"1"
+},
+
+{
+    "apiUrl":"inventory/fiberbox/info/{id}",
+    "apiReplace":{
+       "{id}":"@@@2*get{}-result*get[]-records-0*get{}-id"
+    },
+    "requestBody":{
+    },
+    "getParams":{
+    },
+    "requestType":"get",
+    "bodyType":"json",
+    "run":"1"
+},
+
+{
+    "apiUrl":"inventory/fiberbox/update",
+    "requestBody":{
+       "id":"@@@2*get{}-result*get[]-records-0*get{}-id",
+        "type":"2",
+       "installAddr":"1",
+        "households":"1",
+         "images":"",
+          "latitude":"1",
+           "longitude":"1",
+           "floor":"@@@3*get{}-result*get{}-floor",
+            "layer":"@@@3*get{}-result*get{}-layer",
+             "name":"@@@3*get{}-result*get{}-name",
+             "villageId":"@@@3*get{}-result*get{}-villageId",
+              "unit":"@@@3*get{}-result*get{}-unit",
+               "remarks":"1",
+                "parentId":"@@@3*get{}-result*get{}-parentId"
+    },
+    "getParams":{
+    },
+    "requestType":"put",
+    "bodyType":"json",
+    "run":"1"
+}
+
+  ]
+}

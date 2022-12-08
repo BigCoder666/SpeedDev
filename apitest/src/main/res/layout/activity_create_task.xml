@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <me.tx.app.common.widget.BackTitleTextActionbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/actionbar"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:background="@drawable/white_5_line_selector"
+        android:hint="输入json脚本"
+        android:gravity="left|top"
+        android:id="@+id/json"
+        android:padding="10dp"
+        android:textStyle="bold"
+        android:textSize="@dimen/t_14"
+        android:textColor="@color/black"
+        android:textColorHint="@color/hint"/>
+</LinearLayout>

@@ -7,4 +7,9 @@ public abstract class IArrayList<T> implements IResponse<T> {
     public void successObj(IData<T> t) {
 
     }
+
+    @Override
+    public void success(String str){
+
+    }
 }
