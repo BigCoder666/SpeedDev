@@ -13,9 +13,6 @@ import java.util.Arrays;
 import java.util.List;
 import me.tx.app.common.base.CommonHolder;
 import me.tx.app.common.base.CommonRecyclerActivity;
-import me.tx.app.network.IArrayList;
-import me.tx.app.network.IData;
-import me.tx.app.network.IListData;
 import me.tx.app.network.IObject;
 import me.tx.app.network.Mapper;
 import me.tx.app.utils.OneClicklistener;
@@ -55,7 +52,7 @@ public class SimpleRecyclerActivity extends CommonRecyclerActivity<ActivitySimpl
 
     @Override
     public void onBindViewHolder(CommonHolder<ItemSimpleTextBinding> holder, SimpleData simpleData, int position) {
-        holder.hvb.text.setText(simpleData.text);
+        holder.hvb.text.setText(simpleData.token);
         center.loadImg(R.drawable.null_view, holder.hvb.img);
         holder.itemView.setOnClickListener(new OneClicklistener() {
             @Override
@@ -78,14 +75,13 @@ public class SimpleRecyclerActivity extends CommonRecyclerActivity<ActivitySimpl
                         .add("password", Utils.setPassword("admin"))).post()
                 .callObject(new IObject<SimpleData>() {
                     @Override
-                    public void successObj(IData<SimpleData> simpleData) {
-
+                    public void successObj(SimpleData simpleData) {
 //                        clearData();
 //                        resetData(Arrays.asList(new SimpleData(), new SimpleData(), new SimpleData()));
                         loadFinish(new IDealList() {
                             @Override
                             public void dealList() {
-                                addData(Arrays.asList(new SimpleData(), new SimpleData(), new SimpleData()));
+                                addData(Arrays.asList(simpleData));
                             }
                         });
                     }

@@ -13,57 +13,15 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26ec91af-91d9-4877-bfb2-e07507a75548" name="Default Changelist" comment="http get bug">
-      <change afterPath="$PROJECT_DIR$/apitest/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apitest/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apitest/proguard-rules.pro" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apitest/src/main/AndroidManifest.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apitest/src/main/assets/taskModel" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apitest/src/main/java/com/makeid/apitest/CreateTaskActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apitest/src/main/java/com/makeid/apitest/Task.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apitest/src/main/java/com/makeid/apitest/TaskActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apitest/src/main/res/drawable-v24/ic_launcher_foreground.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apitest/src/main/res/drawable/ic_launcher_background.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apitest/src/main/res/layout/activity_create_task.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apitest/src/main/res/layout/activity_task.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apitest/src/main/res/layout/item_task.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apitest/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apitest/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apitest/src/main/res/mipmap-hdpi/ic_launcher.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apitest/src/main/res/mipmap-hdpi/ic_launcher_round.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apitest/src/main/res/mipmap-mdpi/ic_launcher.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apitest/src/main/res/mipmap-mdpi/ic_launcher_round.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apitest/src/main/res/mipmap-xhdpi/ic_launcher.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apitest/src/main/res/mipmap-xhdpi/ic_launcher_round.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apitest/src/main/res/mipmap-xxhdpi/ic_launcher.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apitest/src/main/res/mipmap-xxhdpi/ic_launcher_round.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apitest/src/main/res/mipmap-xxxhdpi/ic_launcher.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apitest/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apitest/src/main/res/values/colors.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apitest/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="26ec91af-91d9-4877-bfb2-e07507a75548" name="Default Changelist" comment="apiTest">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/speed-dev/src/main/java/me/tx/app/common/base/CommonActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/speed-dev/src/main/java/me/tx/app/common/base/CommonActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/speed-dev/src/main/java/me/tx/app/network/HttpBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/speed-dev/src/main/java/me/tx/app/network/HttpBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/speed-dev/src/main/java/me/tx/app/network/IArrayList.java" beforeDir="false" afterPath="$PROJECT_DIR$/speed-dev/src/main/java/me/tx/app/network/IArrayList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/speed-dev/src/main/java/me/tx/app/network/IObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/speed-dev/src/main/java/me/tx/app/network/IObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/speed-dev/src/main/java/me/tx/app/network/IResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/speed-dev/src/main/java/me/tx/app/network/IResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/speed-dev/src/main/java/me/tx/app/ui/activity/BaseActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/speed-dev/src/main/java/me/tx/app/ui/activity/BaseActivity.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[e5f30edd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -74,7 +32,12 @@
       <state>
         <projects_view>
           <tree_state>
-            <expand />
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="SpeedDev" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
             <select />
           </tree_state>
         </projects_view>
@@ -90,6 +53,7 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PUSH_AUTO_UPDATE" value="true" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="HARD" />
   </component>
@@ -149,7 +113,7 @@
     <property name="android-custom-viewD:/SpeedDev/spinner/src/main/java/com/wewin/spinner/CommonSpinner.java_SELECTED" value="CommonSpinner" />
     <property name="android-custom-viewD:/SpeedDev/wait-button/src/main/java/com/makeid/wait_button/WButton.java_SELECTED" value="WButton" />
     <property name="android.sdk.path" value="$PROJECT_DIR$/../Androidsdk" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../familyport-app" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="multi-representation-previewC:/Users/TanXiao/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.0.0/2151d26c3b241f0a887f2dadb9ab091649fcf020/recyclerview-1.0.0-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_selected" value="Custom views" />
     <property name="multi-representation-previewC:/Users/TanXiao/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.3.0-alpha01/34c485dabcb642b6f527f0cfa524211faf96faad/recyclerview-1.3.0-alpha01-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_selected" value="Custom views" />
     <property name="multi-representation-previewD:/SpeedDev/app/src/main/java/com/wewin/speeddev/demo/BackTitleActionbar.java_selected" value="Custom views" />
@@ -180,7 +144,7 @@
       <recent name="me.tx.app.common.base" />
     </key>
   </component>
-  <component name="RunManager" selected="Android App.apitest">
+  <component name="RunManager" selected="Android App.app">
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
       <option name="TEST_OBJECT" value="class" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
@@ -443,7 +407,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670376162757</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="apiTest">
+      <created>1670489844392</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1670489844392</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -479,7 +450,8 @@
     <MESSAGE value="add spinner" />
     <MESSAGE value="change gradle" />
     <MESSAGE value="http get bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="http get bug" />
+    <MESSAGE value="apiTest" />
+    <option name="LAST_COMMIT_MESSAGE" value="apiTest" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

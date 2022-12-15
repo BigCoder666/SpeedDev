@@ -5,7 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import java.util.Arrays;
 import java.util.List;
 
-public class IData<T>{
+public class IData{
     public final static String ok="200";
     public final static List<String> badtoken=Arrays.asList("401");
 
@@ -17,12 +17,12 @@ public class IData<T>{
         return code;
     }
 
-    public T getData() {
+    public String getData() {
         return result!=null?result:data!=null?data:null;
     }
 
     public String message="";
     public String code="555";
-    public T result=null;
-    public T data =null;
+    public String result=null;
+    public String data =null;
 }

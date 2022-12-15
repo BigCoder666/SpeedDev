@@ -5,6 +5,8 @@ import com.alibaba.fastjson.TypeReference;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 import java.net.URLEncoder;
@@ -171,11 +173,11 @@ public class HttpBuilder<T> {
                     url = url + key + "=" + (String) ob.get(key) + "&";
                     e.printStackTrace();
                 }
-            }if (ob.get(key) instanceof Integer) {
+            }else if (ob.get(key) instanceof Integer) {
                 url = url + key + "=" + (int) ob.get(key) + "&";
-            }if (ob.get(key) instanceof Float) {
+            }else if (ob.get(key) instanceof Float) {
                 url = url + key + "=" + (float) ob.get(key) + "&";
-            }if (ob.get(key) instanceof Double) {
+            }else if (ob.get(key) instanceof Double) {
                 url = url + key + "=" + (double) ob.get(key) + "&";
             }else {
                 try {
@@ -264,10 +266,10 @@ public class HttpBuilder<T> {
                 try {
                     if (response.isSuccessful()) {
                         String body = response.body().string();
-                        IListData<T> iData = JSON.parseObject(body, new TypeReference<IListData<T>>() {
-                        }.getType());
+                        IData iData = JSON.parseObject(body,IData.class);
                         if (iData.getStatus().equals(IData.ok)) {
-                            iResponse.successArray(iData);
+                            List<T> data = JSON.parseObject(body, getSuperclassTypeParameter(iResponse.getClass()));
+                            iResponse.successArray(data);
                         } else {
                             iResponse.fail(iData.getStatus(), iData.getMessage());
                         }
@@ -315,10 +317,10 @@ public class HttpBuilder<T> {
                 try {
                     if (response.isSuccessful()) {
                         String body = response.body().string();
-                        IData<T> iData = JSON.parseObject(body, new TypeReference<IData<T>>() {
-                        }.getType());
+                        IData iData = JSON.parseObject(body,IData.class);
                         if (iData.getStatus().equals(IData.ok)) {
-                            iResponse.successObj(iData);
+                            T data = JSON.parseObject(iData.getData(),getSuperclassTypeParameter(iResponse.getClass()));
+                            iResponse.successObj(data);
                         } else {
                             iResponse.fail(iData.getStatus(), iData.getMessage());
                         }
@@ -348,6 +350,15 @@ public class HttpBuilder<T> {
                 }
             }
         });
+    }
+
+    static Type getSuperclassTypeParameter(Class<?> subclass) {
+        Type superclass = subclass.getGenericSuperclass();
+        if (superclass instanceof Class) {
+            return null;
+        }
+        Type[] params = ((ParameterizedType) superclass).getActualTypeArguments();
+        return params[0];
     }
 
     private HttpBuilder buildJsonRequest(Object object, HashMap<String, String> header) {

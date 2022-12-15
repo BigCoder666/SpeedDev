@@ -8,8 +8,8 @@ import java.util.List;
 
 public interface IResponse<T> {
 
-    void successObj(IData<T> t);
-    void successArray(IListData<T> tList);
+    void successObj(T t);
+    void successArray(List<T> tList);
     void success(String str);
 
     void fail(String code,String msg);

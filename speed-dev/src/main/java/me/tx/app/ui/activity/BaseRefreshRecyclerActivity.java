@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -47,6 +48,10 @@ public abstract class BaseRefreshRecyclerActivity<VB extends ViewBinding,T exten
     int lastY = 0;
     int startY = 0;
     boolean isTopShow = true;
+
+    public String getNullString(){
+        return "暂无相关内容";
+    }
 
     public ArrayList<K> getDataList(){
         return dataList;
@@ -234,6 +239,7 @@ public abstract class BaseRefreshRecyclerActivity<VB extends ViewBinding,T exten
             public void onBindViewHolder(CommonHolder<T> holder, int position) {
                 try {
                     if (dataList.size() == 0) {
+                        ((TextView)holder.itemView.findViewById(R.id.info)).setText(getNullString());
                         return;
                     } else if (dataList.size() >= pageSize && position == dataList.size()) {
                         return;

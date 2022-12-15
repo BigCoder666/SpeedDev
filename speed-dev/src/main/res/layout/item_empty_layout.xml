@@ -22,6 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:gravity="center"
+            android:id="@+id/info"
             android:textSize="14dp"
             android:text="暂无相关内容"
             android:textColor="@color/hint"/>

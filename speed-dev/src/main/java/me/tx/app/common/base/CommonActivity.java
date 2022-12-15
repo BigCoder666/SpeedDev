@@ -33,7 +33,7 @@ public abstract class CommonActivity<VB extends ViewBinding> extends BaseActivit
 
     @Override
     public HashMap<String,String> getHeader(){
-        HashMap<String,String> header = JSON.parseObject(new ShareGetter(this).Read("header"),HashMap.class);
+        HashMap<String,String> header = JSON.parseObject(new ShareGetter(this).ReadHeader("header"),HashMap.class);
         return header;
     }
 

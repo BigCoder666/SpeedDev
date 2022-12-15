@@ -13,6 +13,10 @@ public class PermissionLoader {
         this.context = context;
     }
 
+    public boolean hasPermission(String[] permissionArray){
+        return EasyPermissions.hasPermissions(context, permissionArray);
+    }
+
     public boolean Load(String[] permissionArray) {
         if (EasyPermissions.hasPermissions(context.getApplicationContext(), permissionArray)) {
             return true;

@@ -10,7 +10,7 @@ import java.util.List;
 public abstract class IObject<T> implements IResponse<T>{
 
     @Override
-    public void successArray(IListData<T> tList) {
+    public void successArray(List<T> tList) {
 
     }
 

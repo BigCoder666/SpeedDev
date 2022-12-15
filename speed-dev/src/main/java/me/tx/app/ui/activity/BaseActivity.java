@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -61,6 +62,8 @@ import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
+
+import static com.cretin.www.cretinautoupdatelibrary.utils.DownloadService.getPackInfo;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -244,6 +247,15 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
         }
     }
 
+    public static int getVersionCode(Context context) {
+        int versionCode = 0;
+        PackageInfo packInfo = getPackInfo(context);
+        if (packInfo != null) {
+            versionCode = packInfo.versionCode;
+        }
+        return versionCode;
+    }
+
     public void hideSystemKeyBoard() {
         InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(), 0);
@@ -368,6 +380,10 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
                 activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_IN_OVERSCAN);
             }
             activity.statusBarTextBlack();
+        }
+
+        public boolean hasPermission(String[] permission) {
+            return permissionLoader.hasPermission(permission);
         }
 
         public void loadPermission(String[] permission,IPermission iPermission) {
