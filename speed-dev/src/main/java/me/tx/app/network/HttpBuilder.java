@@ -164,34 +164,37 @@ public class HttpBuilder<T> {
     }
 
     public void get(Mapper ob) {
-        url = url + "?";
-        for (String key : ob.keySet()) {
-            if (ob.get(key) instanceof String) {
-                try {
-                    url = url + key + "=" + URLEncoder.encode((String) ob.get(key), "utf-8") + "&";
-                } catch (UnsupportedEncodingException e) {
-                    url = url + key + "=" + (String) ob.get(key) + "&";
-                    e.printStackTrace();
-                }
-            }else if (ob.get(key) instanceof Integer) {
-                url = url + key + "=" + (int) ob.get(key) + "&";
-            }else if (ob.get(key) instanceof Float) {
-                url = url + key + "=" + (float) ob.get(key) + "&";
-            }else if (ob.get(key) instanceof Double) {
-                url = url + key + "=" + (double) ob.get(key) + "&";
-            }else {
-                try {
-                    url = url + key + "=" + URLEncoder.encode(JSON.toJSONString(ob.get(key)), "utf-8") + "&";
-                } catch (UnsupportedEncodingException e) {
-                    url = url + key + "=" + JSON.toJSONString(ob.get(key)) + "&";
-                    e.printStackTrace();
+        if(ob.size()!=0){
+            url = url + "?";
+            for (String key : ob.keySet()) {
+                if (ob.get(key) instanceof String) {
+                    try {
+                        url = url + key + "=" + URLEncoder.encode((String) ob.get(key), "utf-8") + "&";
+                    } catch (UnsupportedEncodingException e) {
+                        url = url + key + "=" + (String) ob.get(key) + "&";
+                        e.printStackTrace();
+                    }
+                }else if (ob.get(key) instanceof Integer) {
+                    url = url + key + "=" + (int) ob.get(key) + "&";
+                }else if (ob.get(key) instanceof Float) {
+                    url = url + key + "=" + (float) ob.get(key) + "&";
+                }else if (ob.get(key) instanceof Double) {
+                    url = url + key + "=" + (double) ob.get(key) + "&";
+                }else {
+                    try {
+                        url = url + key + "=" + URLEncoder.encode(JSON.toJSONString(ob.get(key)), "utf-8") + "&";
+                    } catch (UnsupportedEncodingException e) {
+                        url = url + key + "=" + JSON.toJSONString(ob.get(key)) + "&";
+                        e.printStackTrace();
+                    }
                 }
             }
-        }
-        if (url.endsWith("&")) {
-            url = url.substring(0, url.length() - 1);
+            if (url.endsWith("&")) {
+                url = url.substring(0, url.length() - 1);
+            }
         }
         b.url(url);
+        DLog.e("GET↑", url);
         request = b.build();
     }
 

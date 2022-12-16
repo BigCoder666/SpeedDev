@@ -61,6 +61,10 @@ public abstract class BaseRefreshRecyclerActivity<VB extends ViewBinding,T exten
         dataList.addAll(addList);
     }
 
+    public void addData(int index,List<K> addList){
+        dataList.addAll(index,addList);
+    }
+
     public void resetData(List<K> addList){
         dataList.clear();
         dataList.addAll(addList);

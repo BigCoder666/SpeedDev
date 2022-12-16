@@ -31,4 +31,15 @@ public class BackTitleActionbar extends BaseActionbar {
                 new String[]{null,title},
                 new OneClicklistener[]{new FinishClick(activity),null});
     }
+
+    public void init(OneClicklistener click, String title){
+        setBackgroundColor(getResources().getColor(R.color.base));
+        setTextColor(R.color.white);
+        setTitleColor(R.color.white);
+        super.init(new TYPE[]
+                        {TYPE.LI,TYPE.T}
+                ,new int[]{R.drawable.back,0},
+                new String[]{null,title},
+                new OneClicklistener[]{click,null});
+    }
 }
