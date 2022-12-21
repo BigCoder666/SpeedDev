@@ -26,15 +26,6 @@ public abstract class CommonRecyclerActivity<VB extends ViewBinding,T extends Vi
     }
 
     @Override
-    public void badtoken() {
-        MainEvent event = new MainEvent();
-        event.name = "logout";
-        event.param = "";
-        EventBus.getDefault().post(event);
-        finish();
-    }
-
-    @Override
     public HashMap<String,String> getHeader(){
         HashMap<String,String> header = JSON.parseObject(new ShareGetter(this).ReadHeader("header"),HashMap.class);
         return header;

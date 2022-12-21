@@ -67,7 +67,7 @@ import static com.cretin.www.cretinautoupdatelibrary.utils.DownloadService.getPa
 
 import org.greenrobot.eventbus.EventBus;
 
-public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActivity implements PicassoLoader.IDefult, LoadingController.ILoadSrc, IResponse.BadToken,EasyPermissions.PermissionCallbacks  {
+public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActivity implements PicassoLoader.IDefult, LoadingController.ILoadSrc,EasyPermissions.PermissionCallbacks  {
     public Center center;
 
     public VB vb;
@@ -475,6 +475,16 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
                 }
             });
 
+        }
+
+        public void toastAndFinish(final String msg) {
+            activity.getWindow().getDecorView().post(new Runnable() {
+                @Override
+                public void run() {
+                    toaster.showToast(msg);
+                    activity.finish();
+                }
+            });
         }
 
         public void toastLong(final String msg) {

@@ -13,7 +13,13 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26ec91af-91d9-4877-bfb2-e07507a75548" name="Default Changelist" comment="speed-dev update http req">
+    <list default="true" id="26ec91af-91d9-4877-bfb2-e07507a75548" name="Default Changelist" comment="speed-dev update get req">
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -21,7 +27,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[HC72BC210800066]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -47,8 +53,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="layoutResourceFile_vertical" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -92,6 +98,7 @@
     <property name="android-custom-viewD:/AndroidGradleUserHome/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.3.0-beta02/f4de7876e10ff121102f131b26d4a98b1613a012/recyclerview-1.3.0-beta02-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_RecyclerView_DIMENSIONS" value="1080&#10;1920" />
     <property name="android-custom-viewD:/AndroidGradleUserHome/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.3.0-beta02/f4de7876e10ff121102f131b26d4a98b1613a012/recyclerview-1.3.0-beta02-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_SELECTED" value="RecyclerView" />
     <property name="android-custom-viewD:/AndroidGradleUserHome/caches/modules-2/files-2.1/androidx.swiperefreshlayout/swiperefreshlayout/1.0.0/ab92d86c004eb1d48e45f311b02ca53d6c86b607/swiperefreshlayout-1.0.0-sources.jar!/androidx/swiperefreshlayout/widget/SwipeRefreshLayout.java_SELECTED" value="SwipeRefreshLayout" />
+    <property name="android-custom-viewD:/AndroidGradleUserHome/caches/modules-2/files-2.1/androidx.swiperefreshlayout/swiperefreshlayout/1.2.0-alpha01/1bd176a0a47c14cc39d7a591bcef23c67838f76a/swiperefreshlayout-1.2.0-alpha01-sources.jar!/androidx/swiperefreshlayout/widget/SwipeRefreshLayout.java_SELECTED" value="SwipeRefreshLayout" />
     <property name="android-custom-viewD:/SpeedDev/app/src/main/java/com/wewin/speeddev/demo/BackTitleActionbar.java_SELECTED" value="BackTitleActionbar" />
     <property name="android-custom-viewD:/SpeedDev/speed-dev/src/main/java/me/tx/app/common/widget/BackTitleActionbar.java_BackTitleActionbar_DIMENSIONS" value="1080&#10;1920" />
     <property name="android-custom-viewD:/SpeedDev/speed-dev/src/main/java/me/tx/app/common/widget/BackTitleActionbar.java_SELECTED" value="BackTitleActionbar" />
@@ -112,9 +119,10 @@
     <property name="android-custom-viewD:/SpeedDev/spinner/src/main/java/com/wewin/spinner/CommonMultipSpinner.java_SELECTED" value="CommonMultipSpinner" />
     <property name="android-custom-viewD:/SpeedDev/spinner/src/main/java/com/wewin/spinner/CommonSpinner.java_CommonSpinner_DIMENSIONS" value="1080&#10;1920" />
     <property name="android-custom-viewD:/SpeedDev/spinner/src/main/java/com/wewin/spinner/CommonSpinner.java_SELECTED" value="CommonSpinner" />
+    <property name="android-custom-viewD:/SpeedDev/swipe/src/main/java/com/makeid/swipe/MakeIdSwipeLayout.java_SELECTED" value="MakeIdSwipeLayout" />
     <property name="android-custom-viewD:/SpeedDev/wait-button/src/main/java/com/makeid/wait_button/WButton.java_SELECTED" value="WButton" />
     <property name="android.sdk.path" value="$PROJECT_DIR$/../Androidsdk" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="E:/JADigitalizePSS" />
     <property name="multi-representation-previewC:/Users/TanXiao/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.0.0/2151d26c3b241f0a887f2dadb9ab091649fcf020/recyclerview-1.0.0-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_selected" value="Custom views" />
     <property name="multi-representation-previewC:/Users/TanXiao/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.3.0-alpha01/34c485dabcb642b6f527f0cfa524211faf96faad/recyclerview-1.3.0-alpha01-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_selected" value="Custom views" />
     <property name="multi-representation-previewD:/SpeedDev/app/src/main/java/com/wewin/speeddev/demo/BackTitleActionbar.java_selected" value="Custom views" />
@@ -422,7 +430,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671071022718</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="speed-dev update get req">
+      <created>1671181145323</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1671181145323</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -460,44 +475,45 @@
     <MESSAGE value="http get bug" />
     <MESSAGE value="apiTest" />
     <MESSAGE value="speed-dev update http req" />
-    <option name="LAST_COMMIT_MESSAGE" value="speed-dev update http req" />
+    <MESSAGE value="speed-dev update get req" />
+    <option name="LAST_COMMIT_MESSAGE" value="speed-dev update get req" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/speed-dev/src/main/java/me/tx/app/network/HttpBuilder.java</url>
-          <line>330</line>
+          <line>333</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/speed-dev/src/main/java/me/tx/app/network/HttpBuilder.java</url>
-          <line>327</line>
+          <line>330</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/speed-dev/src/main/java/me/tx/app/network/HttpBuilder.java</url>
-          <line>270</line>
+          <line>273</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/speed-dev/src/main/java/me/tx/app/network/HttpBuilder.java</url>
-          <line>279</line>
+          <line>282</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/speed-dev/src/main/java/me/tx/app/network/HttpBuilder.java</url>
-          <line>273</line>
+          <line>276</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/speed-dev/src/main/java/me/tx/app/network/HttpBuilder.java</url>
-          <line>276</line>
+          <line>279</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/speed-dev/src/main/java/me/tx/app/network/HttpBuilder.java</url>
-          <line>321</line>
+          <line>324</line>
           <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
@@ -507,7 +523,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/speed-dev/src/main/java/me/tx/app/network/HttpBuilder.java</url>
-          <line>238</line>
+          <line>241</line>
           <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>

@@ -23,15 +23,6 @@ public abstract class CommonActivity<VB extends ViewBinding> extends BaseActivit
     }
 
     @Override
-    public void badtoken() {
-        MainEvent keepEvent = new MainEvent();
-        keepEvent.name = "logout";
-        keepEvent.param = "";
-        EventBus.getDefault().post(keepEvent);
-        finish();
-    }
-
-    @Override
     public HashMap<String,String> getHeader(){
         HashMap<String,String> header = JSON.parseObject(new ShareGetter(this).ReadHeader("header"),HashMap.class);
         return header;

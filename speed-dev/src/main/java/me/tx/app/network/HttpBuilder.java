@@ -217,6 +217,10 @@ public class HttpBuilder<T> {
     }
 
     public void call(IResponse<T> iResponse){
+        if (!url.startsWith(Config.URL_START_WITH)) {
+            iResponse.fail(Config.NETWORK_NOT_START_WITH_HTTP, Config.NETWORK_NOT_START_WITH_HTTP_MESSAGE);
+            return;
+        }
         request.cacheControl().noCache();
         Call call = mOkHttpClient.newCall(request);
         call.enqueue(new Callback() {
@@ -258,6 +262,10 @@ public class HttpBuilder<T> {
     }
 
     public void callList(IArrayList<T> iResponse) {
+        if (!url.startsWith(Config.URL_START_WITH)) {
+            iResponse.fail(Config.NETWORK_NOT_START_WITH_HTTP, Config.NETWORK_NOT_START_WITH_HTTP_MESSAGE);
+            return;
+        }
         request.cacheControl().noCache();
         Call call = mOkHttpClient.newCall(request);
         call.enqueue(new Callback() {
@@ -275,6 +283,9 @@ public class HttpBuilder<T> {
                             iResponse.successArray(data);
                         } else {
                             iResponse.fail(iData.getStatus(), iData.getMessage());
+                            if(IData.badtoken.contains(iData.getStatus())){
+                                iResponse.badToken();
+                            }
                         }
                     } else {
                         iResponse.fail(response.code() + "", response.message());
@@ -326,6 +337,9 @@ public class HttpBuilder<T> {
                             iResponse.successObj(data);
                         } else {
                             iResponse.fail(iData.getStatus(), iData.getMessage());
+                            if(IData.badtoken.contains(iData.getStatus())){
+                                iResponse.badToken();
+                            }
                         }
                     } else {
                         iResponse.fail(response.code() + "", response.message());

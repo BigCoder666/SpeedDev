@@ -13,8 +13,6 @@ public interface IResponse<T> {
     void success(String str);
 
     void fail(String code,String msg);
+    void badToken();
 
-    interface BadToken{
-        void badtoken();
-    }
 }

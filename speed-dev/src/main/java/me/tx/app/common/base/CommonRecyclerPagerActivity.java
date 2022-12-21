@@ -27,15 +27,6 @@ public abstract class CommonRecyclerPagerActivity<VB extends ViewBinding,T> exte
     }
 
     @Override
-    public void badtoken() {
-        MainEvent event = new MainEvent();
-        event.name = "logout";
-        event.param = "";
-        EventBus.getDefault().post(event);
-        finish();
-    }
-
-    @Override
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }

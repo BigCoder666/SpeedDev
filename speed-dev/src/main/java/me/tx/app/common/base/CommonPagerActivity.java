@@ -27,15 +27,6 @@ public abstract class CommonPagerActivity extends PagerActivity {
     }
 
     @Override
-    public void badtoken() {
-        MainEvent event = new MainEvent();
-        event.name = "logout";
-        event.param = "";
-        EventBus.getDefault().post(event);
-        finish();
-    }
-
-    @Override
     public int setPageLimit(){
         return 1;
     }
