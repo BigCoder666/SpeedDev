@@ -23,8 +23,6 @@ public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
 
     public abstract void load();
 
-    View view;
-
     @Override
     public View onCreateView( LayoutInflater inflater,  ViewGroup container,  Bundle savedInstanceState) {
         fvb = getVb();
@@ -43,10 +41,6 @@ public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
         {
             load();
         }
-    }
-
-    public View getView(){
-        return view;
     }
 
     public BaseActivity getBaseActivity(){

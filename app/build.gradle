@@ -36,4 +36,5 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar','*.aar'])
     implementation project(path: ':speed-dev')
     implementation project(path: ':spinner')
+    implementation project(path: ':dumb-resource')
 }

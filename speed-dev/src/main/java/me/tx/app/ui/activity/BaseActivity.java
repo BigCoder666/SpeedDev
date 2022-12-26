@@ -4,29 +4,22 @@ import android.Manifest;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.viewbinding.ViewBinding;
 
+import android.os.Handler;
 import android.provider.Settings;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.jaeger.library.StatusBarUtil;
 import com.luck.picture.lib.basic.PictureSelector;
@@ -40,12 +33,9 @@ import java.util.HashMap;
 import java.util.List;
 
 //import me.tx.app.ActivityManager;
-import me.tx.app.Config;
 import me.tx.app.R;
 import me.tx.app.network.HttpBuilder;
-import me.tx.app.network.IResponse;
 import me.tx.app.network.Mapper;
-import me.tx.app.network.ParamList;
 import me.tx.app.utils.AndroidBug5497Workaround;
 import me.tx.app.utils.DownloadInfo;
 import me.tx.app.utils.Downloader;
@@ -57,11 +47,7 @@ import me.tx.app.utils.PicassoLoader;
 import me.tx.app.utils.ShareGetter;
 import me.tx.app.utils.Toaster;
 import me.tx.app.utils.UploadHelper;
-import okhttp3.Cookie;
-import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
-
-import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 
 import static com.cretin.www.cretinautoupdatelibrary.utils.DownloadService.getPackInfo;
 

@@ -62,11 +62,11 @@ dependencies {
     //easy permissions
     api 'pub.devrel:easypermissions:2.0.1'
     //auto update
-    api 'com.github.MZCretin:AutoUpdateProject:+'
+    api 'com.github.MZCretin:AutoUpdateProject:2.0.5@aar'
     //download file
     api 'com.liulishuo.filedownloader:library:1.7.7'
     //swipe delete
-    api 'com.github.mcxtzhang:SwipeDelMenuLayout:+'
+    api 'com.github.mcxtzhang:SwipeDelMenuLayout:V1.3.0'
     //StringUtil
     api 'org.apache.commons:commons-lang3:+'
     //分包

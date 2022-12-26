@@ -23,7 +23,6 @@ import me.tx.app.common.base.CommonRecyclerActivity;
 import me.tx.app.common.base.MainEvent;
 import me.tx.app.network.HttpBuilder;
 import me.tx.app.network.IData;
-import me.tx.app.network.IListData;
 import me.tx.app.network.IResponse;
 import me.tx.app.network.Mapper;
 import me.tx.app.utils.ShareGetter;
@@ -141,59 +140,59 @@ public class TaskActivity extends CommonRecyclerActivity<ActivityTaskBinding, It
                     break;
                 }
             }
-            httpBuilder.call(new IResponse() {
-                @Override
-                public void successObj(IData t) {
-
-                }
-
-                @Override
-                public void successArray(IListData tList) {
-
-                }
-
-                @Override
-                public void success(String str) {
-                    JSONObject jsonObject = JSON.parseObject(str);
-
-                    if (jsonObject.getString(task.codeName).equals(task.successCode)) {
-                        if(api.headers!=null&&api.headers.size()!=0){
-                            HashMap<String, String> hashMap = new HashMap<>();
-                            for(String key:api.headers.keySet()) {
-                                hashMap.put((String) api.headers.get(key), jsonObject.getJSONObject(task.dataName).getString(key));
-                            }
-                            ShareGetter shareGetter = new ShareGetter(TaskActivity.this);
-                            shareGetter.Write("header", JSON.toJSONString(hashMap));
-                        }
-
-                        try {
-                            Thread.sleep(500);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-
-                        task.requestApiList.get(runIndex).apiResult = jsonObject;
-
-                        if(addIndex) {
-                            runIndex++;
-                        }
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                center.toast("接口："+api.apiUrl+"成功");
-                                runTask(p);
-                            }
-                        });
-                    } else {
-                        center.toast("下标" + runIndex + ":" + api.apiUrl + "接口报错" + jsonObject.getString(task.codeName));
-                    }
-                }
-
-                @Override
-                public void fail(String code, String msg) {
-                    center.toast("下标" + runIndex + ":" + api.apiUrl + "接口报错" + code);
-                }
-            });
+//            httpBuilder.call(new IResponse() {
+//                @Override
+//                public void successObj(IData t) {
+//
+//                }
+//
+//                @Override
+//                public void successArray(IListData tList) {
+//
+//                }
+//
+//                @Override
+//                public void success(String str) {
+//                    JSONObject jsonObject = JSON.parseObject(str);
+//
+//                    if (jsonObject.getString(task.codeName).equals(task.successCode)) {
+//                        if(api.headers!=null&&api.headers.size()!=0){
+//                            HashMap<String, String> hashMap = new HashMap<>();
+//                            for(String key:api.headers.keySet()) {
+//                                hashMap.put((String) api.headers.get(key), jsonObject.getJSONObject(task.dataName).getString(key));
+//                            }
+//                            ShareGetter shareGetter = new ShareGetter(TaskActivity.this);
+//                            shareGetter.Write("header", JSON.toJSONString(hashMap));
+//                        }
+//
+//                        try {
+//                            Thread.sleep(500);
+//                        } catch (InterruptedException e) {
+//                            e.printStackTrace();
+//                        }
+//
+//                        task.requestApiList.get(runIndex).apiResult = jsonObject;
+//
+//                        if(addIndex) {
+//                            runIndex++;
+//                        }
+//                        runOnUiThread(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                center.toast("接口："+api.apiUrl+"成功");
+//                                runTask(p);
+//                            }
+//                        });
+//                    } else {
+//                        center.toast("下标" + runIndex + ":" + api.apiUrl + "接口报错" + jsonObject.getString(task.codeName));
+//                    }
+//                }
+//
+//                @Override
+//                public void fail(String code, String msg) {
+//                    center.toast("下标" + runIndex + ":" + api.apiUrl + "接口报错" + code);
+//                }
+//            });
         }
     }
 

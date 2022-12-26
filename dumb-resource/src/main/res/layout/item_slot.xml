@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="horizontal">
+    <Button
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:minHeight="25dp"
+        android:background="@color/slot"
+        android:text=""
+        android:textColor="@color/white"
+        android:textSize="@dimen/t_14"
+        android:textStyle="bold"
+        android:id="@+id/slot_name"
+        android:layout_marginLeft="5dp"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/slot_connor"
+            android:id="@+id/left_top"
+            android:layout_alignLeft="@id/port_recycler"
+            android:layout_alignTop="@id/port_recycler"/>
+
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/slot_connor"
+            android:id="@+id/right_top"
+            android:rotation="90"
+            android:layout_alignRight="@id/port_recycler"
+            android:layout_alignTop="@id/port_recycler"/>
+
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/slot_connor"
+            android:rotation="270"
+            android:layout_alignLeft="@id/port_recycler"
+            android:layout_alignBottom="@id/port_recycler"/>
+
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/slot_connor"
+            android:rotation="180"
+            android:layout_alignRight="@id/port_recycler"
+            android:layout_alignBottom="@id/port_recycler"/>
+
+        <me.tx.app.ui.widget.NoScrollRecycler
+            android:id="@+id/port_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:padding="6dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:minHeight="30dp" />
+    </RelativeLayout>
+</LinearLayout>

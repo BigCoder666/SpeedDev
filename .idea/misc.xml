@@ -7,11 +7,30 @@
         <entry key="..\:/SpeedDev/apitest/src/main/res/layout/activity_task.xml" value="0.29981884057971014" />
         <entry key="..\:/SpeedDev/apitest/src/main/res/layout/item_task.xml" value="0.22760416666666666" />
         <entry key="..\:/SpeedDev/app/src/main/res/layout/activity_a.xml" value="0.23324275362318841" />
+        <entry key="..\:/SpeedDev/app/src/main/res/layout/activity_demo.xml" value="0.29322916666666665" />
         <entry key="..\:/SpeedDev/app/src/main/res/layout/activity_simple_contain.xml" value="0.23324275362318841" />
         <entry key="..\:/SpeedDev/app/src/main/res/layout/activity_simple_fragment.xml" value="0.23324275362318841" />
         <entry key="..\:/SpeedDev/app/src/main/res/layout/activity_simple_list.xml" value="0.24003623188405798" />
+        <entry key="..\:/SpeedDev/app/src/main/res/layout/activity_simple_list2.xml" value="0.29322916666666665" />
+        <entry key="..\:/SpeedDev/app/src/main/res/layout/activity_test_demo.xml" value="0.2046875" />
         <entry key="..\:/SpeedDev/app/src/main/res/layout/fragment_simple.xml" value="0.25" />
         <entry key="..\:/SpeedDev/app/src/main/res/layout/item_simple_text.xml" value="0.23324275362318841" />
+        <entry key="..\:/SpeedDev/dumb-resource/src/main/res/drawable/fc_port.xml" value="0.2755208333333333" />
+        <entry key="..\:/SpeedDev/dumb-resource/src/main/res/drawable/fc_port_inside.xml" value="0.2760416666666667" />
+        <entry key="..\:/SpeedDev/dumb-resource/src/main/res/drawable/fc_port_inside_broken.xml" value="0.2760416666666667" />
+        <entry key="..\:/SpeedDev/dumb-resource/src/main/res/drawable/fc_port_inside_used.xml" value="0.2760416666666667" />
+        <entry key="..\:/SpeedDev/dumb-resource/src/main/res/drawable/fiber_color_selector.xml" value="0.2755208333333333" />
+        <entry key="..\:/SpeedDev/dumb-resource/src/main/res/drawable/fiber_color_selector_10dp.xml" value="0.2755208333333333" />
+        <entry key="..\:/SpeedDev/dumb-resource/src/main/res/drawable/fiber_slot_selector.xml" value="0.2755208333333333" />
+        <entry key="..\:/SpeedDev/dumb-resource/src/main/res/drawable/sc_port.xml" value="0.2760416666666667" />
+        <entry key="..\:/SpeedDev/dumb-resource/src/main/res/drawable/sc_port_inside_broken.xml" value="0.2760416666666667" />
+        <entry key="..\:/SpeedDev/dumb-resource/src/main/res/drawable/sc_port_inside_empty.xml" value="0.2760416666666667" />
+        <entry key="..\:/SpeedDev/dumb-resource/src/main/res/drawable/sc_port_inside_used.xml" value="0.2760416666666667" />
+        <entry key="..\:/SpeedDev/dumb-resource/src/main/res/layout/fragment_face.xml" value="0.259375" />
+        <entry key="..\:/SpeedDev/dumb-resource/src/main/res/layout/item_port.xml" value="0.33" />
+        <entry key="..\:/SpeedDev/dumb-resource/src/main/res/layout/item_slot.xml" value="0.67" />
+        <entry key="..\:/SpeedDev/dumb-resource/src/main/res/layout/item_splitter.xml" value="0.33" />
+        <entry key="..\:/SpeedDev/dumb-resource/src/main/res/layout/item_splitter_port.xml" value="0.36614583333333334" />
         <entry key="..\:/SpeedDev/speed-dev/src/main/res/layout/item_empty_layout.xml" value="0.23324275362318841" />
         <entry key="..\:/SpeedDev/spinner/src/main/res/layout/item_pop_recyler_item.xml" value="0.3151041666666667" />
         <entry key="..\:/SpeedDev/spinner/src/main/res/layout/item_select_pop_recyler_item.xml" value="0.3151041666666667" />

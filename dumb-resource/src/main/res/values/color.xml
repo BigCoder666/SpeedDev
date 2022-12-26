@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#3C3C3C</color>
+    <color name="white">#FFFFFF</color>
+
+    <color name="slot">#22AA22</color>
+    <color name="red">#AA2222</color>
+    <color name="broken">#AAAAAA</color>
+
+    <color name="splitter">#CDCDCD</color>
+</resources>
